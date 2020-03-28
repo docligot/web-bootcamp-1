@@ -10,3 +10,4 @@ We are going to tackle the following:
 * Basic CSS
 * Javascript
 
+Note GitHub change
