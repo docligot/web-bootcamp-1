@@ -10,3 +10,5 @@ We are going to tackle the following:
 * Basic CSS
 * Javascript
 
+
+Hello :) Ingrid here :)
