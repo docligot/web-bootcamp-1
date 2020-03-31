@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<!KRISTELTYPE HTML>
 
 <html>
 
@@ -29,35 +29,18 @@
 
 	<p id="paragraph"style ="display: none;">This paragraph is normally hidden.</p>
 
-<script>
+	<form>
+		<select id="selector" onchange="say_hi();">
+			<option value="">Select someone you know:</option>
+			<option value="Oscar">Oscar</option>
+			<option value="Kristel">Kristel</option>
+			<option value="Ingrid">Ingrid</option>
+			<option value="Emily">Emily</option>
+		</select>
 
-	function popup() {
-		window.alert('This is an alert');
-	}
-	
-	function heading_red() {
-		document.getElementById('heading').
-		style.color = 'red'
-	}
-	
-	function heading_blue() {
-		document.getElementById('heading').
-		style.color = 'blue'
-	}
+	</form>
 
-	function toggel_paragraph() {
-		
-		var paragraph = document.getElementById('paragraph');
-
-		if (paragraph.style.display == 'none'){
-			paragraph.style.display = 'block';
-		} else {
-			paragraph.style.display = 'none';
-		}
-	}
-
-
-</script>
+<script src="interaction.js"></script>
 
 
 </body>
