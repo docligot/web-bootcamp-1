@@ -10,10 +10,38 @@
 
 <body>
 
-	<h1>This is another page.</h1>
-	<h3>What happened?</h3>
+	<a href=".">Click here to go back home.</a>
 
-	<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+	<h1 id="heading">This is another page.</h1>
+
+
+	<button onclick="popup();">Click this to create a popup.
+	</button>
+	<br/>
+	<button onclick="heading_red();">Click this to turn the heading into red.
+	</button>
+	<br/>
+	<button onclick="heading_blue();">Click this to turn the heading into blue.
+	</button>
+
+<script>
+
+	function popup() {
+	window.alert('This is an alert');
+	}
+	
+	function heading_red() {
+	document.getElementById('heading').
+	style.color = 'red';
+	}
+	
+	function heading_blue() {
+	document.getElementById('heading').
+	style.color = 'blue';
+	}
+	
+</script>
+
 
 
 </body>
