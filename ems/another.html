@@ -20,6 +20,18 @@
 	<button onclick="toggle_paragraph();">Click this to toggle the hidden paragraph.</button>
 	
 	<p id="paragraph" style="display: none;">This paragraph is normally hidden.</p>
+	
+	<form>
+		<select id="selector" onchange="say_hi();">
+			<option value="">Select someone you know:</option>
+			<option value="Oscar">Oscar</option>
+			<option value="Kristel">Kristel</option>
+			<option value="Ingrid">Ingrid</option>
+			<option value="Emily">Emily</option>
+		</select>
+	</form>
+	
+	
 <script>
 
 	function popup() {
@@ -42,6 +54,17 @@
 			paragraph.style.display = 'none';
 			}
 	}
+	
+	
+	function say_hi() {
+		var person = document.getElementById('selector').value;
+		
+		if (person!=""){
+		var greeting = 'Hello ' + person;
+		window.alert(greeting);
+	}
+	}
+	
 	
 </script>
 </body>
