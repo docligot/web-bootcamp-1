@@ -49,35 +49,5 @@
 	
 <script src="interaction.js"> </script>
 
-<script>
-
-	function get_answer() {
-		var name = document.getElementById('name').value;
-		var age = document.getElementById('age').value;
-		var food = document.getElementById('food').value;
-	
-		console.log(name);
-		console.log(age);
-		console.log(food);
-		
-		call_server(name,age,food);
-	}
-
-	function call_server(name, age, food) {
-		var xmlhttp = new XMLHttpRequest();
-		
-		xmlhttp.onreadystatechange = function() {
-			if (this.readyState ==4 && this.status == 200){
-				document.getElementById('answer_box').innerHTML = this.responseText;
-			} else {
-				document.getElementById('answer_box').innerHTML = '<p>Loading...</p>';
-			}
-		}
-		
-		xmlhttp.open("GET","answer.php?name=" + name + "&age=" + age + "&food=" + food,true);
-		xmlhttp.send();
-	}
-
-</script>
 </body>
 </html>
