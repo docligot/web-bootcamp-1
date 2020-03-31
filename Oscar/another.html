@@ -56,8 +56,7 @@
 	
 	<hr/>
 	
-	<div id = 'answer_box'>
-	</div>
+	<div id = 'answer_box'></div>
 	
 <script src= "interaction.js"></script>
 
@@ -80,7 +79,7 @@
 	
 		var xmlhttp = new XMLHttpRequest();
 		
-		xmlhttp.onreadystatechangem = function() {
+		xmlhttp.onreadystatechange = function() {
 		
 			if (this.readyState == 4 &&
 			this.status == 200) {
