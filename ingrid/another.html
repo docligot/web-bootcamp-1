@@ -13,35 +13,47 @@
 	<a href=".">Click here to go back home.</a>
 
 	<h1 id="heading">This is another page.</h1>
-
-
-	<button onclick="popup();">Click this to create a popup.
-	</button>
+	
+	<button onclick="popup();">Click this to create a popup.</button>
 	<br/>
-	<button onclick="heading_red();">Click this to turn the heading into red.
-	</button>
+	<button onclick="heading_blue();">Click this to turn the heading into blue.</button>
 	<br/>
-	<button onclick="heading_blue();">Click this to turn the heading into blue.
-	</button>
+	<button onclick="heading_red();">Click this to turn the heading into red.</button>
+
+	<br/>
+	<button onclick="toggle_paragraph();">Click this to toggle the hidden paragraph.</button>
+
+	<p style="display: none;" id="paragraph" >This paragraph is normally hidden.</p>
+	
 
 <script>
 
 	function popup() {
-	window.alert('This is an alert');
+		window.alert('This is an alert');
 	}
 	
 	function heading_red() {
-	document.getElementById('heading').
-	style.color = 'red';
+		document.getElementById('heading').style.color = 'red';
 	}
 	
 	function heading_blue() {
-	document.getElementById('heading').
-	style.color = 'blue';
+		document.getElementById('heading').style.color = 'blue';	
 	}
 	
-</script>
+	function toggle_paragraph() {
+		
+		var paragraph = document.getElementById('paragraph');
+		
+		if (paragraph.style.display == 'none') {
+			paragraph.style.display = 'block';
+		} else {
+			paragraph.style.display = 'none';
+		}
+		
+		
+	}
 
+</script>
 
 
 </body>
