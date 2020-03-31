@@ -23,6 +23,14 @@
 	<br/>
 	<button onclick="heading_blue();">Click this to turn the heading into blue.
 	</button>
+	
+	<br/>
+	<button onclick="toggle_paragraph();">Click this to toggle the hidden paragraph.
+	</button>
+	
+	
+	<p id="paragraph" style="display: none;">This paragraph is normally hidden</p>
+
 
 <script>
 
@@ -38,6 +46,16 @@
 	function heading_blue() {
 	document.getElementById('heading').
 	style.color = 'blue';
+	}
+	
+	function toggle_paragraph() {
+	var paragraph = document.getElementById('paragraph');
+	
+	if (paragraph.style.display == 'none') {
+	paragraph.style.display = 'block';
+	}
+	else {
+	paragraph.style.display = 'none';
 	}
 	
 </script>
