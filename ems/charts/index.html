@@ -13,6 +13,13 @@
 		<option value="2018">2018</option>
 	</select>
 
+	<select id="series3">
+		<option value="">Select Series 3</option>
+		<option value="2016">2016</option>
+		<option value="2017">2017</option>
+		<option value="2018">2018</option>
+	</select>
+	
 	<button onclick="getCharts();">Retrieve</button>
 	
 </div>
@@ -29,28 +36,30 @@
 function getCharts() {
 	var series1 = document.getElementById('series1').value;
 	var series2 = document.getElementById('series2').value;
-	if (series1 && series2) {
-		extractData(series1, series2);
+	var series3 = document.getElementById('series3').value;
+	if (series1 && series2 && series3) {
+		extractData(series1, series2, series3);
 	}
 }
 
-function extractData(series1, series2) {
+function extractData(series1, series2, series3) {
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			var dataArray = JSON.parse(this.responseText);
 			console.log(dataArray);
-			drawChart(dataArray[0], dataArray[1]);
+			drawChart(dataArray[0], dataArray[1], dataArray[2]);
 		} 
 	};
-	xmlhttp.open("GET", "call_chart.php?series1=" + series1 + "&series2=" + series2, true);
+	xmlhttp.open("GET", "call_chart.php?series1=" + series1 + "&series2=" + series2 + "&series3=" + series3, true);
 	xmlhttp.send();
 }
 
-function drawChart(data1, data2) {
+function drawChart(data1, data2, data3) {
 	
 	var series1 = JSON.parse('[' + data1 + ']');
 	var series2 = JSON.parse('[' + data2 + ']');
+	var series3 = JSON.parse('[' + data3 + ']');
 	
 	window.chartColors = {
 		red: 'rgb(255, 99, 132)',
@@ -98,7 +107,7 @@ function drawChart(data1, data2) {
 					borderWidth: 2, 
 					steppedLine: true,
 					yAxesID: 2, 
-					data: [100, 100, 100, 100, 110, 110, 110, 120]
+					data: series3
 				}
 			]
 		},
