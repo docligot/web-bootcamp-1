@@ -26,6 +26,7 @@
 	<button onclick="goToPoint2();">McDonalds</button>
 	<button onclick="goToPoint3();">Batangas</button>
 	<button onclick="goToFarm();">Farm Here</button>
+	<button onclick="goToSchool();">Go to School</button>
 
 	<script>
 	
@@ -68,7 +69,7 @@
 		messages.push('<h3>Dengue here</h3><p>In Batangas</p>');
 		messages.push('<h3>Dengue here</h3><p>In Batangas</p>');
 		messages.push('<h3>Secret Farm</h3><p>Sugar here!!!!</p>');
-
+		messages.push('<h3>UA&P</h3><p>No classes!!!!</p>');
 
 		locations.push([121.056269,	14.569240]);
 		locations.push([121.060796,	14.573229]);
@@ -80,6 +81,7 @@
 		locations.push([121.1716492,14.03485247]);
 		locations.push([121.1713267,14.03466928]);
 		locations.push([122.970367,10.413438]);
+		locations.push([121.060553,14.580456]);
 
 		colors.push({ "color": "#0000ff"});
 		colors.push({ "color": "#ffff00"});
@@ -91,6 +93,7 @@
 		colors.push({ "color": "#ff0000"});
 		colors.push({ "color": "#ff0000"});
 		colors.push({ "color": "#0033ff"});
+		colors.push({ "color": "#ffd700"});
 
 
 		for (i = 0; i < locations.length; i++) {
@@ -117,6 +120,10 @@
 
 		function goToFarm() {
 			map.flyTo({center: [122.970367,10.413438]});
+		}
+
+		function goToSchool() {
+			map.flyTo({center: [121.060553,14.580456]});
 		}
 
 
