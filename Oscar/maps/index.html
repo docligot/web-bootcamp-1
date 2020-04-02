@@ -12,16 +12,6 @@
 
 <body>
 
-<select id="map-style" onchange="createMap();">
-		<option value="">Select Map Style:</option>
-		<option value="mapbox://styles/mapbox/streets-v9">Streets</option>
-		<option value="mapbox://styles/mapbox/outdoors-v9">Outdoors</option>
-		<option value="mapbox://styles/mapbox/dark-v9">Dark</option>
-		<option value="mapbox://styles/mapbox/satellite-v9">Satelite</option>
-		<option value="mapbox://styles/mapbox/satellite-streets-v9">Satellite with Streets</option>
-		
-</select>
-
 	<div id='map' style='width: 500px; height: 500px;'></div>
 
 	<div>
@@ -30,23 +20,17 @@
 
 	<!--<div id='marker1'></div>-->
 
-	
-
 	<button onclick="goToPoint1();">Headquarters</button>
 	<button onclick="goToPoint2();">McDonalds</button>
 	<button onclick="goToPoint3();">Batangas</button>
 	<button onclick="goToFarm();">Farm Here</button>
 
 	<script>
-		function createMap() {
-
-		mapboxgl.accessToken = 'pk.eyJ1IjoiZWptdiIsImEiOiJjazhpZXR6b2YwMHpuM2hydzFlNjBtZzBsIn0.Ra6X0o253asj_7oLVm71Lw';
-
-		var mapStyle = document.getElementById('map-style').value;
+		mapboxgl.accessToken = 'pk.eyJ1IjoibWlndWVsb2Nhc3RlbG8iLCJhIjoiY2s4aWV0bzI0MDRtNjNtbndlbmJnMGJsayJ9.PCuRx0sMcmQwg3eS4yhjYQ';
 
 		var map = new mapboxgl.Map({
 		  container: 'map', // HTML container id
-		  style: 'mapbox://styles/ejmv/ck8if3czi0okh1io183llx3zk',
+		  style: 'mapbox://styles/miguelocastelo/ck8if44j90op21io6aurwy4j9',
 
 			//style: 'mapbox://styles/docligot/ck6rct8qa0ddv1iqxgrvd76oh',
 
