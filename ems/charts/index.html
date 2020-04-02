@@ -68,7 +68,8 @@ function drawChart(data1, data2, data3) {
 		green: 'rgb(75, 192, 192)',
 		blue: 'rgb(54, 162, 235)',
 		purple: 'rgb(153, 102, 255)',
-		grey: 'rgb(201, 203, 207)'
+		grey: 'rgb(201, 203, 207)',
+		black: 'rgb(0,0,0)'
 	};
 
 	var ctx = document.getElementById('myChart').getContext('2d');
@@ -78,7 +79,7 @@ function drawChart(data1, data2, data3) {
 
 		// The data for our dataset
 		data: {
-			labels: ["January", "February", "March", "April", "May", "June", "July", "August"],
+			labels: ["January", "February", "March", "April", "May", "June", "July", "August", "Sept", "Oct"],
 			datasets: [
 				{
 					label: "Series 1",
@@ -91,8 +92,8 @@ function drawChart(data1, data2, data3) {
 				{
 					label: "Series 2",
 					fill: false, 
-					backgroundColor: window.chartColors.red,
-					borderColor: window.chartColors.red,
+					backgroundColor: window.chartColors.black,
+					borderColor: window.chartColors.black,
 					borderWidth: 2, 
 					steppedLine: true,
 					yAxesID: 2, 
