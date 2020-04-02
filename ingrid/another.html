@@ -11,7 +11,8 @@
 <body>
 
 	<a href=".">Click here to go back home.</a>
-
+	<a href="question.html">Click here to go to the Q&A page.</a>
+	
 	<h1 id="heading">This is another page.</h1>
 	
 	<button onclick="popup();">Click this to create a popup.</button>
@@ -25,36 +26,72 @@
 
 	<p style="display: none;" id="paragraph" >This paragraph is normally hidden.</p>
 	
+	<form>
+		<select id="selector" onchange="say_hi();">
+			<option value="">Select someone you know:</option>
+			<option value="Oscar">Oscar</option>
+			<option value="Kristel">Kristel</option>
+			<option value="Ingrid">Ingrid</option>
+			<option value="Emily">Emily</option>
+		</select>
+	</form>
+	
+	<hr/>
+
+	<p>Type your name here:</p>
+	<input id="name" type="text" name="name"></input>
+	
+	<p>Type your age here:</p>
+	<input id="age" type="text" name="age"></input>
+	
+	<p>What's your favorite food?</p>
+	<input id="food" type="text" name="food"></input>
+	<br/>
+	
+	<button onclick="get_answer();">Send this</button>
+	
+	<hr/>
+	
+	<div id="answer_box"></div>
+
+
+<script src="interaction.js"></script>
 
 <script>
 
-	function popup() {
-		window.alert('This is an alert');
-	}
-	
-	function heading_red() {
-		document.getElementById('heading').style.color = 'red';
-	}
-	
-	function heading_blue() {
-		document.getElementById('heading').style.color = 'blue';	
-	}
-	
-	function toggle_paragraph() {
+	function get_answer() {
+
+		var name = document.getElementById('name').value;
+		var age = document.getElementById('age').value;
+		var food = document.getElementById('food').value;
+
+		console.log(name);
+		console.log(age);
+		console.log(food);
 		
-		var paragraph = document.getElementById('paragraph');
-		
-		if (paragraph.style.display == 'none') {
-			paragraph.style.display = 'block';
-		} else {
-			paragraph.style.display = 'none';
+		call_server(name, age, food);
+	
+	}
+
+	function call_server(name, age, food) {
+
+		var xmlhttp = new XMLHttpRequest();
+	
+		xmlhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				document.getElementById('answer_box').innerHTML = this.responseText;
+			} else {
+				document.getElementById('answer_box').innerHTML = '<p>loading...</p>';
+			}
 		}
 		
-		
+		xmlhttp.open("GET", "answer.php?name=" + name + "&age=" + age + "&food=" + food, true);
+		xmlhttp.send();
+	
 	}
 
-</script>
 
+</script>
 
 </body>
 

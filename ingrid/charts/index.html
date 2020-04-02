@@ -12,7 +12,7 @@
 		<option value="2017">2017</option>
 		<option value="2018">2018</option>
 	</select>
-
+	
 	<select id="series3">
 		<option value="">Select Series 3</option>
 		<option value="2016">2016</option>
@@ -36,9 +36,9 @@
 function getCharts() {
 	var series1 = document.getElementById('series1').value;
 	var series2 = document.getElementById('series2').value;
-	var series3 = document.getElementById('series3').value;	
+	var series3 = document.getElementById('series3').value;
 	if (series1 && series2 && series3) {
-		extractData(series1, series2, series3);
+		extractData(series1, series2 , series3);
 	}
 }
 
@@ -68,8 +68,7 @@ function drawChart(data1, data2, data3) {
 		green: 'rgb(75, 192, 192)',
 		blue: 'rgb(54, 162, 235)',
 		purple: 'rgb(153, 102, 255)',
-		grey: 'rgb(201, 203, 207)', 
-		black: 'rgb(0,0,0)'
+		grey: 'rgb(201, 203, 207)'
 	};
 
 	var ctx = document.getElementById('myChart').getContext('2d');
@@ -79,7 +78,7 @@ function drawChart(data1, data2, data3) {
 
 		// The data for our dataset
 		data: {
-			labels: ["January", "February", "March", "April", "May", "June", "July", "August", "Sept", "Oct"],
+			labels: ["January", "February", "March", "April", "May", "June", "July", "August"],
 			datasets: [
 				{
 					label: "Series 1",
@@ -92,8 +91,8 @@ function drawChart(data1, data2, data3) {
 				{
 					label: "Series 2",
 					fill: false, 
-					backgroundColor: window.chartColors.black,
-					borderColor: window.chartColors.black,
+					backgroundColor: window.chartColors.red,
+					borderColor: window.chartColors.red,
 					borderWidth: 2, 
 					steppedLine: true,
 					yAxesID: 2, 
@@ -104,9 +103,9 @@ function drawChart(data1, data2, data3) {
 					fill: false, 
 					backgroundColor: window.chartColors.blue,
 					borderColor: window.chartColors.blue,
-					//borderDash: [10,5],
+					borderDash: [10,5],
 					borderWidth: 2, 
-					//steppedLine: true,
+					steppedLine: true,
 					yAxesID: 2, 
 					data: series3
 				}
