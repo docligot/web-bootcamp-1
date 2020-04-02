@@ -1,23 +1,33 @@
 body {
 	background-color: darkred;
-	
 }
 
-h1 {
-	color: silver;
-
-}
 p {
-	color: green;
-	
+	color: white;
+	background-color: black;
 }
 
-.class {
-	
-	
+h2 {
+	color: blue;
+	background-color: black;
 }
 
-#id {
-	
-	
+h6 {
+	color: yellow;
+}
+
+.blue-text {
+	color: blue;
+}
+
+.red-text {
+	color: darkred;
+}
+
+.yellow-text {
+	color: yellow;
+}
+
+#first-paragraph {
+	background-color: white;
 }
