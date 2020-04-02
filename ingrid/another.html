@@ -40,14 +40,11 @@
 
 	<p>Type your name here:</p>
 	<input id="name" type="text" name="name"></input>
-	
 	<p>Type your age here:</p>
 	<input id="age" type="text" name="age"></input>
-	
 	<p>What's your favorite food?</p>
 	<input id="food" type="text" name="food"></input>
 	<br/>
-	
 	<button onclick="get_answer();">Send this</button>
 	
 	<hr/>
@@ -81,7 +78,7 @@
 			if (this.readyState == 4 && this.status == 200) {
 				document.getElementById('answer_box').innerHTML = this.responseText;
 			} else {
-				document.getElementById('answer_box').innerHTML = '<p>loading...</p>';
+				document.getElementById('answer_box').innerHTML = '<p>Loading...</p>';
 			}
 		}
 		
