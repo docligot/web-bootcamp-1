@@ -12,8 +12,7 @@
 
 <body>
 
-<select id="map-style" onchange="createMap();">
-		<option value="">Select Map Style:</option>
+<select id="map-style" onchange="setStyle();">
 		<option value="mapbox://styles/mapbox/streets-v9">Streets</option>
 		<option value="mapbox://styles/mapbox/outdoors-v9">Outdoors</option>
 		<option value="mapbox://styles/mapbox/dark-v9">Dark</option>
@@ -38,24 +37,21 @@
 	<button onclick="goToFarm();">Farm Here</button>
 
 	<script>
-		function createMap() {
-
+	
+		function setStyle() {
+		
+			var mapStyle = document.getElementById('map-style').value;
+			
+			map.setStyle(mapStyle);
+		
+		}
+		
 		mapboxgl.accessToken = 'pk.eyJ1IjoiZWptdiIsImEiOiJjazhpZXR6b2YwMHpuM2hydzFlNjBtZzBsIn0.Ra6X0o253asj_7oLVm71Lw';
-
-		var mapStyle = document.getElementById('map-style').value;
 
 		var map = new mapboxgl.Map({
 		  container: 'map', // HTML container id
-		  style: 'mapbox://styles/ejmv/ck8if3czi0okh1io183llx3zk',
-
-			//style: 'mapbox://styles/docligot/ck6rct8qa0ddv1iqxgrvd76oh',
-
-			//style: 'mapbox://styles/docligot/ck6rcwy30030c1ip9ops2q9pc',
-
-
-		  // style URL
+		  style: mapStyle,
 		  
-		  //center: [122.889765,	10.418386],
 		  center: [121.056269,	14.569240],
 		// starting position as [lng, lat]
 		  zoom: 15
@@ -114,6 +110,7 @@
 			.addTo(map);
 		}
 
+	}
 		function goToPoint1() {
 			map.flyTo({center: [121.056269,	14.569240]});
 		}
