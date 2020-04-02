@@ -18,6 +18,7 @@
 		<option value="mapbox://styles/mapbox/dark-v9">Dark</option>
 		<option value="mapbox://styles/mapbox/satellite-v9">Satellite</option>
 		<option value="mapbox://styles/mapbox/satellite-streets-v10">Satellite With Streets</option>
+		<option value="mapbox://styles/itanedo/ck8ifwhzj0pcl1io1sg42fl9h">Monochrome</option>
 	</select>
 
 	<div id='map' style='width: 500px; height: 500px;'></div>
@@ -26,6 +27,7 @@
 	<button onclick="goToPoint2();">McDonalds</button>
 	<button onclick="goToPoint3();">Batangas</button>
 	<button onclick="goToFarm();">Farm Here</button>
+	<button onclick="goToSchool();">School Here</button>
 
 	<script>
 	
@@ -47,7 +49,7 @@
 
 		  center: [121.056269,	14.569240],
 		// starting position as [lng, lat]
-		  zoom: 15
+		  zoom: 18
 		});
 		
 		map.addControl(new mapboxgl.NavigationControl());
@@ -68,7 +70,7 @@
 		messages.push('<h3>Dengue here</h3><p>In Batangas</p>');
 		messages.push('<h3>Dengue here</h3><p>In Batangas</p>');
 		messages.push('<h3>Secret Farm</h3><p>Sugar here!!!!</p>');
-
+		messages.push('<h3>School</h3><p>College University</p>');
 
 		locations.push([121.056269,	14.569240]);
 		locations.push([121.060796,	14.573229]);
@@ -80,6 +82,7 @@
 		locations.push([121.1716492,14.03485247]);
 		locations.push([121.1713267,14.03466928]);
 		locations.push([122.970367,10.413438]);
+		locations.push([121.010565,14.597924]);
 
 		colors.push({ "color": "#0000ff"});
 		colors.push({ "color": "#ffff00"});
@@ -91,6 +94,7 @@
 		colors.push({ "color": "#ff0000"});
 		colors.push({ "color": "#ff0000"});
 		colors.push({ "color": "#0033ff"});
+		colors.push({ "color": "#FF0000"});
 
 
 		for (i = 0; i < locations.length; i++) {
@@ -117,6 +121,10 @@
 
 		function goToFarm() {
 			map.flyTo({center: [122.970367,10.413438]});
+		}
+
+		function goToSchool() {
+			map.flyTo({center: [121.010565,14.597924]});
 		}
 
 
