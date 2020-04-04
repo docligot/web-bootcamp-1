@@ -13,6 +13,7 @@
 <body>
 
 	<select id="map-style" onchange="setStyle();">
+
 		<option value="mapbox://styles/mapbox/streets-v9">Streets</option>
 		<option value="mapbox://styles/mapbox/outdoors-v9">Outdoors</option>
 		<option value="mapbox://styles/mapbox/dark-v9">Dark</option>
@@ -38,7 +39,7 @@
 		
 		}
 	
-		mapboxgl.accessToken = 'pk.eyJ1IjoiZG9jbGlnb3QiLCJhIjoiY2p3MHQ5MTViMGVvNzQzdGdicTlwM2o3NCJ9.j4qYChJYSxUy8hNnlXrD-g';
+		mapboxgl.accessToken = 'pk.eyJ1Ijoia3Jpc3RlbHphcGF0YSIsImEiOiJjazhpZWxkaHowNWV3M2dvNjE3cGxxenhwIn0.RaCoA2UH1wXRBZwC5hilNA';
 
 		var mapStyle = document.getElementById('map-style').value;
 
@@ -69,7 +70,7 @@
 		messages.push('<h3>Dengue here</h3><p>In Batangas</p>');
 		messages.push('<h3>Dengue here</h3><p>In Batangas</p>');
 		messages.push('<h3>Secret Farm</h3><p>Sugar here!!!!</p>');
-		messages.push('<h3>UA&P</h3><p>No classes!!!!</p>');
+		messages.push('<h3>UAP</h3><p>no classes!!!!</p>');
 
 		locations.push([121.056269,	14.569240]);
 		locations.push([121.060796,	14.573229]);
@@ -125,7 +126,6 @@
 		function goToSchool() {
 			map.flyTo({center: [121.060553,14.580456]});
 		}
-
 
 	</script>
 
