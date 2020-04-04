@@ -26,11 +26,11 @@
 
 <hr/>
 
-<div class="chart-container" style="position: relative; height:80vh; width:80vw">
+<div class="chart-container" style="position: relative;">
     <canvas id="myChart"></canvas>
 </div>
 
-<script src="chart.bundle.js"></script>
+<script src="./charts/chart.bundle.js"></script>
 <script>
 
 function getCharts() {
@@ -51,7 +51,7 @@ function extractData(series1, series2, series3) {
 			drawChart(dataArray[0], dataArray[1], dataArray[2]);
 		} 
 	};
-	xmlhttp.open("GET", "call_chart.php?series1=" + series1 + "&series2=" + series2 + "&series3=" + series3, true);
+	xmlhttp.open("GET", "./charts/call_chart.php?series1=" + series1 + "&series2=" + series2 + "&series3=" + series3, true);
 	xmlhttp.send();
 }
 
@@ -115,6 +115,7 @@ function drawChart(data1, data2, data3) {
 
 		// Configuration options go here
 		options: {
+		responsive: true,
 			legend: {
 				display: true,
 				position: 'top'
