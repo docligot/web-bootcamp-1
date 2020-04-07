@@ -79,6 +79,18 @@
 	 </div>
 	</section>
 	
+	<section class="w3-row w3-light-gray">
+	 <div class="w3-third w3-padding">
+	 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+	 </div>
+	 
+	 <div class="w3-twothird w3-padding">
+		<? include('./db_chart/index.html')?>
+	 </div>
+	 
+	</section>	
+	
+	
 	<footer class="w3-black w3-padding w3-center">
 		<p>&copy; 2020 Sample Website</p>
 	</footer>
