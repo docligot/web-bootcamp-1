@@ -60,7 +60,7 @@
 	 </div>
 	 
 	 <div class="w3-twothird w3-padding">
-		<div class="w3-card w3-padding"><? include('./charts/index.html')?></div>
+		<? include('./charts/index.html')?>
 	 </div>
 	 
 	</section>
