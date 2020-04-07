@@ -22,14 +22,46 @@ $query = "SELECT period, $series4, $series5 FROM doc.full_data_view";
 
 $result = pg_query($dbc, $query); 
 
+	$result_string['labels'] = '';
+	$result_string[$series4] = '';
+	$result_string[$series5] = '';
+
 if ($result) {
 	while ($row = pg_fetch_array($result)) {
-		$result_string[] = $row;
+		$result_string['labels'] .= ','.$row['period'];
+		$result_string[$series4] .= ','.$row[$series4];
+		$result_string[$series5] .= ','.$row[$series5];
 	}
+	$result_string['labels'] = ltrim($result_string['labels'], ',');
+	$result_string[$series4] = ltrim($result_string[$series4], ',');
+	$result_string[$series5] = ltrim($result_string[$series5], ',');	
+	
 	echo json_encode($result_string);
 } else {
 	echo '';
 }
+
+/*
+	$result_string['labels'] = '';
+	$result_string[$series4] = '';
+	$result_string[$series5] = '';
+
+if ($result) {
+	while ($row = pg_fetch_array($result)) {
+		$result_string['labels'] .= ','.$row['period'];
+		$result_string[$series4] .= ','.$row[$series4];
+		$result_string[$series5] .= ','.$row[$series5];
+	}
+	
+	$result_string['labels'] = ltrim($result_string['labels'], ',');
+	$result_string[$series4] = ltrim($result_string[$series4], ',');
+	$result_string[$series5] = ltrim($result_string[$series5], ',');	
+	
+	echo json_encode($result_string);
+} else {
+	echo '';
+}
+*/
 
 pg_close($dbc);
 exit();

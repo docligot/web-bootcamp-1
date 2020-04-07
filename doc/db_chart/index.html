@@ -31,7 +31,7 @@
 </div>
 
 <hr/>
-s
+
 <div class="chart-container-1" style="position: relative; width:100%;">
     <canvas id="myChart1"></canvas>
 </div>
@@ -54,14 +54,14 @@ function extractData1(series4, series5, series6) {
 		if (this.readyState == 4 && this.status == 200) {
 			var dataArray1 = JSON.parse(this.responseText);
 			console.log(dataArray1);
-			//drawChart1(dataArray1[0], dataArray1[1], dataArray1[2]);
+			drawChart1(dataArray1['labels'], dataArray1[series4], dataArray1[series5], series4, series5);
 		} 
 	};
 	xmlhttp.open("GET", "./db_chart/call_chart.php?series4=" + series4 + "&series5=" + series5 + "&series6=" + series6, true);
 	xmlhttp.send();
 }
 
-function drawChart(data1, data2, data3) {
+function drawChart1(data1, data2, data3, legend1, legend2) {
 	
 	var series1 = JSON.parse('[' + data1 + ']');
 	var series2 = JSON.parse('[' + data2 + ']');
@@ -78,41 +78,30 @@ function drawChart(data1, data2, data3) {
 		black: 'rgb(0,0,0)'
 	};
 
-	var ctx = document.getElementById('myChart').getContext('2d');
+	var ctx = document.getElementById('myChart1').getContext('2d');
 	var chart = new Chart(ctx, {
 		// The type of chart we want to create
 		type: 'line',
 
 		// The data for our dataset
 		data: {
-			labels: ["January", "February", "March", "April", "May", "June", "July", "August", "Sept", "Oct"],
+			labels: series1,
 			datasets: [
 				{
-					label: "Series 1",
+					label: legend1,
 					fill: false, 
 					backgroundColor: window.chartColors.orange,
 					borderColor: window.chartColors.orange,
 					borderWidth: 2, 
-					data: series1
+					data: series2
 				},
 				{
-					label: "Series 2",
+					label: legend2,
 					fill: false, 
 					backgroundColor: window.chartColors.black,
 					borderColor: window.chartColors.black,
 					borderWidth: 2, 
 					steppedLine: true,
-					yAxesID: 2, 
-					data: series2
-				},
-								{
-					label: "Series 3",
-					fill: false, 
-					backgroundColor: window.chartColors.blue,
-					borderColor: window.chartColors.blue,
-					//borderDash: [10,5],
-					borderWidth: 2, 
-					//steppedLine: true,
 					yAxesID: 2, 
 					data: series3
 				}
