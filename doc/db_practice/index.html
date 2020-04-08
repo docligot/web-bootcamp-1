@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+
+<html>
+<head>
+	<title>Database Practice</title>
+	<link rel="stylesheet" href="../w3.css" />
+</head>
+<body>
+	<div class="w3-row">
+		<div class="w3-third w3-padding w3-mobile">
+			<h1>Database Practice App</h1>
+			<p>This app allows you to select two series from a database then displays the data in a chart and also the table.</p>
+		</div>
+		<div class="w3-twothird w3-padding w3-mobile">
+			<div class="w3-row">
+				<select id="series1" class="w3-select w3-third">
+					<option value="">Select Series 1:</option>
+					<option value="ads_b">Advertising</option>
+					<option value="influencers_b">Influencers </option>
+					<option value="price_a">Price Product A</option>
+					<option value="price_b">Price Product B</option>
+					<option value="sales_a">Sales Product A</option>
+					<option value="sales_b">Sales Product B</option>	
+				</select>
+				<select id="series2" class="w3-select w3-third">
+					<option value="">Select Series 2:</option>
+					<option value="ads_b">Advertising</option>
+					<option value="influencers_b">Influencers </option>
+					<option value="price_a">Price Product A</option>
+					<option value="price_b">Price Product B</option>
+					<option value="sales_a">Sales Product A</option>
+					<option value="sales_b">Sales Product B</option>	
+				</select>
+				<button class="w3-button w3-blue" onclick="getData();">Retrieve</button>
+			</div>
+			<hr />			
+			<div id="chart-container" style="position: relative; width:100%;">
+			</div>
+			<hr />
+			<div id="output" style="height: 300px; overflow: auto;"></div>
+		</div>
+	</div>
+<script src="chart.bundle.js"></script>	
+<script src="script.js"></script>	
+</body>
+</html>
