@@ -66,6 +66,16 @@
 		</div> 
 	</section>
 	
+	<section class="w3-row w3-grey">
+		<div class="w3-third w3-padding">
+			<p>This is the chart for the database exercise.</p>
+		</div>
+		
+		<div class="w3-twothird w3-padding w3-center">
+			<? include('./db_chart/index.html')?>
+		</div> 
+	</section>
+	
 	<footer class="w3-red w3-center">
 		<p class="w3-padding">&copy; 2020 Sample Website</p>
 	</footer>

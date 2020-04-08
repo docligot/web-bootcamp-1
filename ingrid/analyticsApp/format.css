@@ -1,0 +1,82 @@
+#header {
+	background-color: #d60000;
+}
+
+#navbar {
+	
+}
+
+#menu {
+
+}
+
+#main {
+	
+}
+
+#descriptive {
+	background-color: #C0C0C0;
+}
+
+#dGraph1 {
+	background-color: white;
+}
+
+#dGraph2 {
+	background-color: white;
+}
+
+#dGraph3 {
+	background-color: white;
+}
+
+#predictive {
+	background-color: #C0C0C0;
+}
+
+#predGraph1 {
+	background-color: white;
+}
+
+#predGraph2 {
+	background-color: white;
+}
+
+#predGraph3 {
+	background-color: white;
+}
+
+#predictive {
+	background-color: #C0C0C0;
+}
+
+#prescriptive {
+	background-color: #C0C0C0;
+}
+
+#presGraph1 {
+	background-color: white;
+}
+
+#presGraph2 {
+	background-color: white;
+}
+
+#presGraph3 {
+	background-color: white;
+}
+
+#h1 {
+
+}
+	
+#footer {
+	/*position: fixed;*/
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: #d60000;
+	color: #C0C0C0;
+	text-align: left;
+}
+
