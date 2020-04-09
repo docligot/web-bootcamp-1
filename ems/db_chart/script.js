@@ -14,7 +14,19 @@ function extractData1(series4, series5, series6) {
 		if (this.readyState == 4 && this.status == 200) {
 			var dataArray1 = JSON.parse(this.responseText);
 			console.log(dataArray1);
-			//drawChart1(dataArray1['labels'], dataArray1[series4], dataArray1[series5], series4, series5);
+			var labels = [];
+			var dataSeries1 = [];
+			var dataSeries2 = [];
+			for (var i in dataArray1) {
+				labels.push(dataArray1[i].period);
+				dataSeries1.push(dataArray1[i][series4]);
+				dataSeries2.push(dataArray1[i][series5]);
+			}
+			console.log(labels);
+			console.log(dataSeries1);
+			console.log(dataSeries2);
+			
+			drawChart1(labels, dataSeries1, dataSeries2, series4, series5);
 		} 
 	};
 	xmlhttp.open("GET", "./db_chart/call_chart.php?series4=" + series4 + "&series5=" + series5 + "&series6=" + series6, true);
@@ -23,9 +35,9 @@ function extractData1(series4, series5, series6) {
 
 function drawChart1(data1, data2, data3, legend1, legend2) {
 	
-	var series1 = JSON.parse('[' + data1 + ']');
-	var series2 = JSON.parse('[' + data2 + ']');
-	var series3 = JSON.parse('[' + data3 + ']');
+	var labels = JSON.parse('[' + data1 + ']');
+	var dataSeries1 = JSON.parse('[' + data2 + ']');
+	var dataSeries2 = JSON.parse('[' + data3 + ']');
 	
 	window.chartColors = {
 		red: 'rgb(255, 99, 132)',
@@ -45,15 +57,16 @@ function drawChart1(data1, data2, data3, legend1, legend2) {
 
 		// The data for our dataset
 		data: {
-			labels: series1,
+			labels: labels,
 			datasets: [
 				{
 					label: legend1,
 					fill: false, 
 					backgroundColor: window.chartColors.orange,
 					borderColor: window.chartColors.orange,
-					borderWidth: 2, 
-					data: series2
+					borderWidth: 2,
+					yAxesID: 'y1',
+					data: dataSeries1
 				},
 				{
 					label: legend2,
@@ -62,8 +75,8 @@ function drawChart1(data1, data2, data3, legend1, legend2) {
 					borderColor: window.chartColors.black,
 					borderWidth: 2, 
 					steppedLine: true,
-					yAxesID: 2, 
-					data: series3
+					yAxesID: 'y2', 
+					data: dataSeries2
 				}
 				
 			]
@@ -77,11 +90,18 @@ function drawChart1(data1, data2, data3, legend1, legend2) {
 				position: 'top'
 			}, 
 			scales: {
+				yAxes: [{
+					ticks: {beginAtZero: true},
+					type: 'linear',
+					position: 'left',
+					id: 'y1'
+				}, {
 				yAxes: {
-					ticks: {
-						beginAtZero: true
-					}
-				}
+					ticks: {beginAtZero: true},
+					type: 'linear',
+					position: 'right',
+					id: 'y2'}
+				}]
 			}
 		}
 	})
