@@ -64,8 +64,8 @@ function drawChart1(data1, data2, data3, legend1, legend2) {
 					fill: false, 
 					backgroundColor: window.chartColors.orange,
 					borderColor: window.chartColors.orange,
-					borderWidth: 2,
-					yAxesID: 'y1',
+					borderWidth: 2, 
+					yAxesID: 'y1', 
 					data: dataSeries1
 				},
 				{
@@ -84,7 +84,7 @@ function drawChart1(data1, data2, data3, legend1, legend2) {
 
 		// Configuration options go here
 		options: {
-		responsive: true,
+			responsive: true,
 			legend: {
 				display: true,
 				position: 'top'
@@ -92,15 +92,14 @@ function drawChart1(data1, data2, data3, legend1, legend2) {
 			scales: {
 				yAxes: [{
 					ticks: {beginAtZero: true},
-					type: 'linear',
-					position: 'left',
+					type: 'linear', 
+					position: 'left', 
 					id: 'y1'
 				}, {
-				yAxes: {
 					ticks: {beginAtZero: true},
-					type: 'linear',
-					position: 'right',
-					id: 'y2'}
+					type: 'linear', 
+					position: 'right', 
+					id: 'y2'
 				}]
 			}
 		}
