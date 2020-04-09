@@ -74,6 +74,19 @@
 	
 	
 	</section>
+	
+	
+	<section class="w3-row">
+		
+		<div class="w3-third w3-padding">
+			<p>This is a Chart i'd like you to see.</p></div>
+		
+		<div class="w3-twothird w3-padding">
+			<? include('./db_chart/index.html'); ?>
+			</div>
+	
+	
+	</section>
 
 	<footer class = "w3-black w3-padding w3-center">
 		<p>&copy; 2020 Sample Website</p>
