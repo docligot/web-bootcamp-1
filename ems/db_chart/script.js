@@ -2,9 +2,8 @@ function getCharts1() {
 	var series4 = document.getElementById('series4').value;
 	var series5 = document.getElementById('series5').value;
 	var series6 = document.getElementById('series6').value;
-	var series7 = document.getElementById('series7').value;
 	if (series4 && series5 && series6 && series7) {
-		extractData1(series4, series5, series6, series7);
+		extractData1(series4, series5, series6);
 	}
 }
 
@@ -58,7 +57,7 @@ function drawChart1(data1, data2, data3, legend1, legend2) {
 	var ctx = document.getElementById('myChart1').getContext('2d');
 	var chart = new Chart(ctx, {
 		// The type of chart we want to create
-		type: 'line',
+		type: chartType,
 
 		// The data for our dataset
 		data: {
