@@ -20,22 +20,23 @@ $dbc = pg_connect('host=' . $host . ' port=' . $port . ' dbname=' . $dbname . ' 
 
 $query = "SELECT period, $series4, $series5 FROM doc.full_data_view";
 
-$result = pg_query($dbc, $query); 
+switch ($series6) {
+	case "Train" :
+		$query .= " WHERE \"set\" = 'Train'";
+		break;
+	case "Test" :
+		$query .= " WHERE \"set\" = 'Test'";
+		break;
+	default :
+		break;
+}
 
-	$result_string['labels'] = '';
-	$result_string[$series4] = '';
-	$result_string[$series5] = '';
+$result = pg_query($dbc, $query); 
 
 if ($result) {
 	while ($row = pg_fetch_array($result)) {
-		$result_string['labels'] .= ','.$row['period'];
-		$result_string[$series4] .= ','.$row[$series4];
-		$result_string[$series5] .= ','.$row[$series5];
+		$result_string[] = $row;
 	}
-	$result_string['labels'] = ltrim($result_string['labels'], ',');
-	$result_string[$series4] = ltrim($result_string[$series4], ',');
-	$result_string[$series5] = ltrim($result_string[$series5], ',');	
-	
 	echo json_encode($result_string);
 } else {
 	echo '';
