@@ -21,9 +21,9 @@
 
 	<select id="series6">
 		<option value="">Select Set</option>
-		<option value="all">All</option>
-		<option value="train">Train</option>
-		<option value="test">Test</option>
+		<option value="All">All</option>
+		<option value="Train">Train</option>
+		<option value="Test">Test</option>
 	</select>
 	
 	<button onclick="getCharts1();">Retrieve</button>
@@ -32,99 +32,10 @@
 
 <hr/>
 
-<div class="chart-container-1" style="position: relative; min-height:300px; width:100%;">
+<div id="chart-container-1" style="position: relative; min-height:300px; width:100%;">
     <canvas id="myChart1"></canvas>
 </div>
 
 <!--<script src="./charts/chart.bundle.js"></script>-->
-<script>
-
-function getCharts1() {
-	var series4 = document.getElementById('series4').value;
-	var series5 = document.getElementById('series5').value;
-	var series6 = document.getElementById('series6').value;
-	if (series4 && series5 && series6) {
-		extractData1(series4, series5, series6);
-	}
-}
-
-function extractData1(series4, series5, series6) {
-	var xmlhttp = new XMLHttpRequest();
-	var chartbox = document.getElementById('myChart')
-	xmlhttp.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
-			var dataArray1 = JSON.parse(this.responseText);
-			console.log(dataArray1);
-			drawChart1(dataArray1['labels'], dataArray1[series4], dataArray1[series5], series4, series5);
-		} 
-	};
-	xmlhttp.open("GET", "./db_chart/call_chart.php?series4=" + series4 + "&series5=" + series5 + "&series6=" + series6, true);
-	xmlhttp.send();
-}
-
-function drawChart1(data1, data2, data3, legend1, legend2) {
-	
-	var series1 = JSON.parse('[' + data1 + ']');
-	var series2 = JSON.parse('[' + data2 + ']');
-	var series3 = JSON.parse('[' + data3 + ']');
-	
-	window.chartColors = {
-		red: 'rgb(255, 99, 132)',
-		orange: 'rgb(255, 159, 64)',
-		yellow: 'rgb(255, 205, 86)',
-		green: 'rgb(75, 192, 192)',
-		blue: 'rgb(54, 162, 235)',
-		purple: 'rgb(153, 102, 255)',
-		grey: 'rgb(201, 203, 207)',
-		black: 'rgb(0,0,0)'
-	};
-
-	var ctx = document.getElementById('myChart1').getContext('2d');
-	var chart = new Chart(ctx, {
-		// The type of chart we want to create
-		type: 'line',
-
-		// The data for our dataset
-		data: {
-			labels: series1,
-			datasets: [
-				{
-					label: legend1,
-					fill: false, 
-					backgroundColor: window.chartColors.orange,
-					borderColor: window.chartColors.orange,
-					borderWidth: 2, 
-					data: series2
-				},
-				{
-					label: legend2,
-					fill: false, 
-					backgroundColor: window.chartColors.black,
-					borderColor: window.chartColors.black,
-					borderWidth: 2, 
-					steppedLine: true,
-					yAxesID: 2, 
-					data: series3
-				}
-				
-			]
-		},
-
-		// Configuration options go here
-		options: {
-		responsive: true,
-			legend: {
-				display: true,
-				position: 'top'
-			}, 
-			scales: {
-				yAxes: {
-					ticks: {
-						beginAtZero: true
-					}
-				}
-			}
-		}
-	})
-}
+<script src="./db_chart/script.js">
 </script>
