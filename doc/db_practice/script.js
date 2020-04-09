@@ -10,11 +10,18 @@ function getData() {
 				var labels = [];
 				var dataString1 = [];
 				var dataString2 = [];
+				/*				
 				for (var i in dataArray) {
 					labels.push(dataArray[i].period);
 					dataString1.push(dataArray[i][series1]);
 					dataString2.push(dataArray[i][series2]);
-				}
+				}*/
+				dataArray.filter(function(target) {labels.push(target.period)});
+				dataArray.filter(function(target) {dataString1.push(target[series1])});
+				dataArray.filter(function(target) {dataString2.push(target[series2])});
+				console.log(labels);
+				console.log(dataString1);
+				console.log(dataString2);
 				createTable(series1, series2, labels, dataString1, dataString2);
 				drawChart(series1, series2, labels, dataString1, dataString2, 'line')
 			} else {
