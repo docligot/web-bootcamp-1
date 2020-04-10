@@ -16,9 +16,9 @@ function getData() {
 					dataString1.push(dataArray[i][series1]);
 					dataString2.push(dataArray[i][series2]);
 				}*/
-				dataArray.filter(function(target) {labels.push(target.period)});
-				dataArray.filter(function(target) {dataString1.push(target[series1])});
-				dataArray.filter(function(target) {dataString2.push(target[series2])});
+				dataArray.filter(function(source) {labels.push(source.period)});
+				dataArray.filter(function(source) {dataString1.push(source[series1])});
+				dataArray.filter(function(source) {dataString2.push(source[series2])});
 				console.log(labels);
 				console.log(dataString1);
 				console.log(dataString2);
