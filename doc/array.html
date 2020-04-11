@@ -4,6 +4,8 @@
 
 <head>
 	<title>Array tests</title>
+	<link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+
 </head>
 
 <body>
@@ -19,14 +21,13 @@
 		{period: 5, name: "Efg"},
 	];
 
+	var output = '';
+
 	testArray.filter(function(target) {console.log(target.period)});
+	testArray.filter(function(target) {console.log(target.name)});
+	testArray.filter(function(target) {output += target.name + '<br/>';});
 
-	function show(target) {
-		console.log(target.period)
-	}
-	
-
-
+	document.getElementById('result').innerHTML = output;
 
 </script>
 
