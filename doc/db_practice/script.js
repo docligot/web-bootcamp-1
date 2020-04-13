@@ -16,15 +16,9 @@ function getData() {
                 	dataString1.push(dataArray[i][series1]);
                 	dataString2.push(dataArray[i][series2]);
                 }*/
-                dataArray.filter(function(source) {
-                    labels.push(source.period)
-                });
-                dataArray.filter(function(source) {
-                    dataString1.push(source[series1])
-                });
-                dataArray.filter(function(source) {
-                    dataString2.push(source[series2])
-                });
+                dataArray.filter(function(source) {labels.push(source.period)});
+                dataArray.filter(function(source) {dataString1.push(source[series1])});
+                dataArray.filter(function(source) {dataString2.push(source[series2])});
                 console.log(labels);
                 console.log(dataString1);
                 console.log(dataString2);
@@ -111,35 +105,21 @@ function drawChart(series1, series2, labels, dataString1, dataString2, chart_typ
                     display: true,
                     position: 'left',
                     id: 'y1',
-                    scaleLabel: {
-                        display: true,
-                        labelString: series1
-                    },
-                    ticks: {
-                        beginAtZero: true
-                    }
+                    scaleLabel: {display: true, labelString: series1},
+                    ticks: {beginAtZero: true}
                 }, {
                     type: 'linear',
                     display: true,
                     position: 'right',
                     id: 'y2',
-                    scaleLabel: {
-                        display: true,
-                        labelString: series2
-                    },
-                    ticks: {
-                        beginAtZero: true
-                    },
-                    gridLines: {
-                        display: false
-                    }
+                    scaleLabel: {display: true, labelString: series2},
+                    ticks: {beginAtZero: true},
+                    gridLines: {display: false}
                 }]
             },
             legend: {
                 position: 'bottom',
-                labels: {
-                    fontFamily: 'Roboto Light'
-                }
+                labels: {fontFamily: 'Roboto Light'}
             },
             title: {
                 display: 'true',
