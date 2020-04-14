@@ -21,16 +21,13 @@ function checkErrors() {
 }
 
 function calculateTotal() {
-	document.getElementById('totalBox').innerHTML = 100;
-	/*
-	var errorBox = document.getElementById('errorBox');
-	errorBox.innerHTML = checkErrors();
-	if (errorBox != '') {
-		return;
+	document.getElementById('errorBox').innerHTML = checkErrors();
+	if (checkErrors() == '') {
+		var price = document.getElementById('price').value;
+		var quantity = document.getElementById('quantity').value;		
+		document.getElementById('totalBox').innerHTML = quantity * price;
 	} else {
-		var price = Number(document.getElementById('price').value);
-		var quantity = Number(document.getElementById('quantity').value);
-		document.getElementById('totalBox').innerHTML = price * quantity);
+		document.getElementById('totalBox').innerHTML = '&nbsp';
 	}
-	*/
+
 }
