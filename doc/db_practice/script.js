@@ -37,7 +37,7 @@ function createTable(series1, series2, labels, dataString1, dataString2) {
     var output = '<table class="w3-table w3-striped">';
     output += '<tr><th>period</th><th>' + series1 + '</th><th>' + series2 + '</th></tr>';
     for (var i in labels) {
-        output += '<tr><td>' + labels[i] + '</td><td>' + dataString1[i] + '</td><td>' + dataString2[i] + '</td></tr>';
+        output += '<tr><td>' + labels[i] + '</td><td>' + Number(Number(dataString1[i]).toFixed(2)).toLocaleString() + '</td><td>' + Number(Number(dataString2[i]).toFixed(2)).toLocaleString() + '</td></tr>';
     }
     output += '</table>';
     document.getElementById('output').innerHTML = output;
@@ -65,15 +65,11 @@ function loadColors() {
 }
 
 function drawChart(series1, series2, labels, dataString1, dataString2, chart_type) {
-
     document.getElementById('chart-container').innerHTML = '<canvas id="myChart" style="height:250px;"></canvas>';
-
     var name = JSON.parse('[' + labels + ']');
     var data1 = JSON.parse('[' + dataString1 + ']');
     var data2 = JSON.parse('[' + dataString2 + ']');
-
     loadColors();
-
     var chartdata = {
         labels: name,
         datasets: [{
