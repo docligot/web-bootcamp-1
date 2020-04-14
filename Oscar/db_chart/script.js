@@ -1,4 +1,5 @@
 
+
 function getCharts1() {
 	var series4 = document.getElementById('series4').value;
 	var series5 = document.getElementById('series5').value;
@@ -17,18 +18,19 @@ function extractData1(series4, series5, series6) {
 			var labels = [];
 			var dataSeries1 = [];
 			var dataSeries2 = [];
+			
 			for (var i in dataArray1) {
 				labels.push(dataArray1[i].period);
 				dataSeries1.push(dataArray1[i][series4]);
 				dataSeries2.push(dataArray1[i][series5]);
 			}
-			console.log(labels);
-			console.log(dataSeries1);
-			console.log(dataSeries2);
-			drawChart1(labels, dataSeries1, dataSeries2, series4, series5);
-			createTable(labels, dataSeries1, dataSeries2, series4, series5);
-
+			
 		} 
+		console.log(labels);
+		console.log(dataSeries1);
+		console.log(dataSeries2);
+		drawChart1(labels, dataSeries1, dataSeries2, series4, series5);
+		createTable(labels, dataSeries1, dataSeries2, series4, series5)
 	};
 	xmlhttp.open("GET", "./db_chart/call_chart.php?series4=" + series4 + "&series5=" + series5 + "&series6=" + series6, true);
 	xmlhttp.send();
@@ -39,7 +41,7 @@ function drawChart1(data1, data2, data3, legend1, legend2) {
 	var labels = JSON.parse('[' + data1 + ']');
 	var dataSeries1 = JSON.parse('[' + data2 + ']');
 	var dataSeries2 = JSON.parse('[' + data3 + ']');
-	var chartType = document.getElementById('series7').value;
+	var chartType = document.getElementById('series7').value
 	document.getElementById('chart-container-1').innerHTML = '<canvas id="myChart1"></canvas>';
 	
 	window.chartColors = {
@@ -68,7 +70,7 @@ function drawChart1(data1, data2, data3, legend1, legend2) {
 					backgroundColor: window.chartColors.orange,
 					borderColor: window.chartColors.orange,
 					borderWidth: 2, 
-					yAxisID: 'y1', 
+					yAxisID: 'y1',
 					data: dataSeries1
 				},
 				{
@@ -81,6 +83,7 @@ function drawChart1(data1, data2, data3, legend1, legend2) {
 					yAxisID: 'y2', 
 					data: dataSeries2
 				}
+								
 			]
 		},
 
@@ -89,34 +92,25 @@ function drawChart1(data1, data2, data3, legend1, legend2) {
 			responsive: true,
 			legend: {
 				display: true,
-				position: 'bottom', 
-				labels: {
-					fontFamily: 'Roboto', 
-					fontColor: '#f00'
-				}
+				position: 'top'
 			}, 
 			scales: {
 				yAxes: [{
-					ticks: {
-						beginAtZero: true,
-						callback: function(value, index, values) {return value.toLocaleString();}
-						},
-					type: 'linear', 
-					position: 'left', 
-					id: 'y1', 
+					ticks: {beginAtZero: true},
+					type: 'linear',
+					position: 'left',
+					id: 'y1',
 					scaleLabel: {
-						display: true, 
+						display: true,
 						labelString: legend1
 					}
-				}, {
-					ticks: {beginAtZero: true,
-						callback: function(value, index, values) {return value.toLocaleString();}
-						},
-					type: 'linear', 
-					position: 'right', 
+				},{
+					ticks: {beginAtZero: true},
+					type: 'linear',
+					position: 'right',
 					id: 'y2',
 					scaleLabel: {
-						display: true, 
+						display: true,
 						labelString: legend2
 					}
 				}]
@@ -126,14 +120,16 @@ function drawChart1(data1, data2, data3, legend1, legend2) {
 }
 
 function createTable(labels, dataSeries1, dataSeries2, legend1, legend2) {
-	var tableOutput = '<table class="w3-white w3-table w3-striped w3-hoverable">';
-	tableOutput += '<tr class="w3-black"><th>Periods</th><th>' + legend1 + '</th><th>' + legend2 + '</th></tr>';
+	var tableOutput = '<table class= "w3-table w3-striped">'
+	tableOutput += '<tr><th>Periods</th><tr>' + legend1 + '</th><th>' + legend2 + '</th></tr>';
+	
 	for (var i in labels) {
-		tableOutput += '<tr><td>' + labels[i] + '</td><td>' + Number(Number(dataSeries1[i]).toFixed(2)).toLocaleString() + '</td><td>' + Number(Number(dataSeries2[i]).toFixed(2)).toLocaleString() + '</td></tr>'; 		
+		tableOutput += '<tr><td>' + labels[i] + '</td><td>' + dataSeries1[i] + '</td><td>' + dataSeries2[i] +
+		'</td></tr>';
+		
 	}
+	
 	tableOutput += '</table>';
-	document.getElementById('table-container').innerHTML = tableOutput; 
+	
+	document.getElementById('table-container').innerHTML = tableOutput;
 }
-
-
-
