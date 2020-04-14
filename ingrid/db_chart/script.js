@@ -94,7 +94,9 @@ function drawChart1(data1, data2, data3, legend1, legend2) {
 			}, 
 			scales: {
 				yAxes: [{
-					ticks: {beginAtZero: true},
+					ticks: {beginAtZero: true,
+						callback: function(value, index, values) {return value.toLocaleString();}
+						},
 					type: 'linear',
 					position: 'left',
 					id: 'y1',
@@ -103,7 +105,9 @@ function drawChart1(data1, data2, data3, legend1, legend2) {
 						labelString: legend1
 					}
 				},{
-					ticks: {beginAtZero: true},
+					ticks: {beginAtZero: true,
+					callback: function(value, index, values) {return value.toLocaleString();}
+					},
 					type: 'linear',
 					position: 'right',
 					id: 'y2',
@@ -118,20 +122,28 @@ function drawChart1(data1, data2, data3, legend1, legend2) {
 }
 
 
+//function createTable(labels, dataSeries1, dataSeries2, legend1, legend2) {
+//	var tableOutput = '<table class="w3-table">';
+//	tableOutput += '<tr><th>Periods</th>th>' + legend1 + '</th><th>' + legend2 + '<th></tr>';
+	
+//	for (var i in labels) {
+//		tableOutput += '<tr><td>' + labels[i] + '</td><td>' + dataSeries1[i] + '</td><td>' + dataSeries2[i] + '</td></tr>';
+//	}
+	
+//	tableOutput += '</table>';
+	
+//	document.getElementById('table-container').innerHTML = tableOutput;
+//}//
+
+
 function createTable(labels, dataSeries1, dataSeries2, legend1, legend2) {
-	var tableOutput = '<table class="w3-table">';
-	tableOutput += '<tr><th>Periods</th>th>' + legend1 + '</th><th>' + legend2 + '<th></tr>';
-	
+	var tableOutput = '<table class="w3-white w3-table w3-striped w3-hoverable">';
+	tableOutput += '<tr class="w3-black"><th>Periods</th><th>' + legend1 + '</th><th>' + legend2 + '</th></tr>';
 	for (var i in labels) {
-		tableOutput += '<tr><td>' + labels[i] + '</td><td>' + dataSeries1[i] + '</td><td>' + dataSeries2[i] + '</td></tr>';
+		tableOutput += '<tr><td>' + labels[i] + '</td><td>' + Number(Number(dataSeries1[i]).toFixed(2)).toLocaleString() + '</td><td>' + Number(Number(dataSeries2[i]).toFixed(2)).toLocaleString() + '</td></tr>'; 		
 	}
-	
 	tableOutput += '</table>';
-	
-	document.getElementById('table-container').innerHTML = tableOutput;
+	document.getElementById('table-container').innerHTML = tableOutput; 
 }
-
-
-
 
 
