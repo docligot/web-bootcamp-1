@@ -95,7 +95,9 @@ function drawChart1(data1, data2, data3, legend1, legend2) {
 			}, 
 			scales: {
 				yAxes: [{
-					ticks: {beginAtZero: true},
+					ticks: {beginAtZero: true,
+					callback: function(value, index, values){return value.toLocaleString();}					
+					},
 					type: 'linear', 
 					position: 'left', 
 					id: 'y1',
@@ -103,7 +105,9 @@ function drawChart1(data1, data2, data3, legend1, legend2) {
 					{display: true,
 					labelString: legend1}
 				}, {
-					ticks: {beginAtZero: true},
+					ticks: {beginAtZero: true,
+					callback: function(value, index, values){return value.toLocaleString();}
+					},
 					type: 'linear', 
 					position: 'right', 
 					id: 'y2',
