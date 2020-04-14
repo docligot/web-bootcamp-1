@@ -22,17 +22,13 @@ function checkErrors() {
 
 
 function calculateTotal() {
-	var errorBox = document.getElementById('errorBox');
-	errorBox.innerHTML = checkErrors();
-	var totalBox = document.getElementById('totalBox');
-	errorBox.innerHTML = checkErrors();
-	
-	if (errorBox == '') {
+	document.getElementById('errorBox').innerHTML = checkErrors();
+	if (checkErrors() == '') {
 		var price = document.getElementById('price').value;
-		var quantity = document.getElementById('quantity').value;
-		totalBox.innerHTML = price * quantity;		
+		var quantity = document.getElementById('quantity').value;		
+		document.getElementById('totalBox').innerHTML = quantity * price;
 	} else {
-		totalBox.innerHTML = '&nbsp;';
+		document.getElementById('totalBox').innerHTML = '&nbsp';
 	}
-	
+
 }
