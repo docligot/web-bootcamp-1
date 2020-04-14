@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+
+<html>
+<head>
+	<title>Mapping Template</title>
+</head>
+<body>
+	<script src='mapbox-gl.js'></script>
+	<link href='mapbox-gl.css' rel='stylesheet' />
+	<select id="map-style" onchange="setStyle();">
+		<option value="mapbox://styles/mapbox/streets-v9">Streets</option>
+		<option value="mapbox://styles/mapbox/outdoors-v9">Outdoors</option>
+		<option value="mapbox://styles/mapbox/dark-v9">Dark</option>
+		<option value="mapbox://styles/mapbox/satellite-v9">Satellite</option>
+		<option value="mapbox://styles/mapbox/satellite-streets-v10">Satellite With Streets</option>
+	</select>
+	<div id='map' style='width: 100%; height: 500px;'></div>
+	<button onclick="goToPoint('headquarters');">Headquarters</button>
+	<button onclick="goToPoint('mcdonalds');">McDonalds</button>
+	<button onclick="goToPoint('batangas');">Batangas</button>
+	<button onclick="goToPoint('farm');">Farm Here</button>
+	<button onclick="goToPoint('school');">Go to School</button>
+	<script src='map_script.js'></script>
+</body>
+</html>

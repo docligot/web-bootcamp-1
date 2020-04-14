@@ -26,30 +26,31 @@
 		<option value="Test">Test</option>
 	</select>
 
+	<select id="series7">
+		<option value="">Select Chart Type</option>
+		<option value="bar">Bar</option>
+		<option value="line">Line</option>
+	</select>
+
 	<button onclick="getCharts1();">Retrieve</button>
 	
 </div>
 
 <hr/>
 
-<div id="chart-container1" style="position: relative;">
+<div id="chart-container-1" style="position: relative; width:100%;">
     <canvas id="myChart1"></canvas>
 </div>
-
 <hr/>
 
 <style>
 	tr {
-		border: 1px;
+		border-width: 1px;
 		border-style: solid;
 	}
 </style>
 
-
-<div id="table-container">
-</div>
+<div id="table-container"></div>
 
 <!--<script src="./charts/chart.bundle.js"></script>-->
-<script src="./db_chart/script.js">
-
-</script>
+<script src="./db_chart/script.js"></script>
