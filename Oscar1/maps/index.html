@@ -1,0 +1,150 @@
+
+	<!--
+	<script src='https://api.mapbox.com/mapbox-gl-js/v0.54.0/mapbox-gl.js'></script>
+	<link href='https://api.mapbox.com/mapbox-gl-js/v0.54.0/mapbox-gl.css' rel='stylesheet' />
+	-->
+	<script src='./maps/mapbox-gl.js'></script>
+	<link href='./maps/mapbox-gl.css' rel='stylesheet' />
+
+
+
+	<select id= "map-style" onchange="setStyle();">
+		
+		<option value="mapbox://styles/mapbox/streets-v9">Streets</option>
+		<option value="mapbox://styles/mapbox/outdoors-v9">Outdoors</option>
+		<option value="mapbox://styles/mapbox/dark-v9">Dark</option>
+		<option value="mapbox://styles/mapbox/satellite-v9">Satellite</option>
+		<option value="mapbox://styles/mapbox/satellite-streets-v10">Satellite With Streets</option>
+	
+	
+		
+	</select>
+
+
+
+
+	<div id='map' style='width: 100%; height: 500px;'></div>
+
+	<div>
+
+	</div>
+
+	<!--<div id='marker1'></div>-->
+	
+	
+	
+	<button onclick="goToPoint1();">Headquarters</button>
+	<button onclick="goToPoint2();">McDonalds</button>
+	<button onclick="goToPoint3();">Batangas</button>
+	<button onclick="goToFarm();">Farm Here</button>
+	<button onclick="goToUAP();">UAP Here</button>
+
+	<script>
+		
+		
+			
+	function setStyle(){
+		var mapStyle = document.getElementById('map-style').value;
+			
+		map.setStyle(mapStyle);
+	}
+
+		mapboxgl.accessToken = 'pk.eyJ1IjoibWlndWVsb2Nhc3RlbG8iLCJhIjoiY2s4aWV0bzI0MDRtNjNtbndlbmJnMGJsayJ9.PCuRx0sMcmQwg3eS4yhjYQ';
+
+		var mapStyle = document.getElementById('map-style').value;	
+
+		var map = new mapboxgl.Map({
+		  container: 'map', // HTML container id
+		  style: mapStyle,
+
+			//style: 'mapbox://styles/docligot/ck6rct8qa0ddv1iqxgrvd76oh',
+
+			//style: 'mapbox://styles/docligot/ck6rcwy30030c1ip9ops2q9pc',
+
+
+		  // style URL
+		  
+		  //center: [122.889765,	10.418386],
+		  center: [121.056269,	14.569240],
+		// starting position as [lng, lat]
+		  zoom: 15
+		});
+		
+		map.addControl(new mapboxgl.NavigationControl());
+
+		var popup = [];
+		var marker = [];
+		var messages = [];
+		var locations = [];
+		var colors = [];
+
+		messages.push('<h3>Secret base</h3><p>In Ortigas</p>');
+		messages.push('<h3>Lunch here</h3><p>In Ortigas</p>');
+		messages.push('<h3>Dengue here</h3><p>In Batangas</p>');
+		messages.push('<h3>Dengue here</h3><p>In Batangas</p>');
+		messages.push('<h3>Dengue here</h3><p>In Batangas</p>');
+		messages.push('<h3>Dengue here</h3><p>In Batangas</p>');
+		messages.push('<h3>Dengue here</h3><p>In Batangas</p>');
+		messages.push('<h3>Dengue here</h3><p>In Batangas</p>');
+		messages.push('<h3>Dengue here</h3><p>In Batangas</p>');
+		messages.push('<h3>Secret Farm</h3><p>Sugar here!!!!</p>');
+		messages.push('<h3>UA&P</h3><p>No Classes</p>');
+
+		locations.push([121.056269,	14.569240]);
+		locations.push([121.060796,	14.573229]);
+		locations.push([121.171044,14.03529979]);
+		locations.push([121.1710917,14.03511939]);
+		locations.push([121.1710009,14.03489276]);
+		locations.push([121.1712786,14.03489486]);
+		locations.push([121.1715089,14.03503217]);
+		locations.push([121.1716492,14.03485247]);
+		locations.push([121.1713267,14.03466928]);
+		locations.push([122.970367,10.413438]);
+		locations.push([121.060553,14.580456]);
+		
+
+		colors.push({ "color": "#0000ff"});
+		colors.push({ "color": "#ffff00"});
+		colors.push({ "color": "#ff0000"});
+		colors.push({ "color": "#ff0000"});
+		colors.push({ "color": "#ff0000"});
+		colors.push({ "color": "#ff0000"});
+		colors.push({ "color": "#ff0000"});
+		colors.push({ "color": "#ff0000"});
+		colors.push({ "color": "#ff0000"});
+		colors.push({ "color": "#0033ff"});
+		colors.push({ "color": "#4d0000"});
+
+		for (i = 0; i < locations.length; i++) {
+			popup[i] = new mapboxgl.Popup()
+			.setHTML(messages[i]);
+
+			marker[i] = new mapboxgl.Marker(colors[i])
+			.setLngLat(locations[i])
+			.setPopup(popup[i])
+			.addTo(map);
+		}
+
+		function goToPoint1() {
+			map.flyTo({center: [121.056269,	14.569240]});
+		}
+
+		function goToPoint2() {
+			map.flyTo({center: [121.060796,	14.573229]});
+		}
+
+		function goToPoint3() {
+			map.flyTo({center: [121.1713267,14.03466928]});
+		}
+
+		function goToFarm() {
+			map.flyTo({center: [122.970367,10.413438]});
+		}
+		
+		function goToUAP() {
+			map.flyTo({center: [121.060553,14.580456]});
+		}	
+		
+	</script>
+
+
