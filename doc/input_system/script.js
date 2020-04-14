@@ -21,6 +21,8 @@ function checkErrors() {
 }
 
 function calculateTotal() {
+	document.getElementById('totalBox').innerHTML = 100;
+	/*
 	var errorBox = document.getElementById('errorBox');
 	errorBox.innerHTML = checkErrors();
 	if (errorBox != '') {
@@ -30,4 +32,5 @@ function calculateTotal() {
 		var quantity = Number(document.getElementById('quantity').value);
 		document.getElementById('totalBox').innerHTML = price * quantity);
 	}
+	*/
 }
