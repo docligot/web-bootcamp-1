@@ -1,5 +1,5 @@
 function checkErrors() {
-	var error = '';
+	var errors = '';
 	var product = document.getElementById('product').value;
 	var price = document.getElementById('price').value;
 	var quantity = document.getElementById('quantity').value;
@@ -8,7 +8,7 @@ function checkErrors() {
 		errors += 'Please select a product.<br/>';
 	}
 	
-	if (price == '' || price == 0 || price <0) {
+	if (price == '' || price == 0 || price < 0) {
 		errors += 'Please enter a valid price.<br/>';
 	}
 	
@@ -17,19 +17,17 @@ function checkErrors() {
 	}
 	
 	return errors;
-
+	
 }
 
 function calculateTotal() {
-	var errorBox = document.getElementbyId('errorBox');
-	var totalBox = document.getElementbyId('totalBox');
-	errorBox.innerHTML = checkErrors();
-	
-	if (errorBox == ''){
+	document.getElementById('errorBox').innerHTML = checkErrors();
+	if (checkErrors() == '') {
 		var price = document.getElementById('price').value;
-		var quantity = document.getElementById('quantity').value;
-		totalBox.innerHTML = price * quantity;
+		var quantity = document.getElementById('quantity').value;	
+		document.getElementById('totalBox').innerHTML = quantity * price;
 	} else {
-		totalBox.innerHTML = '&nbsp;';
+		document.getElementById('totalBox').innerHTML = '&nbsp';
 	}
+
 }
