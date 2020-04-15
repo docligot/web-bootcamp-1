@@ -7,29 +7,7 @@
 
 </head>
 
-<style>
-h2 {
-	color: green;
-}
-
-p {
-	background-color: black;
-	color:white;
-}
-
-#main-header{
-	background-color: pink;
-	color: white;
-}
-
-.blue-header {
-	color: blue;
-}
-
-.red-header {
-	color: red;
-}
-</style>
+<link rel="stylesheet" href="styling.css" />
 
 <body>
 	<h1 id="main-header">This is a website.</h1>
