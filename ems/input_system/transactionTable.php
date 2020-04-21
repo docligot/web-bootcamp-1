@@ -1,7 +1,7 @@
 <?php
 
 include('dbConnect.php');
-$query = 'SELECT * FROM ems.product_input;';
+$query = 'SELECT * FROM ems.product_input ORDER BY period;';
 $result = pg_query($dbc, $query);
 
 if ($result) {
@@ -13,5 +13,5 @@ if ($result) {
 	echo "There was an error.";
 }
 
-pg_cloase($dbc);
+pg_close($dbc);
 exit();

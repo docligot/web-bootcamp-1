@@ -107,13 +107,13 @@ function createTable(period, product, price, quantity, total)
 	output += '<tr><th>Period</th><th>Product</th><th>Price</th><th>Quantity</th><th>Total</th></tr>';
 	
 	for (var i in period) {
-		output +=
-		'<tr><td>' + period[i] + '<tr><td>' + product[i] + '<tr><td>' + price[i] + '<tr><td>' + quantity[i] + '<tr><td>' + total[i] + '<tr><td>';
+		output += '<tr><td>' + period[i] + '</td><td>' + product[i] + '</td><td>' + price[i] + '</td><td>' + quantity[i] + '</td><td>' + total[i] + '</td></tr>';
 	}		
 	
 	output += '</table>';
 
- document
+document.getElementById('transactionTable').innerHTML = output;
+}
 
 
 
