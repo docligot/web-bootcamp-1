@@ -3,21 +3,24 @@
 
 <head>
 	<title>Input Output System</title>
-	<link rel="stylesheet" href="w3.css"/>
+	<link rel="stylesheet" href="w3.css" />
+	
 </head>
-
 
 <body>
 
 	<header>
 		<div class="w3-blue w3-padding-large w3-top">
-		Input Output System</div>
-		<div id="statusMessage" class="w3-bar-item w3-right"></div>
+		
+			<div class="w3-bar-item">Input Output System</div>
+			<div id="statusMessage" class="w3-bar-item
+			w3-right"></div>
+			
+		</div>	
+			
 	</header>
 	
-	<div class="w3-row">
-	
-	<section class="w3-padding w3-half">
+	<section class="w3-padding">
 		<br/><br/>
 		<h2>Submission Form</h2>
 		<select id="product" class="w3-select" onchange="calculateTotal();">
@@ -32,26 +35,28 @@
 		Total Sales: <div id="totalBox" class="w3-input">&nbsp;</div><br/>
 		<button class="w3-button w3-blue" onclick="submitData();">Submit</button>
 		<br/><br/>
-		<div id="errorBox" class="w3-text-red"></div>
-		<div id="postedData"></div>	
+		<div class="w3-text-red" id="errorBox"></div>
+		<div id="postedData"></div>
 	</section>
+
+	<section>
 	
-	<section class="w3-padding w3-half">
+	</section class="w3-padding w3-half">
 		<br/><br/>
-		<h2>Transaction Log</h2>
+		<h2>Transaction Table</h2>
 		<br/>
-		<div id="transactionTable"></div>
-	
+		
+		<div id="transactionTable">
+		</div>
 	</section>
-	
-	</div>
+		
 	
 	<footer>
 		<div class="w3-small w3-black w3-padding w3-bottom">&copy; CirroLytix</div>
 	</footer>
 
-<script src="script.js"></script>
-	
+<script src="scriptv2.js"></script>
+
 </body>
 
 </html>
