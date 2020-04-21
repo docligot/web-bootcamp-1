@@ -13,9 +13,10 @@
 		<div class="w3-pink w3-padding-large w3-top">
 			<div class="w3-bar-item">Input Output System</div>
 			<div id="statusMessage" class="w3-bar-item w3-right"></div>
+
 		</div>
 	</header>
-	
+<div>	
 	<section class="w3-padding">
 		<br/><br/>
 		<h2>Submission Form</h2>
@@ -40,6 +41,14 @@
 		<h2>Product Statistics</h2>
 		<br/><br/><br/><br/>
 	</section>
+</div>
+
+<section class="w3-padding w3-half">
+	<br/><br/>
+	<h2>Transaction Log</h2>
+	<br/>
+	<div id="transactionTable"></div>
+</section>
 	
 	<footer>
 		<div class="w3-small w3-black w3-padding w3-bottom">&copy; CirroLytix</div>
