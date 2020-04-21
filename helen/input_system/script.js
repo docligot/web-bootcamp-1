@@ -34,6 +34,12 @@ function calculateTotal() {
 function submitData() {
 	if(checkErrors() == '') {
 		var submission = 'Data is valid.';
+		var product = document.getElementById('product').value;
+		var price = document.getElementById('price').value;
+		var quantity = document.getElementById('quantity').value;
+		var total = document.getElementById('totalBox').innerHTML;
+		submission += '\n\nProduct:' + product + '\nPrice: ' + price + '\nQuantity: ' + quantity + '\nTotal: ' + total;
+
 	} else {
 		var submission = 'Please complete the data';
 		}
