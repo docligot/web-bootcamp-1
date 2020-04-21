@@ -10,12 +10,12 @@
 <body>
 
 	<header>
-		<div class="w3-blue w3-padding-large w3-top">
-			<div class="w3-bar-item">Input Output System</div>
-			<div id="statusMessage" class="w3-bar-item w3-right"></div>
+		<div class="w3-bar w3-blue w3-top">
+			<div class="w3-bar-item w3-padding-large">Input Output System</div>
+			<div class="w3-bar-item w3-padding-large w3-right" id="statusMessage"></div>
 		</div>
 	</header>
-	
+
 	<div class="w3-row">
 	
 		<section class="w3-padding w3-half">
@@ -35,17 +35,17 @@
 			<br/><br/>
 			<div class="w3-text-red" id="errorBox"></div>
 			<div id="postedData"></div>
+			<br/>
 		</section>
-
+	
 		<section class="w3-padding w3-half">
 			<br/><br/>
-			<h2>Transaction Log</h2>
-			<br/>
-			<div id="transactionTable" style="overflow: auto;"></div>
+			<h2>Product Statistics</h2>
+			<div id="transactionTable"></div>
 		</section>
-		
+	
 	</div>
-
+	
 	<footer>
 		<div class="w3-small w3-black w3-padding w3-bottom">&copy; CirroLytix</div>
 	</footer>
