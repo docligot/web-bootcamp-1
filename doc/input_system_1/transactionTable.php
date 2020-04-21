@@ -2,7 +2,7 @@
 $series1 = $_GET["series1"];
 $series2 = $_GET["series2"];
 include ('dbconnect.php');
-$query = "SELECT period, $series1, $series2 FROM doc.full_data_view";
+$query = "SELECT * FROM doc.";
 $result = pg_query($dbc, $query); 
 if ($result) {
 	while ($row = pg_fetch_array($result)) {
