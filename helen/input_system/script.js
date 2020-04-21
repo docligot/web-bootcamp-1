@@ -39,10 +39,49 @@ function submitData() {
 		var quantity = document.getElementById('quantity').value;
 		var total = document.getElementById('totalBox').innerHTML;
 		submission += '\n\nProduct:' + product + '\nPrice: ' + price + '\nQuantity: ' + quantity + '\nTotal: ' + total;
-
+		updateData(product, price, quantity, total);
 	} else {
 		var submission = 'Please complete the data';
 		}
 	window.alert(submission);
 
 }
+
+
+function updateData(product, price, quantity, total) {
+	var request = "product=" + product + "&price=" + price + "&quantity=" + quantity + "&total=" + total;
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange = function(){
+	if(this.readyState == 4 && this.status == 200) {
+		var response = this.responseText;
+		document.getElementById('postedData').innerHTML=response;
+		document.getElementById('statusMessage').innerHTML = 'Data updated.';
+		} else {
+			document.getElementById('statusMessage').innerHTML = 'Sending request...';
+			}
+	}
+
+	xmlhttp.open("POST","updateData.php", true);
+	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	xmlhttp.send(request);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
