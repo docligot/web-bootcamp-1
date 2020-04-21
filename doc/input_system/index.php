@@ -16,25 +16,35 @@
 		</div>
 	</header>
 	
-	<section class="w3-padding">
-		<br/><br/>
-		<h2>Submission Form</h2>
-		<select id="product" class="w3-select" onchange="calculateTotal();">
-			<option value="">Select Product:</option>
-			<option value="Big Mac">Big Mac</option>
-			<option value="Cheeseburger">Cheeseburger</option>
-			<option value="McChicken">McChicken</option>
-			<option value="French Fries">French Fries</option>
-		</select><br/><br/>
-		Enter price: <input id="price" class="w3-input" type="number" min="0" onchange="calculateTotal();"></input><br/>
-		Enter quantity: <input id="quantity" class="w3-input" type="number" min="0" onchange="calculateTotal();"></input><br/>
-		Total Sales: <div id="totalBox" class="w3-input">&nbsp;</div><br/>
-		<button class="w3-button w3-blue" onclick="submitData();">Submit</button>
-		<br/><br/>
-		<div class="w3-text-red" id="errorBox"></div>
-		<div id="postedData"></div>
-	</section>
+	<div class="w3-row">
+	
+		<section class="w3-padding w3-half">
+			<br/><br/>
+			<h2>Submission Form</h2>
+			<select id="product" class="w3-select" onchange="calculateTotal();">
+				<option value="">Select Product:</option>
+				<option value="Big Mac">Big Mac</option>
+				<option value="Cheeseburger">Cheeseburger</option>
+				<option value="McChicken">McChicken</option>
+				<option value="French Fries">French Fries</option>
+			</select><br/><br/>
+			Enter price: <input id="price" class="w3-input" type="number" min="0" onchange="calculateTotal();"></input><br/>
+			Enter quantity: <input id="quantity" class="w3-input" type="number" min="0" onchange="calculateTotal();"></input><br/>
+			Total Sales: <div id="totalBox" class="w3-input">&nbsp;</div><br/>
+			<button class="w3-button w3-blue" onclick="submitData();">Submit</button>
+			<br/><br/>
+			<div class="w3-text-red" id="errorBox"></div>
+			<div id="postedData"></div>
+		</section>
 
+		<section class="w3-padding w3-half">
+			<br/><br/>
+			<h2>Transaction Log</h2>
+			<br/>
+			<div id="transactionTable" style="overflow: auto;"></div>
+		</section>
+		
+	</div>
 
 	<footer>
 		<div class="w3-small w3-black w3-padding w3-bottom">&copy; CirroLytix</div>
