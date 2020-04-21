@@ -6,45 +6,57 @@
 	<title> Input Output System </title>
 	<link rel="stylesheet" href = "w3.css"/>
 	
-	
 </head>
 
-<body>
 	
+
+<body>
+
 	<header>
-		<div class = "w3-blue w3-padding-large w3-top">
-		Input Output System</div>
+	
+	<div class="w3-blue w3-padding-large w3 top">
+	
+		<div class = "w3-bar-item"> Input Output System</div>
+		<div id="statusMessage" class ="w3-bar-item w3-right"></div>
+	
+	</div>
 	</header>
+	
+	<div class ="w3-row">
 	
 	<section class= "w3-padding">
 		<br/><br/>
 		<h2> Submission Form</h2>
-		<select>
+		<select id='product' class = "w3-select" onchange= "calculateTotal();">
 			<option value="">Select Product</option>
 			<option value="Big Mac">Big Mac</option>
 			<option value="Cheeseburger">Cheeseburger</option>
 			<option value="McChicken">McChicken</option>
 			<option value="French Fries">French Fries</option>
-		
 		</select><br/><br/>
-		Enter Price: <input class = "w3-input"
+		Enter Price: <input id="price" class = "w3-input" type="number" min="0" onchange="calculateTotal();"
 		></input><br/>
-		Enter quantity: <input class = "w3-input"
+		Enter quantity: <input id="quantity" class = "w3-input" type="number" min="0" onchange="calculateTotal();"
 		></input><br/>
-		Total Sales: <div class = "w3-input">&nbsp;
+		Total Sales: <div id = "totalBox"class = "w3-input">&nbsp;
 		</div><br/>
-		<button class ="w3-button w3-blue">Submit
+		<button class ="w3-button w3-blue" onclick = "submitData();">Submit
 		</button>
-		<br/><br/><br/><br/><hr/>
-	</section>
-	
-	
-	<section class = "w3-padding">
-		<br><br/>
-		<h2>Product Statistics</h2>
 		<br/><br/><br/><br/>
-	
+		<div class ="w3-text-red" id="errorBox"></div>
+		<div id="postedData"></div>
 	</section>
+	
+	
+	<section class = "w3-padding w3-half">
+		<br><br/>
+		<h2>Transaction Log</h2>
+		<br/>
+		<div id='transactionTable' style="overflow: auto;"></div>
+	</section>
+	
+	</div>
+	
 	
 	<footer>
 	
