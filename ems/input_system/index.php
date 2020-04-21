@@ -12,9 +12,12 @@
 	<header>
 		<div class="w3-blue w3-padding-large w3-top">
 		Input Output System</div>
+		<div id="statusMessage" class="w3-bar-item w3-right"></div>
 	</header>
 	
-	<section class="w3-padding">
+	<div class="w3-row">
+	
+	<section class="w3-padding w3-half">
 		<br/><br/>
 		<h2>Submission Form</h2>
 		<select id="product" class="w3-select" onchange="calculateTotal();">
@@ -27,18 +30,22 @@
 		Enter price: <input id="price" class="w3-input" type="number" min="0" onchange="calculateTotal();"></input><br/>
 		Enter quantity: <input id="quantity" class="w3-input" type="number" min="0" onchange="calculateTotal();"></input><br/>
 		Total Sales: <div id="totalBox" class="w3-input">&nbsp;</div><br/>
-		<button class="w3-button w3-blue">Submit</button>
+		<button class="w3-button w3-blue" onclick="submitData();">Submit</button>
 		<br/><br/>
 		<div id="errorBox" class="w3-text-red"></div>
-		<br/><br/><br/><br/><hr/>	
+		<div id="postedData"></div>	
 	</section>
 	
-	<section class="w3-padding">
+	<section class="w3-padding w3-half">
 		<br/><br/>
-		<h2>Product Statistics</h2>
-		<br/><br/><br/><br/>
+		<h2>Transaction Log</h2>
+		<br/>
+		<div id="transactionTable"></div>
+	
 	</section>
-		
+	
+	</div>
+	
 	<footer>
 		<div class="w3-small w3-black w3-padding w3-bottom">&copy; CirroLytix</div>
 	</footer>
