@@ -17,7 +17,7 @@
 		</div>
 	</header>
 	
-	<div class="spacer"></div>	
+	<div class="spacer"></div>
 	
 	<nav class="quattrocento">
 		<div class="w3-sidebar ambient w3-col l2 w3-bar-block w3-hide-medium w3-hide-small">
