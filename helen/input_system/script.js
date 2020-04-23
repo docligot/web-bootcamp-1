@@ -66,7 +66,49 @@ function updateData(product, price, quantity, total) {
 	xmlhttp.send(request);
 }
 
+function transactionTable() {
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			var response = JSON.parse(this.responseText);
+			var period = [];
+			var product = [];
+			var price = [];
+			var quantity = [];
+			var total = [];
+			for (var i in response) {
+				period.push(response[i].period);
+				product.push(response[i].product);
+				price.push(response[i].price);
+				quantity.push(response[i].quantity);
+				total.push(response[i].total);
+			}
+			console.log(period);
+			console.log(product);
+			console.log(price);
+			console.log(quantity);
+			console.log(total);
+			createTable(period, product, price, quantity, total);
+			document.getElementById('statusMessage').innerHTML = 'Data displayed.';
+		} else {
+			document.getElementById('statusMessage').innerHTML = 'Requesting Data...';
+		}
+	}
+	xmlhttp.open("GET", "transactionTable.php", true);
+	xmlhttp.send(); 
+}
 
+function createTable(period, product, price, quantity, total) {
+	var output = '<table class="w3-table w3-striped">';
+	output += '<tr><th>Period</th><th>Product</th><th>Price</th><th>Quantity</th><th>Total</th></tr>';
+	
+	for (var i in period) {
+		output += '<tr><td>' + period[i] + '</td><td>' + product[i] + '</td><td>' + price[i] + '</td><td>' + quantity[i] + '</td><td>' + total[i] + '</td></tr>';
+	}
+	output += '</table>';
+
+	document.getElementById('transactionTable').innerHTML = output;
+}
 
 
 
