@@ -101,6 +101,7 @@
 				<hr/>
 			</section>
 
+
 			<section id="section3" class="w3-padding">
 				<div class="w3-xlarge" >Chart</div>
 				<p>Standard bar, line, scatterplot graphs can be displayed powered by data from a database.</p>
@@ -134,7 +135,7 @@
 				<p>Inspect word relationships.</p>
 				<br/><?php include ('wordcloud/index.html'); ?>
 				<hr/>
-			</section>	
+			</section>
 
 			<section id="about" class="w3-padding">
 				<div class="w3-xlarge" >About</div>
