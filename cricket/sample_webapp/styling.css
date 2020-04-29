@@ -1,0 +1,21 @@
+h2 {
+	color: green;
+}
+
+p {
+	background-color: black;
+	color: white;
+}
+
+#main-header {
+	background-color: blue;
+	color: white;
+}
+
+.blue-header {
+	color: blue;
+}
+
+.red-header {
+	color: red;
+}
