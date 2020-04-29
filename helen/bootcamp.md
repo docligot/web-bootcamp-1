@@ -10,4 +10,7 @@ Charts:
 - Chart.JS
 - CoronaTracker: ApexCharts.JS and Vue.JS for Front-end
 
+Mac Specific Oddities:
+- <?php always not shortcode <?
+
 
