@@ -1,0 +1,251 @@
+<select class="w3-select w3-dark-grey" onchange="wordCloud(this.value);">
+	<option value="">Select phrase:</option>
+	<option value=0>The quick brown fox jumps over the lazy dog.</option>
+	<option value=1>He lands head first on a rotting maple log.</option>
+	<option value=2>Knocked unconscious, fox sleeps with shallow breath</option>
+	<option value=3>Until the lazy dog awakes and worries him to death.</option>
+</select>
+
+<div class="w3-row">
+	<div id="wordContainer" class="w3-third" style="height: 400px;">
+		<div id="word-container"></div>
+	</div>
+	<div class="w3-twothird">
+		<div class="ambient" id="mynetwork2" style='height: 400px;'></div>
+	</div>
+</div>
+
+  <script src="wordcloud/anychart-base.min.js"></script>
+  <script src="wordcloud/anychart-tag-cloud.min.js"></script>
+  <script src="wordcloud/anychart-exports.min.js"></script>
+  <script src="wordcloud/anychart-ui.min.js"></script>
+  <script type="text/javascript">
+	
+		var phrase = [];
+	
+		phrase.push([
+			{x: "the", value:2}
+		,	{x: "quick", value:1}
+		,	{x: "brown", value:1}
+		,	{x: "fox", value:2}
+		,	{x: "jumps", value:1}
+		,	{x: "over", value:1}
+		,	{x: "lazy", value:2}
+		,	{x: "dog", value:2}
+		]);
+		phrase.push([
+			{x: "he", value:1}
+		,	{x: "lands", value:1}
+		,	{x: "head", value:1}
+		,	{x: "first", value:1}
+		,	{x: "on", value:1}
+		,	{x: "a", value:1}
+		,	{x: "rotting", value:1}
+		,	{x: "maple", value:1}
+		,	{x: "log", value:1}
+		]);
+		phrase.push([
+			{x: "knocked", value:1}
+		,	{x: "unconscious", value:1}
+		,	{x: "fox", value:2}
+		,	{x: "sleeps", value:1}
+		,	{x: "with", value:1}
+		,	{x: "shallow", value:1}
+		,	{x: "breath", value:1}
+		]);
+		phrase.push([
+			{x: "until", value:1}
+		,	{x: "the", value:2}
+		,	{x: "lazy", value:2}
+		,	{x: "dog", value:2}
+		,	{x: "awakes", value:1}
+		,	{x: "and", value:1}
+		,	{x: "worries", value:1}
+		,	{x: "him", value:1}
+		,	{x: "to", value:1}
+		,	{x: "death", value:1}
+		]);
+	
+	function wordCloud(id) {
+
+		console.log(id);
+		console.log(phrase[id]);
+
+		document.getElementById('wordContainer').innerHTML = '<div id="word-container" style="height: 400px;"></div>';
+	
+		// create a chart and set the data
+		var chart = anychart.tagCloud(phrase[id]);
+
+		// set the chart title
+		//chart.title("Tag Cloud Chart: Basic Sample");
+
+		// set the container id
+		chart.container("word-container");
+		
+		// dark color
+		chart.background().fill("#151515");
+
+		chart.angles([0, 90]);
+
+		// initiate drawing the chart
+		chart.draw();	
+		
+		getNode2(id);
+	}
+	
+	var nodes2 = null;
+	var edges2 = null;
+	var network2 = null;
+
+function draw2() {
+  // create people.
+  // value corresponds with the age of the person
+
+nodes2 = [
+	{id: 1, value: 2, label: 'the', shape: 'circularImage', color: 'purple', font: {color: '#fff'}, image: ''}
+,	{id: 2, value: 1, label: 'quick', shape: 'circularImage', color: 'red', font: {color: '#fff'}, image: ''}
+,	{id: 3, value: 1, label: 'brown', shape: 'circularImage', color: 'red', font: {color: '#fff'}, image: ''}
+,	{id: 4, value: 2, label: 'fox', shape: 'circularImage', color: 'purple', font: {color: '#fff'}, image: ''}
+,	{id: 5, value: 1, label: 'jumps', shape: 'circularImage', color: 'red', font: {color: '#fff'}, image: ''}
+,	{id: 6, value: 1, label: 'over', shape: 'circularImage', color: 'red', font: {color: '#fff'}, image: ''}
+,	{id: 7, value: 2, label: 'lazy', shape: 'circularImage', color: 'purple', font: {color: '#fff'}, image: ''}
+,	{id: 8, value: 2, label: 'dog', shape: 'circularImage', color: 'purple', font: {color: '#fff'}, image: ''}
+,	{id: 9, value: 1, label: 'until', shape: 'circularImage', color: 'blue', font: {color: '#fff'}, image: ''}
+,	{id: 10, value: 1, label: 'awakes', shape: 'circularImage', color: 'blue', font: {color: '#fff'}, image: ''}
+,	{id: 11, value: 1, label: 'and', shape: 'circularImage', color: 'blue', font: {color: '#fff'}, image: ''}
+,	{id: 12, value: 1, label: 'worries', shape: 'circularImage', color: 'blue', font: {color: '#fff'}, image: ''}
+,	{id: 13, value: 1, label: 'him', shape: 'circularImage', color: 'blue', font: {color: '#fff'}, image: ''}
+,	{id: 14, value: 1, label: 'to', shape: 'circularImage', color: 'blue', font: {color: '#fff'}, image: ''}
+,	{id: 15, value: 1, label: 'death', shape: 'circularImage', color: 'blue', font: {color: '#fff'}, image: ''}
+,	{id: 16, value: 1, label: 'he', shape: 'circularImage', color: 'green', font: {color: '#fff'}, image: ''}
+,	{id: 17, value: 1, label: 'lands', shape: 'circularImage', color: 'green', font: {color: '#fff'}, image: ''}
+,	{id: 18, value: 1, label: 'head', shape: 'circularImage', color: 'green', font: {color: '#fff'}, image: ''}
+,	{id: 19, value: 1, label: 'first', shape: 'circularImage', color: 'green', font: {color: '#fff'}, image: ''}
+,	{id: 20, value: 1, label: 'on', shape: 'circularImage', color: 'green', font: {color: '#fff'}, image: ''}
+,	{id: 21, value: 1, label: 'a', shape: 'circularImage', color: 'green', font: {color: '#fff'}, image: ''}
+,	{id: 22, value: 1, label: 'rotting', shape: 'circularImage', color: 'green', font: {color: '#fff'}, image: ''}
+,	{id: 23, value: 1, label: 'maple', shape: 'circularImage', color: 'green', font: {color: '#fff'}, image: ''}
+,	{id: 24, value: 1, label: 'log', shape: 'circularImage', color: 'green', font: {color: '#fff'}, image: ''}
+,	{id: 25, value: 1, label: 'knocked', shape: 'circularImage', color: 'yellow', font: {color: '#fff'}, image: ''}
+,	{id: 26, value: 1, label: 'unconscious', shape: 'circularImage', color: 'yellow', font: {color: '#fff'}, image: ''}
+,	{id: 27, value: 1, label: 'sleeps', shape: 'circularImage', color: 'yellow', font: {color: '#fff'}, image: ''}
+,	{id: 28, value: 1, label: 'with', shape: 'circularImage', color: 'yellow', font: {color: '#fff'}, image: ''}
+,	{id: 29, value: 1, label: 'shallow', shape: 'circularImage', color: 'yellow', font: {color: '#fff'}, image: ''}
+,	{id: 30, value: 1, label: 'breath', shape: 'circularImage', color: 'yellow', font: {color: '#fff'}, image: ''}
+
+]
+
+  // create connections between people
+  // value corresponds with the amount of contact between two people
+
+	edges2 = [
+	{from: 1, to: 2, value: 0, color: '#F6CEEC'}
+,	{from: 2, to: 3, value: 0, color: '#F6CEEC'}
+,	{from: 3, to: 4, value: 0, color: '#F6CEEC'}
+,	{from: 4, to: 5, value: 0, color: '#F6CEEC'}
+,	{from: 5, to: 6, value: 0, color: '#F6CEEC'}
+,	{from: 6, to: 1, value: 0, color: '#F6CEEC'}
+,	{from: 7, to: 8, value: 1, color: '#F6CEEC'}
+,	{from: 9, to: 1, value: 0, color: '#F6CEEC'}
+,	{from: 1, to: 7, value: 1, color: '#F6CEEC'}
+,	{from: 7, to: 8, value: 1, color: '#F6CEEC'}
+,	{from: 8, to: 10, value: 0, color: '#F6CEEC'}
+,	{from: 10, to: 11, value: 0, color: '#F6CEEC'}
+,	{from: 11, to: 12, value: 0, color: '#F6CEEC'}
+,	{from: 12, to: 13, value: 0, color: '#F6CEEC'}
+,	{from: 13, to: 14, value: 0, color: '#F6CEEC'}
+,	{from: 14, to: 15, value: 0, color: '#F6CEEC'}
+,	{from: 16, to: 17, value: 0, color: '#F6CEEC'}
+,	{from: 17, to: 18, value: 0, color: '#F6CEEC'}
+,	{from: 18, to: 19, value: 0, color: '#F6CEEC'}
+,	{from: 19, to: 20, value: 0, color: '#F6CEEC'}
+,	{from: 20, to: 21, value: 0, color: '#F6CEEC'}
+,	{from: 21, to: 22, value: 0, color: '#F6CEEC'}
+,	{from: 22, to: 23, value: 0, color: '#F6CEEC'}
+,	{from: 23, to: 24, value: 0, color: '#F6CEEC'}
+,	{from: 25, to: 26, value: 0, color: '#F6CEEC'}
+,	{from: 26, to: 4, value: 0, color: '#F6CEEC'}
+,	{from: 4, to: 27, value: 0, color: '#F6CEEC'}
+,	{from: 27, to: 28, value: 0, color: '#F6CEEC'}
+,	{from: 28, to: 29, value: 0, color: '#F6CEEC'}
+,	{from: 29, to: 30, value: 0, color: '#F6CEEC'}
+
+]
+
+  // Instantiate our network object.
+  var container2 = document.getElementById('mynetwork2');
+  var data2 = {
+	nodes: nodes2,
+	edges: edges2
+  };
+  var options2 = {
+	nodes: {
+	  //shape: 'square',
+	  size: 30 
+	  /*
+	  scaling: {
+			min: 4,
+			max: 30,
+			label: {
+				enabled: true,
+				min: 20,
+				max: 20,
+				maxVisible: 30,
+				drawThreshold: 5
+			}
+		}*/
+	},
+	edges: {
+		dashes: true,
+		color: {
+			highlight: 'red'
+		},
+		smooth: {
+			enabled: true,
+			type: 'dynamic',
+			roundness: 0.9
+		}
+	}, 
+	physics: {
+		solver: 'forceAtlas2Based',
+		repulsion: {
+			centralGravity: 0.2,
+			springLength: 100,
+			springConstant: 0.05,
+			nodeDistance: 50,
+			damping: 0.09
+		},
+		forceAtlas2Based: {
+			gravitationalConstant: -20,
+			centralGravity: 0.01,
+			springConstant: 0.08,
+			springLength: 5,
+			damping: 0.4,
+			avoidOverlap: 0
+		}
+	}
+  };
+ 
+  network2 = new vis.Network(container2, data2, options2);
+}
+
+var wordnodes = [];
+
+wordnodes.push([1,2,3,4,5,6,7,8]);
+wordnodes.push([16,17,18,19,20,21,22,23,24]);
+wordnodes.push([25,26,27,28,29,30,4]);
+wordnodes.push([1,7,8,9,10,11,12,13,14,15]);
+
+function getNode2(node) {
+	if (node) {
+		network2.focus(wordnodes[node][Math.round(wordnodes[node].length / 2)], {scale: 1, animation: {duration: 1000}});
+		network2.selectNodes(wordnodes[node], true);
+	} else {
+		draw2();
+	}
+}
+
+draw2();
+	
+	
+</script>
