@@ -3,7 +3,6 @@ data = cgi.FieldStorage()
 textstring = data.getvalue('textString')
 numberentry = data.getvalue('numberentry')
 
-
 def add10(x):
 	y = x + 10
 	return y
