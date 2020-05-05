@@ -1,0 +1,379 @@
+<div class="w3-row">
+	<select class="w3-quarter w3-select w3-dark-grey" id="series1" onchange="getCharts();">
+		<option value="">Select Series 1</option>
+		<option value="2016">2016</option>
+		<option value="2017">2017</option>
+		<option value="2018">2018</option>
+	</select>
+
+	<select class="w3-quarter w3-select w3-dark-grey" id="series2" onchange="getCharts();">
+		<option value="">Select Series 2</option>
+		<option value="2016">2016</option>
+		<option value="2017">2017</option>
+		<option value="2018">2018</option>
+	</select>
+</div>
+
+<br/>
+
+<div class="w3-row">
+<div id="chartContainer" class="chart-container w3-black w3-padding" style="height: 305px;">
+</div>
+</div>
+
+
+<script src="chart/chart.bundle.js"></script>
+<script>
+
+function resetChart() {
+	document.getElementById('chartContainer').innerHTML = '<div class="w3-third"><canvas id="myChart" style="height: 250px;"></canvas></div><div class="w3-third"><canvas id="myChart3" style="height: 250px;"></canvas></div><div class="w3-third"><canvas id="myChart2" style="height: 250px;"></canvas></div><div class="w3-third"><canvas id="myChart4" style="height: 250px;"></canvas></div><div class="w3-third"><canvas id="myChart5" style="height: 250px;"></canvas></div><div class="w3-third"><canvas id="myChart6" style="height: 250px;"></canvas></div>';
+}
+
+function getCharts() {
+	var series1 = document.getElementById('series1').value;
+	var series2 = document.getElementById('series2').value;
+	if (series1 && series2) {
+		resetChart();
+		extractData(series1, series2);
+	}
+}
+
+function extractData(series1, series2) {
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			var dataArray = JSON.parse(this.responseText);
+			drawChart(dataArray[0], dataArray[1], 'line', 'myChart');
+			drawChart(dataArray[0], dataArray[1], 'bar', 'myChart3');
+			var chartData = [];		
+			for (var i in dataArray[0]) {
+				chartData.push({x: dataArray[0][i], y: dataArray[1][i]});
+			}	
+			drawChart2(chartData);
+			drawChart3(dataArray[0], dataArray[1], 'line', 'myChart4');
+			drawChart3(dataArray[0], dataArray[1], 'bar', 'myChart5');
+			drawChart4(dataArray[0], dataArray[1], 'pie', 'myChart6');
+		} 
+	};
+	xmlhttp.open("GET", "chart/call_chart.php?series1=" + series1 + "&series2=" + series2, true);
+	xmlhttp.send();
+}
+
+function drawChart(data1, data2, chartType, chartContainer) {
+	
+	window.chartColors = {
+		red: 'rgb(255, 99, 132)',
+		orange: 'rgb(255, 159, 64)',
+		yellow: 'rgb(255, 205, 86)',
+		green: 'rgb(75, 192, 192)',
+		blue: 'rgb(54, 162, 235)',
+		purple: 'rgb(153, 102, 255)',
+		grey: 'rgb(201, 203, 207)'
+	};
+
+	var ctx = document.getElementById(chartContainer).getContext('2d');
+	var chart = new Chart(ctx, {
+		// The type of chart we want to create
+		type: chartType,
+
+		// The data for our dataset
+		data: {
+			labels: ["January", "February", "March", "April", "May", "June", "July"],
+			datasets: [
+				{
+					label: "Series 1",
+					fill: false, 
+					backgroundColor: window.chartColors.yellow,
+					borderColor: window.chartColors.yellow,
+					borderDash: [10,5],
+					borderWidth: 2, 
+					data: data1
+				},
+				{
+					label: "Series 2",
+					fill: false, 
+					backgroundColor: window.chartColors.orange,
+					borderColor: window.chartColors.orange,
+					borderWidth: 2, 
+					steppedLine: true,
+					data: data2
+				}
+			]
+		},
+
+		// Configuration options go here
+		options: {
+			maintainAspectRatio: false,
+			legend: {
+				display: true,
+				position: 'bottom', 
+				labels: {
+					fontColor: '#fff'
+				}
+			}, 
+			scales: {
+				yAxes: [{
+					ticks: {
+						beginAtZero: false, 
+						fontColor: 'white', 
+						fontSize: 8
+					}, 
+					gridLines: {
+						display: true, 
+						color: '#303030',
+						borderWidth: 0.5
+					}
+				}], 
+				xAxes: [{
+					ticks: {
+						fontColor: 'white', 
+						fontSize: 8
+					}, 
+					gridLines: {
+						display: true,
+						color: '#303030',
+						borderWidth: 0.5
+					}
+				}]
+			}
+		}
+	})
+}
+
+function drawChart2(dataObject) {
+	
+	window.chartColors = {
+		red: 'rgb(255, 99, 132)',
+		orange: 'rgb(255, 159, 64)',
+		yellow: 'rgb(255, 205, 86)',
+		green: 'rgb(75, 192, 192)',
+		blue: 'rgb(54, 162, 235)',
+		purple: 'rgb(153, 102, 255)',
+		grey: 'rgb(201, 203, 207)'
+	};
+
+	var ctx = document.getElementById('myChart2').getContext('2d');
+	var chart = new Chart(ctx, {
+		// The type of chart we want to create
+		type: 'scatter',
+
+		// The data for our dataset
+		data: {
+			labels: ["January", "February", "March", "April", "May", "June", "July"],
+			datasets: [
+			{
+				label: 'Series 1, Series 2',
+				data: dataObject,
+				borderColor: window.chartColors.yellow,
+				backgroundColor: window.chartColors.green,
+				borderWidth: 2
+			}
+			]
+		},
+
+		// Configuration options go here
+		options: {
+			maintainAspectRatio: false,
+			legend: {
+				display: true,
+				position: 'bottom', 
+				labels: {
+					fontColor: '#fff'
+				}
+			}, 
+			scales: {
+				yAxes: [{
+					ticks: {
+						beginAtZero: true, 
+						fontColor: 'white',
+						fontSize: 8
+					}, 
+					gridLines: {
+						display: true, 
+						color: '#303030',
+						borderWidth: 0.5
+					}
+				}], 
+				xAxes: [{
+					ticks: {
+						fontColor: 'white', 
+						fontSize: 8
+					}, 
+					gridLines: {
+						display: true,
+						color: '#303030',
+						borderWidth: 0.5
+					}
+				}]
+			},
+			tooltips: {
+				callbacks: {
+					label: function(tooltipItem, data) {
+					   var label = data.labels[tooltipItem.index];
+					   return label + ': (' + tooltipItem.xLabel + ', ' + tooltipItem.yLabel + ')';
+					},
+					labelColor: function(tooltipItem, chart) {
+						return {
+							borderColor: window.chartColors.yellow, 
+							backgroundColor: window.chartColors.green
+						};
+					}
+				}
+			}			
+			
+		}
+	})
+}
+
+function drawChart3(data1, data2, chartType, chartContainer) {
+	
+	window.chartColors = {
+		red: 'rgb(255, 99, 132)',
+		orange: 'rgb(255, 159, 64)',
+		yellow: 'rgb(255, 205, 86)',
+		green: 'rgb(75, 192, 192)',
+		blue: 'rgb(54, 162, 235)',
+		purple: 'rgb(153, 102, 255)',
+		grey: 'rgb(201, 203, 207)'
+	};
+
+	var ctx = document.getElementById(chartContainer).getContext('2d');
+	var chart = new Chart(ctx, {
+		// The type of chart we want to create
+		type: chartType,
+
+		// The data for our dataset
+		data: {
+			labels: ["January", "February", "March", "April", "May", "June", "July"],
+			datasets: [
+				{
+					label: "Series 1",
+					fill: 'start', 
+					backgroundColor: window.chartColors.blue,
+					borderColor: window.chartColors.blue,
+					pointBorderColor: window.chartColors.yellow,
+					borderWidth: 2, 
+					data: data1
+				},
+				{
+					label: "Series 2",
+					fill: 'start', 
+					backgroundColor: window.chartColors.red,
+					borderColor: window.chartColors.red,
+					pointBorderColor: window.chartColors.yellow,
+					borderWidth: 2, 
+					data: data2
+				}
+			]
+		},
+
+		// Configuration options go here
+		options: {
+			maintainAspectRatio: false,
+			legend: {
+				display: true,
+				position: 'bottom', 
+				labels: {
+					fontColor: '#fff'
+				}
+			}, 
+			scales: {
+				yAxes: [{
+					stacked: true,
+					ticks: {
+						beginAtZero: false, 
+						fontColor: 'white', 
+						fontSize: 8
+					}, 
+					gridLines: {
+						display: true, 
+						color: '#303030',
+						borderWidth: 0.5
+					}
+				}], 
+				xAxes: [{
+					stacked: true,
+					ticks: {
+						fontColor: 'white', 
+						fontSize: 8
+					}, 
+					gridLines: {
+						display: true,
+						color: '#303030',
+						borderWidth: 0.5
+					}
+				}]
+			}
+		}
+	})
+}
+
+function drawChart4(data1, data2, chartType, chartContainer) {
+	
+	window.chartColors = {
+		red: 'rgb(255, 99, 132)',
+		orange: 'rgb(255, 159, 64)',
+		yellow: 'rgb(255, 205, 86)',
+		green: 'rgb(75, 192, 192)',
+		blue: 'rgb(54, 162, 235)',
+		purple: 'rgb(153, 102, 255)',
+		grey: 'rgb(201, 203, 207)'
+	};
+
+	var ctx = document.getElementById(chartContainer).getContext('2d');
+	var chart = new Chart(ctx, {
+		// The type of chart we want to create
+		type: chartType,
+
+		// The data for our dataset
+		data: {
+			labels: ["January", "February", "March", "April", "May", "June", "July"],
+			datasets: [
+				{
+					label: "Series 1",
+					fill: 'start', 
+					backgroundColor: [
+						window.chartColors.red,
+						window.chartColors.orange,
+						window.chartColors.yellow,
+						window.chartColors.green,
+						window.chartColors.blue,
+						window.chartColors.purple,
+						window.chartColors.grey					
+					],
+					borderWidth: 1, 
+					data: data1
+				},
+				{
+					label: "Series 2",
+					fill: 'start', 
+					backgroundColor: [
+						window.chartColors.red,
+						window.chartColors.orange,
+						window.chartColors.yellow,
+						window.chartColors.green,
+						window.chartColors.blue,
+						window.chartColors.purple,
+						window.chartColors.grey					
+					],
+					borderWidth: 1, 
+					data: data2
+				}
+			]
+		},
+
+		// Configuration options go here
+		options: {
+			maintainAspectRatio: false,
+			legend: {
+				display: true,
+				position: 'bottom', 
+				labels: {
+					fontColor: '#fff'
+				}
+			}
+		}
+	})
+}
+
+</script>
