@@ -1,0 +1,353 @@
+<script src='maps/mapbox-gl.js'></script>
+<link href='maps/mapbox-gl.css' rel='stylesheet' />
+
+<div class="w3-row">
+
+	<div class="w3-quarter">
+		<select class="w3-select w3-dark-grey" onchange="goToPoint(this.value);">
+			<option value=''>Select Location:</option>		
+			<option value=0>Alabat</option>
+			<option value=1>Ambulong</option>
+			<option value=2>Aparri</option>
+			<option value=3>Baguio</option>
+			<option value=4>Baler Radar</option>
+			<option value=5>Basco Radar</option>
+			<option value=6>Butuan</option>
+			<option value=7>Cabanatuan</option>
+			<option value=8>Calapan</option>
+			<option value=9>Calayan</option>
+			<option value=10>Casiguran</option>
+			<option value=11>Catarman</option>
+			<option value=12>Catbalogan</option>
+			<option value=13>Clark</option>
+			<option value=14>Coron</option>
+			<option value=15>Cotabato</option>
+			<option value=16>Cubi Point</option>
+			<option value=17>Cuyo</option>
+			<option value=18>Daet</option>
+			<option value=19>Dagupan</option>
+			<option value=20>Dauis</option>
+			<option value=21>Davao City</option>
+			<option value=22>Dipolog</option>
+			<option value=23>Dumaguete</option>
+			<option value=24>El Salvador</option>
+			<option value=25>General Santos</option>
+			<option value=26>Guiuan</option>
+			<option value=27>Hinatuan</option>
+			<option value=28>Iba</option>
+			<option value=29>Iloilo</option>
+			<option value=30>Infanta</option>
+			<option value=31>Itbayat</option>
+			<option value=32>Juban</option>
+			<option value=33>Laoag</option>
+			<option value=34>Legazpi</option>
+			<option value=35>Lumbia</option>
+			<option value=36>Maasin</option>
+			<option value=37>Mactan</option>
+			<option value=38>Malaybalay</option>
+			<option value=39>NAIA</option>
+			<option value=40>Port Area</option>
+			<option value=41>Puerto Princesa</option>
+			<option value=42>Romblon</option>
+			<option value=43>Roxas City</option>
+			<option value=44>San Jose</option>
+			<option value=45>Sangley Point</option>
+			<option value=46>Science Garden</option>
+			<option value=47>Sinait</option>
+			<option value=48>Surigao</option>
+			<option value=49>Tacloban</option>
+			<option value=50>Tagbilaran</option>
+			<option value=51>Tanay</option>
+			<option value=52>Tayabas</option>
+			<option value=53>Tuguegarao</option>
+			<option value=54>Vigan</option>
+			<option value=55>Virac Synop</option>
+			<option value=56>Zamboanga</option>
+		</select>
+		
+		<div id="renderWindow"></div>
+		
+	</div>
+	
+	<div class="w3-threequarter">
+		<div class="w3-white" id='map' style='height: 400px;'></div>
+		<div id='marker1'></div>
+	</div>
+</div>
+
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1IjoiZG9jbGlnb3QiLCJhIjoiY2p3MHQ5MTViMGVvNzQzdGdicTlwM2o3NCJ9.j4qYChJYSxUy8hNnlXrD-g';
+
+	var map = new mapboxgl.Map({
+	  container: 'map', // HTML container id
+	  style: 'mapbox://styles/mapbox/satellite-streets-v10', // style URL
+	  center: [120.967866, 14.58841], // starting position as [lng, lat]
+	  zoom: 9
+	});
+
+	map.addControl(new mapboxgl.NavigationControl());
+
+	var popup = [];
+	var marker = [];
+	var messages = [];
+	var locations = [];
+	var colors = [];
+	var descriptions = [];
+	
+	messages.push('<h3>Alabat</h3>');
+	messages.push('<h3>Ambulong</h3>');
+	messages.push('<h3>Aparri</h3>');
+	messages.push('<h3>Baguio</h3>');
+	messages.push('<h3>Baler Radar</h3>');
+	messages.push('<h3>Basco Radar</h3>');
+	messages.push('<h3>Butuan</h3>');
+	messages.push('<h3>Cabanatuan</h3>');
+	messages.push('<h3>Calapan</h3>');
+	messages.push('<h3>Calayan</h3>');
+	messages.push('<h3>Casiguran</h3>');
+	messages.push('<h3>Catarman</h3>');
+	messages.push('<h3>Catbalogan</h3>');
+	messages.push('<h3>Clark</h3>');
+	messages.push('<h3>Coron</h3>');
+	messages.push('<h3>Cotabato</h3>');
+	messages.push('<h3>Cubi Point</h3>');
+	messages.push('<h3>Cuyo</h3>');
+	messages.push('<h3>Daet</h3>');
+	messages.push('<h3>Dagupan</h3>');
+	messages.push('<h3>Dauis</h3>');
+	messages.push('<h3>Davao City</h3>');
+	messages.push('<h3>Dipolog</h3>');
+	messages.push('<h3>Dumaguete</h3>');
+	messages.push('<h3>El Salvador</h3>');
+	messages.push('<h3>General Santos</h3>');
+	messages.push('<h3>Guiuan</h3>');
+	messages.push('<h3>Hinatuan</h3>');
+	messages.push('<h3>Iba</h3>');
+	messages.push('<h3>Iloilo</h3>');
+	messages.push('<h3>Infanta</h3>');
+	messages.push('<h3>Itbayat</h3>');
+	messages.push('<h3>Juban</h3>');
+	messages.push('<h3>Laoag</h3>');
+	messages.push('<h3>Legazpi</h3>');
+	messages.push('<h3>Lumbia</h3>');
+	messages.push('<h3>Maasin</h3>');
+	messages.push('<h3>Mactan</h3>');
+	messages.push('<h3>Malaybalay</h3>');
+	messages.push('<h3>NAIA</h3>');
+	messages.push('<h3>Port Area</h3>');
+	messages.push('<h3>Puerto Princesa</h3>');
+	messages.push('<h3>Romblon</h3>');
+	messages.push('<h3>Roxas City</h3>');
+	messages.push('<h3>San Jose</h3>');
+	messages.push('<h3>Sangley Point</h3>');
+	messages.push('<h3>Science Garden</h3>');
+	messages.push('<h3>Sinait</h3>');
+	messages.push('<h3>Surigao</h3>');
+	messages.push('<h3>Tacloban</h3>');
+	messages.push('<h3>Tagbilaran</h3>');
+	messages.push('<h3>Tanay</h3>');
+	messages.push('<h3>Tayabas</h3>');
+	messages.push('<h3>Tuguegarao</h3>');
+	messages.push('<h3>Vigan</h3>');
+	messages.push('<h3>Virac Synop</h3>');
+	messages.push('<h3>Zamboanga</h3>');
+	
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+	descriptions.push('<p>PAGASA Weather Station</p>');
+
+	locations.push([ 122.017598 , 14.105384 ]);
+	locations.push([ 121.0552444 , 14.09008056 ]);
+	locations.push([ 121.630454 , 18.360059 ]);
+	locations.push([ 120.60147 , 16.403992 ]);
+	locations.push([ 121.632028 , 15.748809 ]);
+	locations.push([ 121.970536 , 20.427284 ]);
+	locations.push([ 125.482294 , 8.947081 ]);
+	locations.push([ 120.951143 , 15.470387 ]);
+	locations.push([ 121.1896667 , 13.409775 ]);
+	locations.push([ 121.467 , 19.263 ]);
+	locations.push([ 122.128888 , 16.265083 ]);
+	locations.push([ 124.628514 , 12.505372 ]);
+	locations.push([ 124.88425 , 11.775024 ]);
+	locations.push([ 120.5616667 , 15.1717 ]);
+	locations.push([ 120.200018 , 12.003544 ]);
+	locations.push([ 124.214806 , 7.161722 ]);
+	locations.push([ 120.266619 , 14.787679 ]);
+	locations.push([ 121.008167 , 10.85411 ]);
+	locations.push([ 122.982559 , 14.128689 ]);
+	locations.push([ 120.352045 , 16.086784 ]);
+	locations.push([ 123.816 , 9.5842 ]);
+	locations.push([ 125.654969 , 7.127577 ]);
+	locations.push([ 123.34372 , 8.599571 ]);
+	locations.push([ 123.303342 , 9.335443 ]);
+	locations.push([ 124.557946 , 8.535701 ]);
+	locations.push([ 125.103143 , 6.057342 ]);
+	locations.push([ 125.755495 , 11.04558 ]);
+	locations.push([ 126.338501 , 8.367467 ]);
+	locations.push([ 119.965661 , 15.328408 ]);
+	locations.push([ 122.54311 , 10.7132 ]);
+	locations.push([ 121.6490333 , 14.74663611 ]);
+	locations.push([ 121.838378 , 20.786967 ]);
+	locations.push([ 123.997147 , 12.839231 ]);
+	locations.push([ 120.534723 , 18.183016 ]);
+	locations.push([ 123.728605 , 13.150937 ]);
+	locations.push([ 124.555 , 8.40333 ]);
+	locations.push([ 124.8604 , 10.13900833 ]);
+	locations.push([ 123.980118 , 10.322329 ]);
+	locations.push([ 125.133852 , 8.151421 ]);
+	locations.push([ 121.004751 , 14.5047 ]);
+	locations.push([ 120.967866 , 14.58841 ]);
+	locations.push([ 118.758613 , 9.740134 ]);
+	locations.push([ 122.270347 , 12.578649 ]);
+	locations.push([ 122.749621 , 11.600265 ]);
+	locations.push([ 121.04788 , 12.359602 ]);
+	locations.push([ 120.906838 , 14.494953 ]);
+	locations.push([ 121.044282 , 14.645072 ]);
+	locations.push([ 120.459762 , 17.89019 ]);
+	locations.push([ 125.48935 , 9.782797 ]);
+	locations.push([ 125.025 , 11.22555556 ]);
+	locations.push([ 123.85609 , 9.6672 ]);
+	locations.push([ 121.36927 , 14.581167 ]);
+	locations.push([ 121.596575 , 14.018428 ]);
+	locations.push([ 121.758469 , 17.647678 ]);
+	locations.push([ 120.387 , 17.575 ]);
+	locations.push([ 124.209834 , 13.576558 ]);
+	locations.push([ 122.06631 , 6.917099 ]);
+
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	colors.push({ "color": "#ff3333" });
+	
+	for (i = 0; i < locations.length; i++) {
+		popup[i] = new mapboxgl.Popup()
+		.setHTML(messages[i]);
+
+		marker[i] = new mapboxgl.Marker(colors[i])
+		.setLngLat(locations[i])
+		.setPopup(popup[i])
+		.addTo(map);
+	}
+
+	function goToPoint(locationValue) {
+		if (locationValue) {
+			map.flyTo({center: locations[locationValue]});
+			renderInfo(locationValue);
+		} else {
+			map.flyTo({center: [121.065044, 14.575057]});
+			document.getElementById('renderWindow').innerHTML = '';
+		}
+	}
+	
+	function renderInfo(locationValue) {
+		document.getElementById('renderWindow').innerHTML = messages[locationValue] + descriptions[locationValue];
+	}
+
+</script>
