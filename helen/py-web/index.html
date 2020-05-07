@@ -2,82 +2,116 @@
 
 <html>
 
-<head><title>The Python Response</title>
-<link rel="stylesheet" href="w3.css"/>	
+<head>
+	<title>Python on Web</title>
+	<link rel="stylesheet" href="w3.css" />
 </head>
 
 <style>
-.lds-heart {
+.lds-roller {
   display: inline-block;
   position: relative;
   width: 80px;
   height: 80px;
-  transform: rotate(45deg);
+}
+.lds-roller div {
+  animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
   transform-origin: 40px 40px;
 }
-.lds-heart div {
-  top: 32px;
-  left: 32px;
-  position: absolute;
-  width: 32px;
-  height: 32px;
-  background: #fff;
-  animation: lds-heart 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
-}
-.lds-heart div:after,
-.lds-heart div:before {
+.lds-roller div:after {
   content: " ";
-  position: absolute;
   display: block;
-  width: 32px;
-  height: 32px;
-  background: #fff;
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #222;
+  margin: -4px 0 0 -4px;
 }
-.lds-heart div:before {
-  left: -24px;
-  border-radius: 50% 0 0 50%;
+.lds-roller div:nth-child(1) {
+  animation-delay: -0.036s;
 }
-.lds-heart div:after {
-  top: -24px;
-  border-radius: 50% 50% 0 0;
+.lds-roller div:nth-child(1):after {
+  top: 63px;
+  left: 63px;
 }
-@keyframes lds-heart {
+.lds-roller div:nth-child(2) {
+  animation-delay: -0.072s;
+}
+.lds-roller div:nth-child(2):after {
+  top: 68px;
+  left: 56px;
+}
+.lds-roller div:nth-child(3) {
+  animation-delay: -0.108s;
+}
+.lds-roller div:nth-child(3):after {
+  top: 71px;
+  left: 48px;
+}
+.lds-roller div:nth-child(4) {
+  animation-delay: -0.144s;
+}
+.lds-roller div:nth-child(4):after {
+  top: 72px;
+  left: 40px;
+}
+.lds-roller div:nth-child(5) {
+  animation-delay: -0.18s;
+}
+.lds-roller div:nth-child(5):after {
+  top: 71px;
+  left: 32px;
+}
+.lds-roller div:nth-child(6) {
+  animation-delay: -0.216s;
+}
+.lds-roller div:nth-child(6):after {
+  top: 68px;
+  left: 24px;
+}
+.lds-roller div:nth-child(7) {
+  animation-delay: -0.252s;
+}
+.lds-roller div:nth-child(7):after {
+  top: 63px;
+  left: 17px;
+}
+.lds-roller div:nth-child(8) {
+  animation-delay: -0.288s;
+}
+.lds-roller div:nth-child(8):after {
+  top: 56px;
+  left: 12px;
+}
+@keyframes lds-roller {
   0% {
-    transform: scale(0.95);
-  }
-  5% {
-    transform: scale(1.1);
-  }
-  39% {
-    transform: scale(0.85);
-  }
-  45% {
-    transform: scale(1);
-  }
-  60% {
-    transform: scale(0.95);
+    transform: rotate(0deg);
   }
   100% {
-    transform: scale(0.9);
+    transform: rotate(360deg);
   }
 }
-
 </style>
 
 <body>
-<p>Click on name for response:</p>
+<p>Click on a name to get a response: </p>
 
-<a href="get.py?variable=Doc">Select Doc</a><br>
-<a href="get.py?variable=Tessa">Select Tessa</a><br>
-<a href="get.py?variable=Cricket">Select Cricket</a><br>
-<a href="get.py?variable=Ingrid">Select Ingrid</a><br>
+<a href="get.py?variable=Doc">Select Doc</a><br/>
+<a href="get.py?variable=Tessa">Select Tessa</a><br/>
+<a href="get.py?variable=Cricket">Select Cricket</a><br/>
+<a href="get.py?variable=Ingrid">Select Ingrid</a><br/>
+
 
 <hr/>
+<p>This is a form.</p>
 
 <form method="POST" action="post.py">
-<p>Text<input type="text" name="textString" value="Enter a text string"></input></p>
-<p>Number<input type="number" name="numberEntry" value="0" min="0"></input></p>
+
+<p>Enter a text: <input type="text" name="textString" value="Enter a text string"></input></p>
+<p>Enter a number: <input type="number" name="numberEntry" value="0" min="0"></input></p>
 <p><input type="submit" value="Send"></input></p>
+
 </form>
 
 <hr/>
@@ -85,72 +119,93 @@
 <button class="w3-button w3-blue" onclick="fillBox('a');">Fill Box A</button>
 <button class="w3-button w3-green" onclick="fillBox('b');">Fill Box B</button>
 <button class="w3-button w3-black" onclick="fillBox('c');">Fill Box C</button>
-
-<div class="w3-row w3-center">
+<br/>
+<div class="w3-row">
 	<div class="w3-third w3-padding">
 		<div class="w3-blue w3-center">This is Box A</div>
 		<div id="container_a" class="w3-border"><br/><br/></div>
 	</div>
-
 	<div class="w3-third w3-padding">
 		<div class="w3-green w3-center">This is Box B</div>
 		<div id="container_b" class="w3-border"><br/><br/></div>
 	</div>
-
 	<div class="w3-third w3-padding">
 		<div class="w3-black w3-center">This is Box C</div>
 		<div id="container_c" class="w3-border"><br/><br/></div>
-	</div>
-
+	</div>	
 </div>
 
 <hr/>
-<p> Return Silhouette Score</p>
-<p><input type="number" id="clusters" value="2"></input></p>
-<button class="w3-button w3-blue" onclick="getScore();">Submit</button>
+<p>Return Silhouette Score</p>
+
+<p>Enter number of Clusters: <input type="number" id="clusters" value="2"></input></p>
+<p><button class="w3-button w3-blue" onclick="getScore();">Submit</button>
+
+<div class="w3-padding">
+	<div class="w3-blue w3-center">Silhouette Score</div>
+	<div id="score_container" class="w3-border"><br/><br/></div>
+</div>
+
 
 <script>
+
 function fillBox(box) {
+
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
-		if(this.readyState == 4 && this.readyState == 200) {
+		if (this.readyState == 4 && this.status == 200) {
 			response = this.responseText;
-						switch(box) {
+			switch (box) {
 				case 'a':
-					document.getElementById('container_a').innerHTML=response;
+					document.getElementById('container_a').innerHTML = response;
 					break;
 				case 'b':
-					document.getElementById('container_b').innerHTML=response;
+					document.getElementById('container_b').innerHTML = response;
 					break;
 				case 'c':
-					document.getElementById('container_c').innerHTML=response;
+					document.getElementById('container_c').innerHTML = response;
 					break;
 				default:
 					break;
-		} 
+			}					
 		} else {
-			response=<div class="lds-heart"><div></div></div>
-			switch(box) {
+			response = '<div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>';
+			switch (box) {
 				case 'a':
-					document.getElementById('container_a').innerHTML=response;
+					document.getElementById('container_a').innerHTML = response;
 					break;
 				case 'b':
-					document.getElementById('container_b').innerHTML=response;
+					document.getElementById('container_b').innerHTML = response;
 					break;
 				case 'c':
-					document.getElementById('container_c').innerHTML=response;
+					document.getElementById('container_c').innerHTML = response;
 					break;
 				default:
-					break;
-
+					break;		
 			}
+		}
 	}
-
-	xmlhttp.open("GET","fetch.py?box-" + box, true);
+	xmlhttp.open("GET", "fetch.py?box=" + box, true);
 	xmlhttp.send();
 }
-	</script>
+
+function getScore() {
+	var clusters = document.getElementById('clusters').value;
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			response = this.responseText;
+			document.getElementById('score_container').innerHTML = response;						
+		} else {
+			response = '<div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>';
+			document.getElementById('score_container').innerHTML = response;
+		}
+	}
+	xmlhttp.open("GET", "cluster.py?clusters=" + clusters, true);
+	xmlhttp.send();
 }
+
+</script>
 
 </body>
 
