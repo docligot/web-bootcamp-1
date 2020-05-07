@@ -1,0 +1,167 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<style>
+.lds-facebook {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-facebook div {
+  display: inline-block;
+  position: absolute;
+  left: 8px;
+  width: 16px;
+  background: #eb4034;
+  animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+.lds-facebook div:nth-child(1) {
+  left: 8px;
+  animation-delay: -0.24s;
+}
+.lds-facebook div:nth-child(2) {
+  left: 32px;
+  animation-delay: -0.12s;
+}
+.lds-facebook div:nth-child(3) {
+  left: 56px;
+  animation-delay: 0;
+}
+@keyframes lds-facebook {
+  0% {
+    top: 8px;
+    height: 64px;
+  }
+  50%, 100% {
+    top: 24px;
+    height: 32px;
+  }
+}
+
+
+</style>
+
+<head>
+  <title>The Python Response</title>
+  <link rel="stylesheet" href="w3.css">
+</head>
+
+<body>
+<p>Click on name for response:</p>
+
+<a href="get.py?variable=Doc">Select Doc</a><br>
+<a href="get.py?variable=Tessa">Select Tessa</a><br>
+<a href="get.py?variable=Cricket">Select Cricket</a><br>
+<a href="get.py?variable=Ingrid">Select Ingrid</a><br>
+
+<hr/>
+
+<form method="POST" action="post.py">
+<p>Text<input type="text" name="textString" value="Enter a text string"></input></p>
+<p>Number<input type="number" name="numberEntry" value="0" min="0"></input></p>
+<p><input type="submit" value="Send"></input></p>
+</form>
+
+<hr/>
+<button class="w3-button w3-blue" onclick="fillBox('a');">Fill Box A</button>
+<button class="w3-button w3-green" onclick="fillBox('b');">Fill Box B</button>
+<button class="w3-button w3-black" onclick="fillBox('c');">FIll Box C</button>
+
+<br/>
+
+<div class="w3-row">
+  <div class="w3-third w3-padding">
+    <div class="w3-blue w3-center">This is Box A </div>
+    <div id="container_a" class="w3-border"><br><br></div>
+  </div>
+
+  <div class="w3-third w3-padding">
+    <div class="w3-green w3-center">This is Box B</div>
+    <div id="container_b" class="w3-border"><br><br></div>
+  </div>
+
+  <div class="w3-third w3-padding">
+    <div class="w3-black w3-center">This is Box C</div>
+    <div id="container_c" class="w3-border"><br><br></div>
+  </div>
+
+  <hr/>
+  <p>Return Silhouette Score</p>
+
+  <p>Enter number of Clusters: <input type="number" id="clusters" value="2"></input></p>
+  <p><button class="w3-button w3-blue" onclick="getScore();">Submit</button>
+
+  <div class="w3-padding">
+  	<div class="w3-blue w3-center">Silhouette Score</div>
+  	<div id="score_container" class="w3-border"><br/><br/></div>
+  </div>
+
+
+<script>
+
+function fillBox(box) {
+  var xmlhttp= new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      response = this.responseText;
+      switch (box) {
+        case 'a':
+          document.getElementById('container_a').innerHTML = response;
+          break;
+        case 'b':
+          document.getElementById('container_b').innerHTML = response;
+          break;
+        case 'c':
+          document.getElementById('container_c').innerHTML = response;
+          break;
+        default:
+          break;
+      }
+    } else {
+      response = '<div class="lds-circle"><div></div></div>';
+      switch (box) {
+        case 'a':
+          document.getElementById('container_a').innerHTML = response;
+          break;
+        case 'b':
+          document.getElementById('container_b').innerHTML = response;
+          break;
+        case 'c':
+          document.getElementById('container_c').innerHTML = response;
+          break;
+        default:
+          break;
+      }
+    }
+  }
+  xmlhttp.open("GET","fetch.py?box=" + box, true);
+  xmlhttp.send();
+}
+
+function getScore() {
+	var clusters = document.getElementById('clusters').value;
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			response = this.responseText;
+			document.getElementById('score_container').innerHTML = response;
+		} else {
+			response = '<div class="lds-facebook"><div></div><div></div><div></div></div>';
+			document.getElementById('score_container').innerHTML = response;
+		}
+	}
+	xmlhttp.open("GET", "cluster.py?clusters=" + clusters, true);
+	xmlhttp.send();
+}
+
+</script>
+
+
+
+
+
+</body>
+
+</html>
