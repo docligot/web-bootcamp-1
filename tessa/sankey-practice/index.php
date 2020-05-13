@@ -24,6 +24,7 @@
             // Sets chart options.
             var options = {
               width: 1000,
+              height: 1000
             };
 
             // Instantiates and draws our chart, passing in some options.
