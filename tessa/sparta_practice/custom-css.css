@@ -1,0 +1,139 @@
+<style>
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.main {
+  margin-left: 270px; /* Same as the width of the sidenav */
+  font-size: 28px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+  padding-right:50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+
+
+.box1 {
+  width: 100px;
+  height: 50px;
+  background-color: red;
+  text-align: center;
+  display: inline-block;
+}
+
+#project-portfolio {
+  width: 80%;
+  padding: 15px;
+  border-spacing:0 30px;
+  margin: 0 auto;
+
+  vertical-align: middle;
+}
+
+.col-center {
+  text-align:center;
+  padding-right:15px;
+}
+
+
+
+#course-portfolio tr:nth-child(even){background-color: #f2f2f2;}
+
+#course-portfolio td, #course-portfolio th {
+  border: 1px solid #ddd;
+  padding-left: 10px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+#course-portfolio {
+  border-collapse: collapse;
+  font-size:16px;
+}
+
+#course-portfolio th {
+  background-color: black;
+  color: white;
+}
+
+#course-portfolio tr:hover {background-color: #ddd;}
+
+.status-complete {
+  background-color: #57a957;
+  color: #fff;
+  text-shadow: 0 1px 0 rgba(0,0,0,.2);
+}
+
+.status-delayed {
+  background-color: #ca3535;
+  color: #fff;
+  text-shadow: 0 1px 0 rgba(0,0,0,.2);
+}
+
+.status-on-schedule {
+  background-color: #ebc034;
+  color: #fff;
+  text-shadow: 0 1px 0 rgba(0,0,0,.2);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</style>

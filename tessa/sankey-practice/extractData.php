@@ -41,8 +41,8 @@ if ($_GET) {
 		case "diff_death_recov" :
 			echo extractFile("diff_death_recov.csv");
 			break;
-    case "tessa" :
-      echo extractFile("tessa.csv");
+    case "tessa2" :
+      echo extractFile("tessa2.csv");
       break;
 		default:
 			break;

@@ -1,0 +1,35 @@
+AgeGrp,Gender,Count
+0 to 4,Female,36
+0 to 4,Male,57
+10 to 14,Female,30
+10 to 14,Male,50
+15 to 19,Female,73
+15 to 19,Male,92
+20 to 24,Female,316
+20 to 24,Male,267
+25 to 29,Female,582
+25 to 29,Male,488
+30 to 34,Female,520
+30 to 34,Male,614
+35 to 39,Female,341
+35 to 39,Male,469
+40 to 44,Female,327
+40 to 44,Male,411
+45 to 49,Female,342
+45 to 49,Male,463
+5 to 9,Female,35
+5 to 9,Male,36
+50 to 54,Female,333
+50 to 54,Male,453
+55 to 59,Female,324
+55 to 59,Male,465
+60 to 64,Female,351
+60 to 64,Male,424
+65 to 69,Female,276
+65 to 69,Male,345
+70 to 74,Female,201
+70 to 74,Male,262
+75 to 79,Female,91
+75 to 79,Male,151
+80+,Female,125
+80+,Male,128
