@@ -1,3 +1,21 @@
+@font-face {
+	font-family: "QuattrocentoSans";
+	src: url('QuattrocentoSans.ttf');
+}
+
+@font-face {
+	font-family: "Roboto";
+	src: url('RobotoCondensed-Light.ttf');
+}
+
+.roboto {
+	font-family: "Roboto", sans-serif
+}
+
+.quattrocento {
+	font-family: "QuattrocentoSans", sans-serif
+}
+
 .spacer {
 	height: 52px;
 }

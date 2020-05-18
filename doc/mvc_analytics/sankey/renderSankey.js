@@ -1,33 +1,36 @@
 function extractSankey() {
-	var xmlhttp = new XMLHttpRequest();
-	xmlhttp.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
-			var dataArray = JSON.parse(this.responseText);
-			var journey = [];
-			for (i = 1; i < dataArray.length; i++) {
-				var string = [];
-				for (j = 1; j < 4; j++) {
-					if (j == 3) {
-						string.push(Number(dataArray[i][j]));
-					} else {
-						string.push(dataArray[i][j])
-					}					
-				}
-				journey.push(string);
-			}
-			console.log(journey);
-			var journey1 = [];
-			journey1.push(['Referred by Facebook', 'Took a sample', 3]
-		,	['Referred by Facebook', 'Filled a survey', 15]
-		,	['Referred by Facebook', 'Asked a question', 2]
-		,	['Referred by Facebook', 'Took a photo', 20]
-		,	['Referred by Facebook', 'Watched Video', 15]);
-			console.log(journey1);
-			renderSankey(journey);
-		} 
-	};
-	xmlhttp.open("GET", "sankey/extractSankey.php", true);
-	xmlhttp.send();
+	var variable1 = document.getElementById('variable1').value;
+	var variable2 = document.getElementById('variable2').value;
+	var variable3 = document.getElementById('variable3').value;
+	
+	if (variable1 && variable2 && variable3) {
+		if (variable1 != variable2 && variable1 != variable3 && variable2 != variable3) {
+			var xmlhttp = new XMLHttpRequest();
+			xmlhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					var dataArray = JSON.parse(this.responseText);
+					//console.log(dataArray);
+					var journey = [];
+					for (i = 0; i < dataArray[0].length; i++) {
+						journey.push(dataArray[0][i]);
+					}
+					var tableString = '<table class="w3-table w3-bordered w3-striped">';
+					tableString += '<tr><th>'+variable1+'</th><th>'+variable2+'</th><th>'+variable3+'</th><th>Amount</th></tr>';
+					for (i = 0; i < dataArray[1].length; i++) {
+						tableString += '<tr><td>'+dataArray[1][i][0]+'</td><td>'+dataArray[1][i][1]+'</td><td>'+dataArray[1][i][2]+'</td><td>'+dataArray[1][i][3]+'</td></tr>';
+					}
+					tableString += '</table>';
+					renderSankey(journey);
+					document.getElementById('sankeyTable').innerHTML = tableString;
+				} 
+			};
+		xmlhttp.open("GET", "sankey/extractSankey.py?variable1=" + variable1 + "&variable2=" + variable2 + "&variable3=" + variable3, true);
+		xmlhttp.send();
+		} else {
+			document.getElementById('sankeyContainer').innerHTML = '<div id="sankey-container"></div>';
+			document.getElementById('sankeyTable').innerHTML = '<div>Please select three categories.</div>';
+		}
+	}
 }
 
 function renderSankey(journey) {
@@ -49,7 +52,7 @@ function renderSankey(journey) {
 			keys: ['from', 'to', 'weight'],
 			data: journey,
 			type: 'sankey',
-			name: 'Customer Journey Flow'
+			name: 'Transaction Flow'
 		}]
 	});
 }

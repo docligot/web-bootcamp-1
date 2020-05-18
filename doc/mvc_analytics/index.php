@@ -6,9 +6,11 @@
 	<link rel="stylesheet" href="resources/css/all.css"/>
 	<link rel="stylesheet" href="resources/w3.css" />
 	<link rel="stylesheet" href="resources/app_css.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
 </head>
 
-<body>
+<body class="roboto">
 	<?php include ('topbar.php'); ?>
 	<nav>
 		<div class="spacer">&nbsp;</div>
@@ -29,7 +31,6 @@
 
 	if (isset($_GET["page"])) {
 		$page = $_GET['page'];
-		echo $page;
 		switch ($page) {
 			case 'sankey':
 				showSankey();
