@@ -9,9 +9,9 @@
 </head>
 
 <body>
+	<?php include ('topbar.php'); ?>
 	<nav>
-		<?php include ('topbar.php'); ?>
-		<div class="spacer"></div>
+		<div class="spacer">&nbsp;</div>
 		<div class="w3-sidebar w3-col l2 w3-bar-block w3-gray w3-hide-small w3-hide-medium w3-xlarge">
 			<?php include ('menu.php'); ?>
 		</div>
@@ -26,10 +26,10 @@
 	include ('network.php'); 
 	include ('map.php');
 	include ('home.php');
-	
-	
-	if (isset($_GET['page'])) {
+
+	if (isset($_GET["page"])) {
 		$page = $_GET['page'];
+		echo $page;
 		switch ($page) {
 			case 'sankey':
 				showSankey();
