@@ -20,6 +20,39 @@
 		</div>
 	</nav>
 
+	<?php 
+	include ('sankey.php'); 
+	include ('chart.php'); 
+	include ('network.php'); 
+	include ('map.php');
+	include ('home.php');
+	
+	
+	if (isset($_GET['page'])) {
+		$page = $_GET['page'];
+		switch ($page) {
+			case 'sankey':
+				showSankey();
+				break;
+			case 'chart':
+				showChart();
+				break;
+			case 'network':
+				showNetwork();
+				break;
+			case 'map':
+				showMap();
+				break;
+			default:
+				showHome();
+				break;
+		}
+	} else {
+		showHome();
+	}
+	?>
+
+
 
 
 <script src="resources/app_js.js"></script>
