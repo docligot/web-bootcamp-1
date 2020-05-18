@@ -21,16 +21,19 @@
 
 
   <div class="main">
-    <div class="w3-row">
-      <div class="w3-third"> &nbsp; </div>
-      <div class="w3-third">
-      </div>
+    <section id="toplevel" style="margin:auto; width:500px">
+      Completion Status: 10%
+        <div class="w3-light-grey" style="">
+          <div id="myBar" class="w3-container w3-green w3-right-align" style="width:10%">3</div>
+        </div>
+    </section>
 
+    <hr style="width:50%;margin:auto; margin-bottom:20px">
 
-    </div>
+  <section id="details" style="margin:auto">
 
-    <div class="w3-row">
-      <div class="w3-half">
+    <div class="w3-row w3-mobile">
+      <div class="w3-half w3-mobile">
         <table id="project-portfolio">
           <tr>
             <td class="col-center"><i class="fas fa-city fa-2x"></i> </td>
@@ -74,7 +77,7 @@
           </tr>
         </table>
       </div>
-      <div class="w3-half">
+      <div class="w3-half w3">
         <table id="course-portfolio">
           <tr>
             <th>Course</th>
@@ -205,29 +208,8 @@
       </div>
 
     </div>
+  </section>
 
-
-
-
-
-
-
-    <div class="w3-row">
-
-
-
-
-
-    </div>
-
-
-
-
-
-
-
-    
-  </div>
 
 
 
