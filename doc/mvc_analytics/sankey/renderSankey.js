@@ -9,7 +9,7 @@ function extractSankey() {
 			xmlhttp.onreadystatechange = function() {
 				if (this.readyState == 4 && this.status == 200) {
 					var dataArray = JSON.parse(this.responseText);
-					//console.log(dataArray);
+					console.log(dataArray);
 					var journey = [];
 					for (i = 0; i < dataArray[0].length; i++) {
 						journey.push(dataArray[0][i]);
