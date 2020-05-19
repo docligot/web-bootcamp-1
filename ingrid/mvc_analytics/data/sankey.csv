@@ -1,0 +1,10 @@
+record,from,to,value
+1,Referred by Facebook,Took a sample,3
+2,Referred by Facebook,Filled a survey,15
+3,Referred by Facebook,Asked a question,2
+4,Referred by Facebook,Took a photo,20
+5,Referred by Facebook,Watched video,15
+6,Filled a survey,vomited,10
+7,Filled a survey,died,5
+8,Took a photo,died,10
+9,Took a photo,vomited,10

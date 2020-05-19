@@ -1,11 +1,11 @@
 <?php
 
-function showSankey() {
+function showChart() {
 ?>
 <div class="w3-row">
 	<div class="w3-col l2">&nbsp;</div>
 	<div class="w3-col l10 w3-padding">
-		<div class="w3-xlarge">Flow Diagram</div>
+		<div class="w3-xlarge">Charts</div>
 		<div class="w3-row w3-padding">
 			<select id="variable1" class="w3-select w3-third" onchange="extractSankey();">
 				<option value="">Select Variable:</option>
@@ -42,6 +42,7 @@ function showSankey() {
 <script src="sankey/highcharts.js"></script>
 <script src="sankey/sankey.js"></script>
 <script src="sankey/renderSankey.js"></script>
+
 
 <?php
 }
