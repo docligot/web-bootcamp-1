@@ -1,6 +1,6 @@
 <?php
 
-$file = fopen('../data/transaction.csv', "r");
+$file = fopen('../data/sankey.csv', "r");
 while (! feof($file)) {
 	$result[] = (fgetcsv($file));
 }
