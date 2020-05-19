@@ -9,11 +9,13 @@ function showMap() {
 		<div class="w3-row w3-padding">
 			<select id="variable1" class="w3-select w3-third" onchange="goToPoint(this.value);">
 				<option value=''>Select Location:</option>		
-				<option value='headquarters'>Headquarters</option>
-				<option value='mcdonalds'>McDonalds</option>
-				<option value='batangas'>Batangas</option>
-				<option value='farm'>Farm Here</option>
-				<option value='school'>Go to School</option>
+				<span id='mapOptions'>
+					<option value='headquarters'>Headquarters</option>
+					<option value='mcdonalds'>McDonalds</option>
+					<option value='batangas'>Batangas</option>
+					<option value='farm'>Farm Here</option>
+					<option value='school'>Go to School</option>
+				</span>
 			</select>
 		<select id="map-style" class="w3-select w3-third" onchange="setStyle();">
 			<option value="mapbox://styles/mapbox/streets-v9">Streets</option>
