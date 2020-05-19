@@ -14,10 +14,10 @@
 	<?php include ('topbar.php'); ?>
 	<nav>
 		<div class="spacer">&nbsp;</div>
-		<div class="w3-sidebar w3-col l2 w3-bar-block w3-dark-gray w3-hide-small w3-hide-medium w3-xlarge">
+		<div class="w3-sidebar w3-col l2 w3-bar-block w3-gray w3-hide-small w3-hide-medium w3-xlarge">
 			<?php include ('menu.php'); ?>
 		</div>
-		<div id="sideBar" class="w3-center w3-sidebar w3-xxlarge w3-animate-left w3-hide w3-col l2 w3-bar-block w3-dark-gray">
+		<div id="sideBar" class="w3-center w3-sidebar w3-xxlarge w3-animate-left w3-hide w3-col l2 w3-bar-block w3-gray">
 			<?php include ('menu.php'); ?>
 		</div>
 	</nav>
