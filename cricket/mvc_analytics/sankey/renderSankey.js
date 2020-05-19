@@ -22,7 +22,9 @@ function extractSankey() {
 					tableString += '</table>';
 					renderSankey(journey);
 					document.getElementById('sankeyTable').innerHTML = tableString;
-				} 
+				} else {
+					document.getElementById('sankeyContainer').innerHTML = '<div id="sankey-container"><div class="w3-center" style="padding-top: 150px;"><div class="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div></div>';
+				}
 			};
 		xmlhttp.open("GET", "sankey/extractSankey.py?variable1=" + variable1 + "&variable2=" + variable2 + "&variable3=" + variable3, true);
 		xmlhttp.send();
