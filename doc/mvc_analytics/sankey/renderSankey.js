@@ -28,7 +28,7 @@ function extractSankey() {
 		xmlhttp.send();
 		} else {
 			document.getElementById('sankeyContainer').innerHTML = '<div id="sankey-container"></div>';
-			document.getElementById('sankeyTable').innerHTML = '<div>Please select three categories.</div>';
+			document.getElementById('sankeyTable').innerHTML = '<div>Please select three different variables.</div>';
 		}
 	}
 }

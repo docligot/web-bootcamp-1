@@ -1,6 +1,5 @@
 import cgi
 import pandas as pd
-import json
 data = cgi.FieldStorage()
 variable1 = data.getvalue('variable1')
 variable2 = data.getvalue('variable2')
@@ -25,4 +24,3 @@ output = generateSankey(variable1, variable2, variable3).to_json(orient='values'
 output += ', ' + generateTable(variable1, variable2, variable3).to_json(orient='values')
 print('Content-type:text/html \r\n\r\n')
 print('[' + output + ']')
-#print(generateSankey(variable1, variable2, variable3).to_json(orient='values'))
