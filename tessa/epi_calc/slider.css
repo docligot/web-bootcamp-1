@@ -1,0 +1,48 @@
+.slider {
+
+  appearance: none;
+  width: 100%; /* Full-width */
+  height: 25px; /* Specified height */
+  background: #d3d3d3; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
+
+
+.box-minmax{
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  span:first-child{
+    margin-left: 10px;
+  }
+}
+
+
+.rs-label {
+
+    position: relative;
+    transform-origin: center center;
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    padding-left: 3px;
+    text-align: center;
+    box-sizing: border-box;
+    border: 2px solid white;
+    left: attr(value);
+    color: black;
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    font-size: 14px;
+
+}
