@@ -50,4 +50,8 @@
 
 </body>
 
+<footer class="w3-bottom w3-black w3-padding">
+		<div>&copy; Website Powered by CirroLytix</div>
+	</footer>
+
 </html>
