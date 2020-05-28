@@ -1,11 +1,18 @@
-function getCharts() {
+function runCharts() {
 	var year = document.getElementById('year').value;
 	var stock = document.getElementById('stock').value;
 	if (year && stock) {
 		var labels = [];
 		for (i = ((year - 2000)*12) +1; i <= ((year - 2000) *12) +12; i++){
 		labels = dataArray[i][2];
+		}
+		var data = [];
+		var pos = headers.indexOf(stock);
+		for (i = ((year - 2000)*12) +1; i <= ((year - 2000) *12) +12; i++){
+		labels = dataArray[i][2];
+		}
 	}
+	
 }
 
 function extractData() {
@@ -24,10 +31,6 @@ function extractData() {
 }
 
 function drawChart(data1, data2, data3) {
-	
-	var series1 = JSON.parse('[' + data1 + ']');
-	var series2 = JSON.parse('[' + data2 + ']');
-	var series3 = JSON.parse('[' + data3 + ']');
 	
 	window.chartColors = {
 		red: 'rgb(255, 99, 132)',
