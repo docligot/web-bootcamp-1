@@ -90,10 +90,6 @@ value.on('input', function(){
 
 });
 
-
-
-
-
 </script>
 
 <script>
@@ -103,20 +99,27 @@ google.charts.setOnLoadCallback(drawTrendlines);
 function sUpdate(s0, i0, beta, gamma, mu=0) {
   var s = [];
   var i = [];
+  var r = [];
   var s_pl;
   var i_pl;
+  var r_pl;
   var final_si = [];
   var mu = 0;
+  var r0 = 0;
   s.push(s0-i0);
   i.push(i0);
+  r.push(r0);
   for (var n=1; n<250; n++) {
     s_pl = s[n-1] - ((s[n-1]/s[0])*(beta*i[n-1]));
     s.push(s_pl);
     i_pl = i[n-1] + (s[n-1] / s[0]) * (beta * i[n-1]) - (i[n-1] * gamma) - (i[n-1] * mu);
     i.push(i_pl);
+    r_pl = r[n-1] + (i[n-1]*gamma);
+    r.push(r_pl);
   }
   final_si[0] = s;
   final_si[1] = i;
+  final_si[2] = r;
   return final_si;
 }
 
@@ -125,10 +128,12 @@ function updateData(data, final_si) {
   data.addColumn('number', 'X');
   data.addColumn('number', 'Susceptible');
   data.addColumn('number', 'Infected');
+  data.addColumn('number', 'Recovered');
 
   for (var z=0; z < 200; z++) {
-    data.addRow([z, final_si[0][z], final_si[1][z]]);
+    data.addRow([z, final_si[0][z], final_si[1][z], final_si[2][z]]);
   }
+  console.log(data);
   return data;
 }
 
@@ -152,9 +157,6 @@ function drawTrendlines() {
       var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
 
       chart.draw(data, options);
-
-      var sam = document.getElementById('ini_infected');
-      var resetSome = document.getElementById('population');
     }
     function graphUpdate() {
       var s0 = document.getElementById('population').value;
