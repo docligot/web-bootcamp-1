@@ -9,10 +9,10 @@ function runCharts() {
 		var data = [];
 		var pos = headers.indexOf(stock);
 		for (i = ((year - 2000)*12) +1; i <= ((year - 2000) *12) +12; i++){
-		labels = dataArray[i][2];
+		data = dataArray[i];
 		}
 	}
-	
+	drawChart(labels, data);
 }
 
 function extractData() {
@@ -20,17 +20,18 @@ function extractData() {
 	xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			dataArray = JSON.parse(this.responseText);
-			console.log(dataArray);
-			headers = dataArray[0];
-			console.log(headers);
-
+			//console.log(dataArray);
+			//headers = dataArray[2];
+			//console.log(headers);
 		} 
 	};
 	xmlhttp.open("GET", "read_Csv.php", true);
 	xmlhttp.send();
 }
 
-function drawChart(data1, data2, data3) {
+
+
+function drawChart(labels, data) {
 	
 	window.chartColors = {
 		red: 'rgb(255, 99, 132)',
@@ -50,16 +51,16 @@ function drawChart(data1, data2, data3) {
 
 		// The data for our dataset
 		data: {
-			labels: ["January", "February", "March", "April", "May", "June", "July", "August", "Sept", "Oct"],
+			labels: labels,
 			datasets: [
 				{
-					label: "Series 1",
+					label: "Stocks",
 					fill: false, 
 					backgroundColor: window.chartColors.orange,
 					borderColor: window.chartColors.orange,
 					borderWidth: 2, 
-					data: series1
-				},
+					data: data
+				}/*,
 				{
 					label: "Series 2",
 					fill: false, 
@@ -80,7 +81,7 @@ function drawChart(data1, data2, data3) {
 					//steppedLine: true,
 					yAxesID: 2, 
 					data: series3
-				}
+				}*/
 			]
 		},
 
@@ -102,4 +103,4 @@ function drawChart(data1, data2, data3) {
 	})
 }
 
-extractData();
+//extractData();
