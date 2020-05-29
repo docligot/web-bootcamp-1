@@ -2,10 +2,192 @@
 
 function showNetwork() {
 ?>
+
 <div class="w3-row">
 	<div class="w3-col l2">&nbsp;</div>
 	<div class="w3-col l10 w3-padding">This is the network page.</div>
 </div>
+
+<script type="text/javascript" src="network/vis.js"></script>
+<link href="network/vis.min.css" rel="stylesheet" type="text/css" />
+
+<!--<link href="../../../dist/vis-network.min.css" rel="stylesheet" type="text/css" />-->
+
+<!--<body onload="draw()">-->
+
+<div class="w3-row">
+	<div class="w3-quarter">
+		<select class="w3-select w3-dark-grey" onchange="getNode(this.value);">
+			<option value="">Select Node</option>
+			<option value=1>Ana</option>
+			<option value=2>Rico</option>
+			<option value=3>Jen</option>
+			<option value=4>Lica</option>
+			<option value=5>Ditas</option>
+			<option value=6>Izzy</option>
+		</select>
+		<div id="networkDescription" class="w3-padding"></div>
+	</div>
+	<div class="w3-threequarter">
+	<div class="ambient" id="mynetwork" style='height: 400px;'></div>
+	</div>
+	
+</div>
+<script type="text/javascript">
+
+var usernodes = [];
+
+usernodes.push('');
+usernodes.push('<h3>Ana</h3><p><ul><li>Friends with: Jen, Rico</li><li>Referred a friend</li><li>Bought product</li><li>Took a photo</li><li>Took a sample</li><li>Joined the promo</li></ul></p>');
+usernodes.push('<h3>Rico</h3><p><ul><li>Friends with: Ana, Lica</li><li>Filled a survey</li><li>Heard from a friend</li></ul></p>');
+usernodes.push('<h3>Jen</h3><p><ul><li>Friends with: Ditas, Ana</li><li>Bought product</li><li>Got a flier</li><li>Took a sample</li><li>Joined the promo</li><li>Referred by facebook</li></ul></p>');
+usernodes.push('<h3>Lica</h3><p><ul><li>Friends with: Rico, Izzy</li><li>Took a sample</li><li>Joined the promo</li><li>Referred by Facebook</li><li>Shared on Facebook</li><li>Watched video</li></ul></p>');
+usernodes.push('<h3>Ditas</h3><p><ul><li>Friends with: Jen</li><li>Filled a survey</li><li>Shared on Facebook</li><li>Watched Video</li></ul></p>');
+usernodes.push('<h3>Izzy</h3><p><ul><li>Friends with: Lica</li><li>Joined the promo</li><li>Asked a question</li><li>Watched Video</li><li>Shared on Facebook</li><li>Referred by Facebook</li><li>Filed a complaint</li></ul></p>');
+
+var nodes = null;
+var edges = null;
+var network = null;
+
+function draw() {
+  // create people.
+  // value corresponds with the age of the person
+
+nodes = [
+	{id: 1, value: 1, label: 'ana', shape: 'circularImage', color: '#F5A9A9', font: {color: '#fff'}, image: 'network/person1.png' }
+,	{id: 2, value: 1, label: 'rico', shape: 'circularImage', color: '#A9F5A9', font: {color: '#fff'}, image: 'network/person2.png' }
+,	{id: 3, value: 1, label: 'jen', shape: 'circularImage', color: '#A9E2F3', font: {color: '#fff'}, image: 'network/person3.png' }
+,	{id: 4, value: 1, label: 'lica', shape: 'circularImage', color: '#F2F5A9', font: {color: '#fff'}, image: 'network/person4.png' }
+,	{id: 5, value: 1, label: 'ditas', shape: 'circularImage', color: '#F5A9A9', font: {color: '#fff'}, image: 'network/person5.png' }
+,	{id: 6, value: 1, label: 'izzy', shape: 'circularImage', color: '#A9F5A9', font: {color: '#fff'}, image: 'network/person6.png' }
+,	{id: 7, value: 1, label: 'Heard from a friend', shape: 'circularImage', color: '#fff', font: {color: '#fff'}, image: 'network/heard.png' }
+,	{id: 8, value: 1, label: 'Got a flier', shape: 'circularImage', color: '#fff', font: {color: '#fff'}, image: 'network/flier.png' }
+,	{id: 9, value: 1, label: 'Referred by Facebook', shape: 'circularImage', color: '#fff', font: {color: '#fff'}, image: 'network/Facebook.png' }
+,	{id: 10, value: 1, label: 'Joined the promo', shape: 'circularImage', color: '#fff', font: {color: '#fff'}, image: 'network/promo.png' }
+,	{id: 11, value: 1, label: 'Took a sample', shape: 'circularImage', color: '#fff', font: {color: '#fff'}, image: 'network/sample.png' }
+,	{id: 12, value: 1, label: 'Filled a survey', shape: 'circularImage', color: '#fff', font: {color: '#fff'}, image: 'network/survey.png' }
+,	{id: 13, value: 1, label: 'Asked a question', shape: 'circularImage', color: '#fff', font: {color: '#fff'}, image: 'network/question.png' }
+,	{id: 14, value: 1, label: 'Took a photo', shape: 'circularImage', color: '#fff', font: {color: '#fff'}, image: 'network/photo.png' }
+,	{id: 15, value: 1, label: 'Watched Video', shape: 'circularImage', color: '#fff', font: {color: '#fff'}, image: 'network/video.png' }
+,	{id: 16, value: 1, label: 'Bought Product', shape: 'circularImage', color: '#fff', font: {color: '#fff'}, image: 'network/bought.png' }
+,	{id: 17, value: 1, label: 'Shared on Facebook', shape: 'circularImage', color: '#fff', font: {color: '#fff'}, image: 'network/Facebook.png' }
+,	{id: 18, value: 1, label: 'Filed a complaint', shape: 'circularImage', color: '#fff', font: {color: '#fff'}, image: 'network/complaint.png' }
+,	{id: 19, value: 1, label: 'Referred a friend', shape: 'circularImage', color: '#fff', font: {color: '#fff'}, image: 'network/friend.png' }
+]
+
+  // create connections between people
+  // value corresponds with the amount of contact between two people
+
+	edges = [
+
+	{from: 1, to: 2, value: 1, color: '#F6CEEC'}
+,	{from: 1, to: 3, value: 0, color: '#F6CEEC'}
+,	{from: 2, to: 4, value: 0, color: '#F6CEEC'}
+,	{from: 3, to: 5, value: 0, color: '#F6CEEC'}
+,	{from: 4, to: 6, value: 0, color: '#F6CEEC'}
+,	{from: 1, to: 19, value: 0, color: '#F6CEEC'}
+,	{from: 19, to: 7, value: 0, color: '#F6CEEC'}
+,	{from: 7, to: 2, value: 0, color: '#F6CEEC'}
+,	{from: 8, to: 3, value: 0, color: '#F6CEEC'}
+,	{from: 9, to: 4, value: 0, color: '#F6CEEC'}
+,	{from: 17, to: 5, value: 0, color: '#F6CEEC'}
+,	{from: 9, to: 6, value: 0, color: '#F6CEEC'}
+,	{from: 1, to: 10, value: 0, color: '#F6CEEC'}
+,	{from: 3, to: 10, value: 0, color: '#F6CEEC'}
+,	{from: 4, to: 10, value: 0, color: '#F6CEEC'}
+,	{from: 6, to: 10, value: 0, color: '#F6CEEC'}
+,	{from: 1, to: 11, value: 0, color: '#F6CEEC'}
+,	{from: 3, to: 11, value: 0, color: '#F6CEEC'}
+,	{from: 4, to: 11, value: 0, color: '#F6CEEC'}
+,	{from: 6, to: 13, value: 0, color: '#F6CEEC'}
+,	{from: 6, to: 18, value: 0, color: '#F6CEEC'}
+,	{from: 4, to: 15, value: 0, color: '#F6CEEC'}
+,	{from: 5, to: 15, value: 0, color: '#F6CEEC'}
+,	{from: 6, to: 15, value: 0, color: '#F6CEEC'}
+,	{from: 1, to: 16, value: 0, color: '#F6CEEC'}
+,	{from: 3, to: 16, value: 0, color: '#F6CEEC'}
+,	{from: 4, to: 17, value: 0, color: '#F6CEEC'}
+,	{from: 6, to: 17, value: 0, color: '#F6CEEC'}
+,	{from: 13, to: 11, value: 0, color: '#F6CEEC'}
+,	{from: 2, to: 12, value: 0, color: '#F6CEEC'}
+,	{from: 5, to: 12, value: 0, color: '#F6CEEC'}
+,	{from: 1, to: 14, value: 0, color: '#F6CEEC'}
+,	{from: 14, to: 17, value: 0, color: '#F6CEEC'}
+,	{from: 17, to: 9, value: 0, color: '#F6CEEC'}
+,	{from: 9, to: 3, value: 0, color: '#F6CEEC'}
+]
+
+  // Instantiate our network object.
+  var container = document.getElementById('mynetwork');
+  var data = {
+	nodes: nodes,
+	edges: edges
+  };
+  var options = {
+	nodes: {
+	  //shape: 'square',
+	  size: 30 
+	  /*
+	  scaling: {
+			min: 4,
+			max: 30,
+			label: {
+				enabled: true,
+				min: 20,
+				max: 20,
+				maxVisible: 30,
+				drawThreshold: 5
+			}
+		}*/
+	},
+	edges: {
+		dashes: true,
+		color: {
+			highlight: 'red'
+		},
+		smooth: {
+			enabled: true,
+			type: 'dynamic',
+			roundness: 0.9
+		}
+	}, 
+	physics: {
+		solver: 'forceAtlas2Based',
+		repulsion: {
+			centralGravity: 0.2,
+			springLength: 200,
+			springConstant: 0.05,
+			nodeDistance: 100,
+			damping: 0.09
+		},
+		forceAtlas2Based: {
+			gravitationalConstant: -50,
+			centralGravity: 0.01,
+			springConstant: 0.08,
+			springLength: 100,
+			damping: 0.4,
+			avoidOverlap: 0
+		}
+	}
+  };
+ 
+  network = new vis.Network(container, data, options);
+}
+
+function getNode(node) {
+	if (node) {
+		network.focus(node, {scale: 1, animation: {duration: 1000}});
+		network.selectNodes(node, true);
+		document.getElementById('networkDescription').innerHTML = usernodes[node];
+	} else {
+		draw();
+		document.getElementById('networkDescription').innerHTML = '';
+	}
+}
+
+draw();
+
+</script>
 
 
 <?php
