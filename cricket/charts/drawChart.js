@@ -1,18 +1,20 @@
-function runCharts() {
+function runChart() {
 	var year = document.getElementById('year').value;
 	var stock = document.getElementById('stock').value;
 	if (year && stock) {
 		var labels = [];
-		for (i = ((year - 2000)*12) +1; i <= ((year - 2000) *12) +12; i++){
-		labels = dataArray[i][2];
+		for (i = ((year - 2000) * 12) + 1; i <= ((year - 2000) * 12) + 12; i++){
+			labels.push(dataArray[i][2]);
 		}
 		var data = [];
 		var pos = headers.indexOf(stock);
-		for (i = ((year - 2000)*12) +1; i <= ((year - 2000) *12) +12; i++){
-		data = dataArray[i];
+		for (i = ((year - 2000) * 12) + 1; i <= ((year - 2000) * 12) + 12; i++){
+			data.push(dataArray[i][pos]);
 		}
+		console.log(labels);
+		console.log(data);
+		drawChart(labels, data, year, stock);
 	}
-	drawChart(labels, data);
 }
 
 function extractData() {
@@ -20,19 +22,18 @@ function extractData() {
 	xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			dataArray = JSON.parse(this.responseText);
-			//console.log(dataArray);
-			//headers = dataArray[2];
-			//console.log(headers);
+			console.log(dataArray);
+			headers = dataArray[0];
+			console.log(headers);
 		} 
 	};
-	xmlhttp.open("GET", "read_Csv.php", true);
+	xmlhttp.open("GET", "read_csv.php", true);
 	xmlhttp.send();
 }
 
+function drawChart(labels, data, year, stock) {
+	document.getElementById('chartContainer').innerHTML = '<canvas id="myChart"></canvas>';
 
-
-function drawChart(labels, data) {
-	
 	window.chartColors = {
 		red: 'rgb(255, 99, 132)',
 		orange: 'rgb(255, 159, 64)',
@@ -54,34 +55,13 @@ function drawChart(labels, data) {
 			labels: labels,
 			datasets: [
 				{
-					label: "Stocks",
+					label: stock,
 					fill: false, 
 					backgroundColor: window.chartColors.orange,
 					borderColor: window.chartColors.orange,
 					borderWidth: 2, 
 					data: data
-				}/*,
-				{
-					label: "Series 2",
-					fill: false, 
-					backgroundColor: window.chartColors.black,
-					borderColor: window.chartColors.black,
-					borderWidth: 2, 
-					steppedLine: true,
-					yAxesID: 2, 
-					data: series2
-				},
-								{
-					label: "Series 3",
-					fill: false, 
-					backgroundColor: window.chartColors.blue,
-					borderColor: window.chartColors.blue,
-					//borderDash: [10,5],
-					borderWidth: 2, 
-					//steppedLine: true,
-					yAxesID: 2, 
-					data: series3
-				}*/
+				}
 			]
 		},
 
@@ -103,4 +83,4 @@ function drawChart(labels, data) {
 	})
 }
 
-//extractData();
+extractData();

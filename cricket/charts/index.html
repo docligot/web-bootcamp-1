@@ -1,8 +1,6 @@
-<!DOCTYPE HTML>
-
-<html>
 <head>
 	<link rel="stylesheet" href="w3.css" />
+</head>
 
 <div>
 	<select id="year">
@@ -33,21 +31,16 @@
 		<option value="ALL SHARES INDEX">ALL SHARES INDEX</option>
 	</select>
 
-	<button onclick="extractData();">Retrieve</button>
+	<button onclick="runChart();">Retrieve</button>
 	
 </div>
 
 <hr/>
 
-
-<div class="chart-container" style="position: relative; width:100%;">
-    <canvas id="myChart"></canvas>
+<div id="chartContainer" class="w3-padding w3-half chart-container">
 </div>
-
-
 
 <script src="chart.bundle.js"></script>
 <script src="drawChart.js"></script>
-
 
 </html>
