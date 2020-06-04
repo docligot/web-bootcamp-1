@@ -9,4 +9,4 @@ function extractFile($filename) {
 	fclose($file);
 }
 
-print_r(extractFile("data.csv"));
+echo extractFile("read_Csv.csv");
