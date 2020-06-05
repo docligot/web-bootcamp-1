@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+	<title>Read High Scores</title>
+</head>
+
+<body>
+	<p><div id="score_table"></div>
+	</p>
+	<p><div id="status"></div>
+	<p>Enter new score</p>
+	<p>New Name: <input id="name" type="text"></input></p>
+	<p>New Score: <input id="score" type="number"></input></p>
+	<p><button onclick="write_score();">Submit</button></p>
+</body>
+
+<script>
+
+	function read_scores() {
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				var dataArray = JSON.parse(this.responseText);
+				console.log(dataArray);
+				var table = '<table><tr><th>Score</th><th>Name</th></tr>';
+				for (var i in dataArray) {
+					table += '<tr><td>' + dataArray[i][0] + '</td><td>' + dataArray[i][1] + '</td></tr>';
+				}
+				table += '</table>';
+				document.getElementById('score_table').innerHTML = table;
+			} else {
+				document.getElementById('score_table').innerHTML = 'reading scores...';
+			}
+		}
+		xmlhttp.open("GET", "read_scores.php", true);
+		xmlhttp.send();
+	}
+
+	function write_score() {
+		var new_score = document.getElementById('score').value;
+		var new_name = document.getElementById('name').value;
+		var send_data = "new_score=" + new_score + "&new_name=" + new_name;
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				var dataArray = this.responseText;
+				console.log(dataArray);
+				document.getElementById('status').innerHTML = dataArray;
+				read_scores();
+			} else {
+				document.getElementById('status').innerHTML = 'writing score...';
+			}
+		}
+    	xmlhttp.open("POST", "write_score.php", true);
+    	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    	xmlhttp.send(send_data);
+	}
+	
+	read_scores();
+</script>
+
+</html>
