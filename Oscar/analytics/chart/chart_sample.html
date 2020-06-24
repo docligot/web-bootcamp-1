@@ -22,7 +22,7 @@
 </div>
 
 
-<script src="chart/chart.bundle.js"></script>
+<script src="Chart.bundle.js"></script>
 <script>
 
 function resetChart() {
@@ -55,7 +55,7 @@ function extractData(series1, series2) {
 			drawChart4(dataArray[0], dataArray[1], 'pie', 'myChart6');
 		} 
 	};
-	xmlhttp.open("GET", "chart/call_chart.php?series1=" + series1 + "&series2=" + series2, true);
+	xmlhttp.open("GET", "call_chart.php?series1=" + series1 + "&series2=" + series2, true);
 	xmlhttp.send();
 }
 
