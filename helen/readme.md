@@ -1,2 +1,2 @@
-# This is Doc's folder
+# This is the folder of H for web bootcamp.
 
