@@ -1,0 +1,31 @@
+li {
+	color: blue;
+}
+
+section {
+	background-color: yellow;
+}
+
+div {
+	font-size: xx-large;
+}
+
+h2, h3, h4, h5, h6 {
+	color: blue;
+}
+
+.paragraph {
+	background-color: red;
+}
+
+#paragraph1 {
+	color: blue;
+}
+
+#paragraph2 {
+	color: yellow;
+}
+
+.brand {
+	color: yellow;
+}
