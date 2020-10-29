@@ -15,9 +15,31 @@
 		<div class="w3-col l2">&nbsp;</div>
 		<div class="w3-col l10">
 			<div class="w3-row">
+			<?php
+			
+			if ($_GET) {
+				$page = $_GET['page'];
 
-
-
+				switch ($page) {
+					case "map" :
+						include ('map.php');
+						break;
+					case "sir" :
+						include ('sir_chart.php');
+						break;
+					case "table" :
+						include ('table.php');
+						break;
+					case "word" :
+						include ('word_network.php');
+						break;
+					default :
+						include ('map.php');
+						break;
+				}
+			}
+			
+			?>
 			</div>
 			<footer class="w3-bottom w3-black w3-padding">Footer</footer>
 		</div>
