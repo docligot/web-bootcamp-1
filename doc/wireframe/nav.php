@@ -4,3 +4,5 @@
 			<a href="./?page=table"><div class="w3-bar-item w3-padding w3-button">Table</div></a>
 			<a href="./?page=word"><div class="w3-bar-item w3-padding w3-button">Word Network</div></a>
 		</nav>
+
+	
