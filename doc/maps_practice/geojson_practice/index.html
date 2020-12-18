@@ -16,6 +16,19 @@
 <body>
     <div id="map"></div>
     <script>
+	
+		function load_json() {
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+					var geojson = this.responseText;
+					console.log(geojson);
+				}
+			};
+			xhttp.open("GET", "regions.json", true);
+			xhttp.send();
+		}
+		/*
         mapboxgl.accessToken = 'pk.eyJ1IjoiZG9jbGlnb3QiLCJhIjoiY2p3MHQ5MTViMGVvNzQzdGdicTlwM2o3NCJ9.j4qYChJYSxUy8hNnlXrD-g';
         var map = new mapboxgl.Map({
         container: 'map',
@@ -69,6 +82,7 @@
         }
         });
         });
+		*/
     </script>
 
 </body>
