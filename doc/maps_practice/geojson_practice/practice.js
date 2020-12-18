@@ -2,8 +2,8 @@
 			var xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
-					geojson = JSON.parse(this.responseText);
-					console.log(geojson);
+					regions = JSON.parse(this.responseText);
+					console.log(regions);
 				}
 			};
 			xhttp.open("GET", "regions.json", true);
@@ -22,7 +22,7 @@
          
         function add_polygon(area) {
 			console.log(area);
-			console.log(Array(geojson.features[area].geometry.coordinates));
+			console.log(regions.features[area].geometry);
 			if (map.getSource('polygon')) {
 				map.removeLayer('layer');
 				map.removeSource('polygon');
@@ -30,12 +30,9 @@
             map.addSource('polygon', {
                 'type': 'geojson',
                 'data': {
-                    'type': 'Feature',
-                    'geometry': {
-                        'type': 'Polygon',
-                        'coordinates': [geojson.features[area].geometry.coordinates]
-                    }
-                }
+					'type': 'Feature',
+					'geometry': regions.features[area].geometry
+				}
             });
             map.addLayer({
                 'id': 'layer',
