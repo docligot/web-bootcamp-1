@@ -4,13 +4,31 @@
 			if (this.readyState == 4 && this.status == 200) {
 					regions = JSON.parse(this.responseText);
 					console.log(regions);
-					for (var i in regions.features) {
-						add_polygon(i);
-					}
+
 				}
 			};
 			xhttp.open("GET", "regions.json", true);
 			xhttp.send();
+		}
+
+		function load_risk() {
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+					risk = JSON.parse(this.responseText);
+					console.log(risk);
+				}
+			};
+			xhttp.open("GET", "extract_risk.php", true);
+			xhttp.send();
+		}
+		
+		function display_risk(value) {
+			if (value) {
+				for (var i in regions.features) {
+					add_polygon(i, value);
+				}	
+			}
 		}
 		
 		region_colors = [
@@ -24,28 +42,28 @@
 			"#1e474c",
 			"#142f33",
 			"#0a1719",
-			"#000000",
-			"#66eeff",
-			"#5bd6e5",
-			"#51becc",
-			"#47a6b2",
-			"#3d8e99",
-			"#33777f",
+			"#000000"
 		];
 		
 		load_json();
+		load_risk();
 		
         mapboxgl.accessToken = 'pk.eyJ1IjoiZG9jbGlnb3QiLCJhIjoiY2p3MHQ5MTViMGVvNzQzdGdicTlwM2o3NCJ9.j4qYChJYSxUy8hNnlXrD-g';
         map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
         center: [121.056269, 14.569240],
-        zoom: 5
+        zoom: 4
         });
      
-        function add_polygon(area) {
+        function add_polygon(area, risk_value) {
+			console.log(region_colors[risk[area][risk_value]]);
 			var sourceName = 'polygon'+area;
 			var layerName = regions.features[area].properties.REGION;
+			if (map.getSource(sourceName)) {
+				map.removeLayer(layerName);
+				map.removeSource(sourceName);
+			}
             map.addSource(sourceName, {
                 'type': 'geojson',
                 'data': {
@@ -59,7 +77,7 @@
                 'source': sourceName,
                 'layout': {},
                 'paint': {
-                    'fill-color': region_colors[area],
+                    'fill-color': region_colors[risk[area][risk_value]],
                     'fill-opacity': 0.8
                 }
             });

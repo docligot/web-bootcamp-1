@@ -11,11 +11,17 @@
     <style>
         body { margin: 0; padding: 0; }
         
-		#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+		#map { position: absolute; top: 39px; bottom: 0; width: 100%; }
     </style>
 </head>
 
 <body>
+	<select class="w3-select" onchange="display_risk(this.value);">
+		<option value="">Select Risk: </option>
+		<option value="1">Hazard</option>
+		<option value="2">Vulnerability</option>
+		<option value="3">Lack of Coping Capacity</option>
+	</select>
 	<div class="w3-container" id="map"></div>
 	<script src="practice.js"></script>
 </body>
