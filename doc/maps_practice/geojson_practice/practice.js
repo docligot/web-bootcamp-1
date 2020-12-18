@@ -13,7 +13,7 @@
 		load_json();
 		
         mapboxgl.accessToken = 'pk.eyJ1IjoiZG9jbGlnb3QiLCJhIjoiY2p3MHQ5MTViMGVvNzQzdGdicTlwM2o3NCJ9.j4qYChJYSxUy8hNnlXrD-g';
-        var map = new mapboxgl.Map({
+        map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
         center: [121.056269, 14.569240],
@@ -21,6 +21,8 @@
         });
          
         function add_polygon(area) {
+			console.log(area);
+			console.log(Array(geojson.features[area].geometry.coordinates));
 			if (map.getSource('polygon')) {
 				map.removeLayer('layer');
 				map.removeSource('polygon');
@@ -31,7 +33,7 @@
                     'type': 'Feature',
                     'geometry': {
                         'type': 'Polygon',
-                        'coordinates': geojson.features[area].geometry.coordinates
+                        'coordinates': [geojson.features[area].geometry.coordinates]
                     }
                 }
             });
