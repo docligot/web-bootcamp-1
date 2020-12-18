@@ -21,13 +21,15 @@
 			var xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
-					var geojson = this.responseText;
+					geojson = JSON.parse(this.responseText);
 					console.log(geojson);
 				}
 			};
-			xhttp.open("GET", "regions.json", true);
+			xhttp.open("GET", "sample.json", true);
 			xhttp.send();
 		}
+		
+		load_json();
 		/*
         mapboxgl.accessToken = 'pk.eyJ1IjoiZG9jbGlnb3QiLCJhIjoiY2p3MHQ5MTViMGVvNzQzdGdicTlwM2o3NCJ9.j4qYChJYSxUy8hNnlXrD-g';
         var map = new mapboxgl.Map({
