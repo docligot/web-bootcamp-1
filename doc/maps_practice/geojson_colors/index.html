@@ -11,33 +11,11 @@
     <style>
         body { margin: 0; padding: 0; }
         
-		#map { position: absolute; top: 39px; bottom: 0; width: 100%; }
+		#map { position: absolute; top: 0; bottom: 0; width: 100%; }
     </style>
 </head>
 
 <body>
-	<div>
-		<select class="w3-select" id="region_selector" onchange="add_polygon(this.value);">
-			<option value="">Select region: </option>
-			<option value="0">Autonomous Region of Muslim Mindanao (ARMM)</option>
-			<option value="1">Bicol Region (Region V)</option>
-			<option value="2">CALABARZON (Region IV-A)</option>
-			<option value="3">Cagayan Valley (Region II)</option>
-			<option value="4">Caraga (Region XIII)</option>
-			<option value="5">Central Luzon (Region III)</option>
-			<option value="6">Central Visayas (Region VII)</option>
-			<option value="7">Cordillera Administrative Region (CAR)</option>
-			<option value="8">Davao Region (Region XI)</option>
-			<option value="9">Eastern Visayas (Region VIII)</option>
-			<option value="10">Ilocos Region (Region I)</option>
-			<option value="11">MIMAROPA (Region IV-B)</option>
-			<option value="12">Metropolitan Manila</option>
-			<option value="13">Northern Mindanao (Region X)</option>
-			<option value="14">SOCCSKSARGEN (Region XII)</option>
-			<option value="15">Western Visayas (Region VI)</option>
-			<option value="16">Zamboanga Peninsula (Region IX)</option>
-		</select>
-	</div>
 	<div class="w3-container" id="map"></div>
 	<script src="practice.js"></script>
 </body>

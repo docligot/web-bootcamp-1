@@ -4,11 +4,34 @@
 			if (this.readyState == 4 && this.status == 200) {
 					regions = JSON.parse(this.responseText);
 					console.log(regions);
+					for (var i in regions.features) {
+						add_polygon(i);
+					}
 				}
 			};
 			xhttp.open("GET", "regions.json", true);
 			xhttp.send();
 		}
+		
+		region_colors = [
+			"#66eeff",
+			"#5bd6e5",
+			"#51becc",
+			"#47a6b2",
+			"#3d8e99",
+			"#33777f",
+			"#285f66",
+			"#1e474c",
+			"#142f33",
+			"#0a1719",
+			"#000000",
+			"#66eeff",
+			"#5bd6e5",
+			"#51becc",
+			"#47a6b2",
+			"#3d8e99",
+			"#33777f",
+		];
 		
 		load_json();
 		
@@ -19,15 +42,11 @@
         center: [121.056269, 14.569240],
         zoom: 5
         });
-         
+     
         function add_polygon(area) {
-			console.log(area);
-			console.log(regions.features[area].geometry);
-			if (map.getSource('polygon')) {
-				map.removeLayer('layer');
-				map.removeSource('polygon');
-			}
-            map.addSource('polygon', {
+			var sourceName = 'polygon'+area;
+			var layerName = regions.features[area].properties.REGION;
+            map.addSource(sourceName, {
                 'type': 'geojson',
                 'data': {
 					'type': 'Feature',
@@ -35,12 +54,12 @@
 				}
             });
             map.addLayer({
-                'id': 'layer',
+                'id': layerName,
                 'type': 'fill',
-                'source': 'polygon',
+                'source': sourceName,
                 'layout': {},
                 'paint': {
-                    'fill-color': '#088',
+                    'fill-color': region_colors[area],
                     'fill-opacity': 0.8
                 }
             });
