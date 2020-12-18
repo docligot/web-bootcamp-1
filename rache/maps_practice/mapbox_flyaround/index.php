@@ -72,7 +72,7 @@
 							zoom: 15
 						});
 						
-						map.addControl(new mapboxgl.NavigationControl());
+						map.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
 
 						var popup = [];
 						var marker = [];
