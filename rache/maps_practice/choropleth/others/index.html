@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Show polygon information on click</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css" rel="stylesheet" />
+<style>
+	body { margin: 0; padding: 0; }
+	#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+</style>
+</head>
+<body>
+<style>
+    .mapboxgl-popup {
+        max-width: 400px;
+        font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    }
+</style>
+<div id="map"></div>
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1IjoicmxtNDY5MiIsImEiOiJjazVrZWtnYzMwZGRrM2pxeHpxaGp0MGxmIn0.i6EjicE0MDnLeQJuNEvc4Q';
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [121.056269,	14.569240],
+        zoom: 3
+    });
+    var hoveredStateId = null;
+    
+    var ncr = 18136
+    var ilocos= 10892
+    var cagayan_valley= 10982
+    var cent_viz= 19088
+    var calabarzon= 39810
+    var bicol= 6976
+    var west_viz= 45345
+    var cent_viz= 16338
+    var east_viz= 18107
+    var zamboanga= 18505
+    var north_min= 19925
+    var davao= 5975
+    var socc= 16956
+    var barmm= 3456
+    var car= 5272
+    var caraga= 8445
+    var mimaropa= 7272
+
+    map.on('load', function () {
+        // Add a source for the state polygons.
+        map.addSource('regions', {
+            'type': 'geojson',
+            'data':
+                './regional.json'
+        });
+
+        // Add a layer showing the state polygons.
+        map.addLayer({
+            'id': 'regions-fill',
+            'type': 'fill',
+            'source': 'regions',
+            'paint': {
+                'fill-color': '#627BC1',
+                'fill-opacity': [
+                            'case',
+                            ['boolean', ['feature-state', 'hover'], false],
+                            1,
+                            0.5
+                            ]
+            }
+        });
+        
+        map.addLayer({
+            'id': 'regions-layer',
+            'type': 'line',
+            'source': 'regions',
+            'layout': {},
+            'paint': {
+            'line-color': '#627BC1',
+            'line-width': 2
+            }
+            });     
+              
+        // When a click event occurs on a feature in the states layer, open a popup at the
+        // location of the click, with description HTML from its properties.
+        map.on('click', 'regions-fill', function (e) {
+            new mapboxgl.Popup()
+                .setLngLat(e.lngLat)
+                .setHTML(e.features[0].properties.ADM1ALT1EN)
+                .addTo(map);
+        });
+
+        // When a click event occurs on a feature in the states layer, open a popup at the
+        // location of the click, with description HTML from its properties.
+        map.on('click', 'regions-fill', function (e) {
+        new mapboxgl.Popup()
+        .setLngLat(e.lngLat)
+        .setHTML(e.features[0].properties.ADM1ALT1EN)
+        .addTo(map);
+        });
+        
+        // Change the cursor to a pointer when the mouse is over the states layer.
+        map.on('mouseenter', 'regions-fill', function () {
+        map.getCanvas().style.cursor = 'pointer';
+        });
+        
+        // Change it back to a pointer when it leaves.
+        map.on('mouseleave', 'regions-fill', function () {
+        map.getCanvas().style.cursor = '';
+        });
+        });
+</script>
+
+</body>
+</html>
