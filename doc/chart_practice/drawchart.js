@@ -51,14 +51,14 @@ function drawChart(labels, series_1, series_2, name_1, name_2) {
 	var ctx = document.getElementById('myChart').getContext('2d');
 	var chart = new Chart(ctx, {
 		
-		type: 'bar', 
+		type: 'line', 
 		
 		data: {
 			labels: labels, 
 			datasets: [
 				{
 					label: name_1, 
-					fill: true, 
+					fill: false, 
 					backgroundColor: window.chartColors.red, 
 					borderColor: window.chartColors.red, 
 					borderWidth: 2, 
@@ -66,10 +66,11 @@ function drawChart(labels, series_1, series_2, name_1, name_2) {
 				},
 				{
 					label: name_2, 
-					fill: true, 
+					fill: false, 
 					backgroundColor: window.chartColors.blue, 
 					borderColor: window.chartColors.blue, 
 					borderWidth: 2, 
+					steppedLine: true, 
 					data: series_2
 				}				
 			]
@@ -103,7 +104,6 @@ function drawChart(labels, series_1, series_2, name_1, name_2) {
 					stacked: false
 				}]				
 			}
-			
 		}
 	});
 }
