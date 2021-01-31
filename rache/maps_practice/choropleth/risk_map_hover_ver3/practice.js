@@ -77,8 +77,8 @@
         zoom: 5
         });
 				
-			
 				var hoveredStateId = null;
+				
         function add_polygon(area, risk_value) {
 			//console.log(region_colors[risk[area][risk_value]]);
 			
@@ -87,7 +87,7 @@
 			var layerNameBorders = region.features[area].properties.ADM1ALT1EN;
 			var color =[];
 			var risk_indicator="";
-		
+			
 			if (risk_value==1){
 					risk_indicator = "Hazard & Exposure"
 					if (risk[area][risk_value]<=19){
@@ -179,7 +179,7 @@
 							'layout': {},
 							'paint': {
 									'line-color': '#666666',
-									'line-width': 0.8
+									'line-width': 1
 							}
 					});
 
@@ -194,9 +194,9 @@
 
 					// When the user moves their mouse over the state-fill layer, we'll update the
 					// feature state for the feature under the mouse.
-					map.on('mousemove', layerName, function(region) {
+					map.on('mousemove', layerName, function(e) {
 						map.getCanvas().style.cursor = 'pointer';
-						if (region.features.length > 0) {
+						if (e.features.length > 0) {
 								if (hoveredStateId) {
 										map.setFeatureState({
 												source: sourceName,
@@ -205,7 +205,7 @@
 												hover: false
 										});
 								}
-								hoveredStateId = region.features[0].id;
+								hoveredStateId = e.features[0].id;
 								map.setFeatureState({
 										source: sourceName,
 										id: hoveredStateId
@@ -230,6 +230,6 @@
 						hoveredStateId = null;
 					});	
 				
-				};
+				}
 		
 				
