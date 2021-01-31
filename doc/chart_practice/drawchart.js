@@ -1,4 +1,6 @@
 function loadData() {
+	var series1 = document.getElementById('series1').value;
+	var series2 = document.getElementById('series2').value;
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
@@ -7,12 +9,12 @@ function loadData() {
 			var labels = [];
 			var series_1 = [];
 			var series_2 = [];
-			var name_1 = dataArray[0][3];
-			var name_2 = dataArray[0][2];		
+			var name_1 = dataArray[0][series1];
+			var name_2 = dataArray[0][series2];		
 			for (i = 1; i < dataArray.length; i++) {
 				labels.push(dataArray[i][0]);
-				series_1.push(dataArray[i][3]);
-				series_2.push(dataArray[i][2]);
+				series_1.push(dataArray[i][series1]);
+				series_2.push(dataArray[i][series2]);
 			}
 			drawChart(labels, series_1, series_2, name_1, name_2);
 		}
