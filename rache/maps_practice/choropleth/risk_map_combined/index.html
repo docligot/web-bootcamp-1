@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Add a GeoJSON polygon</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css" rel="stylesheet" />
+	<link href="w3.css" rel="stylesheet" />
+	<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <style>
+    
+		body { margin: 0; padding: 0; }
+        
+		#map { position: absolute; top: 65px; bottom: 0; width: 100%;  z-index: -1}
+
+		.mapboxgl-popup-content {
+		font: 400 15px/22px 'Source Sans Pro', 'Helvetica Neue', Sans-serif;
+		padding: 10;
+		width: 170px;
+		background-color: #fbfbfd
+	}
+	#legend{
+		font: 500 15px/22px 'Source Sans Pro', 'Helvetica Neue', Sans-serif;
+		border: 1px;
+		border-radius: 10px;
+		z-index: 1;
+		width:250px;
+		margin: 25px
+		}
+	/* #{
+
+
+
+	} */
+    </style>
+</head>
+
+<body>
+	<select class="w3-select" onchange="set_location(this.value);">
+		<option value="">Select Area: </option>
+		<option value="1">Region</option>
+		<option value="2">NCR</option>
+	</select>
+	<select class="w3-select" onchange="display_risk(this.value); display_legend(this.value);">
+		<option value="">Select Risk: </option>
+		<option value="1">Hazard</option>
+		<option value="2">Vulnerability</option>
+		<option value="3">Lack of Coping Capacity</option>
+		<option value="4">COVID Risk Index</option>
+	</select>
+	<div class="w3-container" id="map"></div>
+	<div class ="w3-row">
+		<!-- LEGEND -->
+	<div class = "w3-card w3-bar-block w3-display-bottomright w3-container w3-white" id="legend">
+		<div id = "legend-title" style='margin-top:20px'> 
+		<h3><strong>LEGEND</strong></h3>
+	</div>
+		<hr>
+
+		<!--Hazard and Exposure  -->
+			<div id="hazard-exposure" style='font-size:20px; display:none;'>
+					<div id ="hazard-exposure-title" style='margin-bottom:10px;'>
+					Hazard & Exposure	
+					</div>
+					<div class="w3-bar-item"><i class='fas fa-square-full' style='color:#feedde'></i>&nbsp;&nbsp;0-19 </div>
+					<div class="w3-bar-item"><i class='fas fa-square-full' style='color:#fdbe85'></i>&nbsp;&nbsp;20-34 </div>
+					<div class="w3-bar-item"><i class='fas fa-square-full' style='color:#fd8d3c'></i>&nbsp;&nbsp;35-49 </div>
+					<div class="w3-bar-item"><i class='fas fa-square-full' style='color:#e6550d'></i>&nbsp;&nbsp;50-64 </div>
+					<div class="w3-bar-item"><i class='fas fa-square-full' style='color:#a63603'></i>&nbsp;&nbsp;65-100 </div>
+			</div>
+		<!--Vulnerability  -->
+		<div id="vulnerability" style='font-size:20px; display:none;'>
+			<div id ="vulnerability-title" style='margin-bottom:10px;'>
+			Vulnerability
+			</div>
+			<div class="w3-bar-item"><i class='fas fa-square-full' style='color:#f1eef6'></i>&nbsp;&nbsp;0-19 </div>
+			<div class="w3-bar-item"><i class='fas fa-square-full' style='color:#bdc9e1'></i>&nbsp;&nbsp;20-34 </div>
+			<div class="w3-bar-item"><i class='fas fa-square-full' style='color:#74a9cf'></i>&nbsp;&nbsp;35-49 </div>
+			<div class="w3-bar-item"><i class='fas fa-square-full' style='color:#2b8cbe'></i>&nbsp;&nbsp;50-64 </div>
+			<div class="w3-bar-item"><i class='fas fa-square-full' style='color:#045a8d'></i>&nbsp;&nbsp;65-100 </div>
+	 </div>
+			<!--Lack of Coping Capacity -->
+			<div id="lcc" style='font-size:20px; display:none;'>
+				<div id ="lcc-title" style='margin-bottom:10px;'>
+				Lack of Coping Capacity
+				</div>
+				<div class="w3-bar-item"><i class='fas fa-square-full' style='color:#ffffcc'></i>&nbsp;&nbsp;0-19 </div>
+				<div class="w3-bar-item"><i class='fas fa-square-full' style='color:#c2e699'></i>&nbsp;&nbsp;20-34 </div>
+				<div class="w3-bar-item"><i class='fas fa-square-full' style='color:#78c679'></i>&nbsp;&nbsp;35-49 </div>
+				<div class="w3-bar-item"><i class='fas fa-square-full' style='color:#31a354'></i>&nbsp;&nbsp;50-64 </div>
+				<div class="w3-bar-item"><i class='fas fa-square-full' style='color:#006837'></i>&nbsp;&nbsp;65-100 </div>
+			</div>
+
+				<!--COVID Risk Index -->
+				<div id="risk-index" style='font-size:20px; display:none;'>
+					<div id ="risk-index-title" style='margin-bottom:10px;'>
+					COVID-19 Risk Index
+					</div>
+					<div class="w3-bar-item"><i class='fas fa-square-full' style='color:#fee5d9'></i>&nbsp;&nbsp;0-19 </div>
+					<div class="w3-bar-item"><i class='fas fa-square-full' style='color:#fcae91'></i>&nbsp;&nbsp;20-34 </div>
+					<div class="w3-bar-item"><i class='fas fa-square-full' style='color:#fb6a4a'></i>&nbsp;&nbsp;35-49 </div>
+					<div class="w3-bar-item"><i class='fas fa-square-full' style='color:#de2d26'></i>&nbsp;&nbsp;50-64 </div>
+					<div class="w3-bar-item"><i class='fas fa-square-full' style='color:#a50f15'></i>&nbsp;&nbsp;65-100 </div>
+				</div>
+
+
+				</div>
+
+
+			</div>
+	
+		<script src="practice.js"></script>
+		<script>
+function display_legend(risk) {
+	if (risk==1){
+			
+
+				if (document.getElementById('hazard-exposure').style.display == 'none') {
+						document.getElementById('hazard-exposure').style.display = 'block';
+						document.getElementById('vulnerability').style.display = 'none';
+						document.getElementById('lcc').style.display = 'none';
+						document.getElementById('risk-index').style.display = 'none';
+				}
+				else {
+						document.getElementById('hazard-exposure').style.display = 'none';
+						document.getElementById('vulnerability').style.display = 'block';
+						document.getElementById('lcc').style.display = 'block';
+						document.getElementById('risk-index').style.display = 'block';
+}
+
+	}
+else if(risk ==2){
+
+				if (document.getElementById('vulnerability').style.display == 'none') {
+						document.getElementById('vulnerability').style.display = 'block';
+						document.getElementById('hazard-exposure').style.display = 'none';
+						document.getElementById('lcc').style.display = 'none';
+						document.getElementById('risk-index').style.display = 'none';
+					}
+				else {
+						document.getElementById('vulnerability').style.display = 'none';
+						document.getElementById('hazard-exposure').style.display = 'block';
+						document.getElementById('lcc').style.display = 'block';
+						document.getElementById('risk-index').style.display = 'block';
+}
+}
+else if(risk ==3){
+				if (document.getElementById('lcc').style.display == 'none') {
+						document.getElementById('lcc').style.display = 'block';
+						document.getElementById('vulnerability').style.display = 'none';
+						document.getElementById('hazard-exposure').style.display = 'none';
+						document.getElementById('risk-index').style.display = 'none';
+					}
+				else {
+						document.getElementById('lcc').style.display = 'none';
+						document.getElementById('hazard-exposure').style.display = 'block';
+						document.getElementById('vulnerability').style.display = 'block';
+						document.getElementById('risk-index').style.display = 'block';
+
+}
+}
+else if(risk ==4){
+				if (document.getElementById('risk-index').style.display == 'none') {
+						document.getElementById('risk-index').style.display = 'block';
+						document.getElementById('vulnerability').style.display = 'none';
+						document.getElementById('hazard-exposure').style.display = 'none';
+						document.getElementById('lcc').style.display = 'none';
+					}
+				else {
+						document.getElementById('risk-index').style.display = 'none';
+						document.getElementById('hazard-exposure').style.display = 'block';
+						document.getElementById('vulnerability').style.display = 'block';
+						document.getElementById('lcc').style.display = 'block';
+
+	
+				}
+			}
+		}
+		</script>
+</body>
+
+</html>

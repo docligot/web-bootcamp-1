@@ -2,11 +2,11 @@
 			var xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
-					geojson = JSON.parse(this.responseText);
-					console.log(geojson);					
+					regional = JSON.parse(this.responseText);
+					console.log(regional);					
 					var list = '';
-					for (var i in geojson.features) {
-						list += geojson.features[i].properties.REGION + '<br/>';
+					for (var i in regional.features) {
+						list += regional.features[i].properties.REGION + '<br/>';
 					}
 					document.getElementById("list").innerHTML = list; 
 				}
