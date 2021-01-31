@@ -16,6 +16,24 @@ function drawChart() {
 	
 	document.getElementById('chart_container').innerHTML = '<canvas id="myChart" style="height: 300px;"></canvas>';
 	
+	var ctx = document.getElementById('myChart').getContext('2d');
+	var chart = new Chart(ctx, {
+		
+		type: 'line', 
+		
+		data: {
+			labels: [], 
+			datasets: []
+		}, 
+		
+		options: {}
+	}
+	
+	
+	
+	);
+	
+	
 }
 
 
