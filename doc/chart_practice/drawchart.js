@@ -7,19 +7,14 @@ function loadData() {
 			var labels = [];
 			var series_1 = [];
 			var series_2 = [];
-			var name_1 = dataArray[0][1];
-			var name_2 = dataArray[0][2];
-			
+			var name_1 = dataArray[0][3];
+			var name_2 = dataArray[0][2];		
 			for (i = 1; i < dataArray.length; i++) {
 				labels.push(dataArray[i][0]);
-				series_1.push(dataArray[i][1]);
+				series_1.push(dataArray[i][3]);
 				series_2.push(dataArray[i][2]);
 			}
-			console.log(labels);
-			console.log(series_1);
-			console.log(series_2);
-			
-			
+			drawChart(labels, series_1, series_2, name_1, name_2);
 		}
 	};
 	xhttp.open("GET", "get_data.php", true);
@@ -40,7 +35,7 @@ function chartColors() {
 	};
 }
 
-function drawChart() {
+function drawChart(labels, series_1, series_2, name_1, name_2) {
 	chartColors();
 	
 	document.getElementById('chart_container').innerHTML = '<canvas id="myChart" style="height: 300px;"></canvas>';
@@ -51,23 +46,23 @@ function drawChart() {
 		type: 'bar', 
 		
 		data: {
-			labels: ["Jan", "Feb", "Mar", "Apr", "May", "June"], 
+			labels: labels, 
 			datasets: [
 				{
-					label: "Series 1", 
+					label: name_1, 
 					fill: true, 
 					backgroundColor: window.chartColors.red, 
 					borderColor: window.chartColors.red, 
 					borderWidth: 2, 
-					data: [1, 5, 2, 7, 8, 3]
+					data: series_1
 				},
 				{
-					label: "Series 2", 
+					label: name_2, 
 					fill: true, 
 					backgroundColor: window.chartColors.blue, 
 					borderColor: window.chartColors.blue, 
 					borderWidth: 2, 
-					data: [10, 5, 1, 1, 3, 8]
+					data: series_2
 				}				
 			]
 		}, 
