@@ -62,13 +62,14 @@ function drawChart() {
 					display: true, 
 					position: 'left',
 					id: 'y1', 
-					stacked: true
+					stacked: false, 
+					ticks: {
+						beginAtZero: true
+					}
 				}], 
 				xAxes: [{
-					stacked: true
-				}
-				]
-				
+					stacked: false
+				}]				
 			}
 			
 		}
