@@ -8,3 +8,5 @@ function extractFile($filename) {
 	return json_encode($result);
 	fclose($file);
 }
+
+echo extractFile('sample_data.csv');
