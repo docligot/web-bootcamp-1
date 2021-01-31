@@ -4,6 +4,13 @@ function loadData() {
 		if (this.readyState == 4 && this.status == 200) {
 			var dataArray = JSON.parse(this.responseText);
 			console.log(dataArray);
+			var labels = [];
+			var series_1 = [];
+			var series_2 = [];
+			var name_1 = dataArray[0][1];
+			var name_2 = dataArray[0][2];
+			console.log(name_1);
+			console.log(name_2);
 		}
 	};
 	xhttp.open("GET", "get_data.php", true);
