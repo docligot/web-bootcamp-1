@@ -17,10 +17,21 @@ function loadData() {
 				series_2.push(dataArray[i][series2]);
 			}
 			drawChart(labels, series_1, series_2, name_1, name_2);
+			createTable(labels, series_1, series_2, name_1, name_2);
 		}
 	};
 	xhttp.open("GET", "get_data.php", true);
 	xhttp.send();
+}
+
+function createTable(labels, series_1, series_2, name_1, name_2) {
+	var table = '<table class="w3-table w3-bordered w3-striped">';
+	table += '<tr><th>Date</th><th>' + name_1 + '</th><th>' + name_2 + '</th></tr>';	
+	for (var i in labels) {
+		table += '<tr><td>'+ labels[i] +'</td><td>'+ series_1[i] +'</td><td>'+ series_2[i] +'</td></tr>';
+	}
+	table += '</table>';
+	document.getElementById('table_container').innerHTML = table;
 }
 
 function drawChart(labels, series_1, series_2, name_1, name_2) {
