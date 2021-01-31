@@ -31,7 +31,15 @@ function drawChart() {
 					borderColor: window.chartColors.red, 
 					borderWidth: 2, 
 					data: [1, 5, 2, 7, 8, 3]
-				} 
+				},
+				{
+					label: "Series 2", 
+					fill: false, 
+					backgroundColor: window.chartColors.blue, 
+					borderColor: window.chartColors.blue, 
+					borderWidth: 2, 
+					data: [10, 5, 1, 1, 3, 8]
+				}				
 			]
 		}, 
 		
