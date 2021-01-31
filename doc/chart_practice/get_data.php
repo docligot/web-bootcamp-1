@@ -5,6 +5,8 @@ function extractFile($filename) {
 	while (!feof($file)) {
 		$result[] = (fgetcsv($file));
 	}
+	array_shift($result);
+	array_pop($result);
 	return json_encode($result);
 	fclose($file);
 }
