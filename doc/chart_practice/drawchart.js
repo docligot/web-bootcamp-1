@@ -19,14 +19,14 @@ function drawChart() {
 	var ctx = document.getElementById('myChart').getContext('2d');
 	var chart = new Chart(ctx, {
 		
-		type: 'line', 
+		type: 'bar', 
 		
 		data: {
 			labels: ["Jan", "Feb", "Mar", "Apr", "May", "June"], 
 			datasets: [
 				{
 					label: "Series 1", 
-					fill: false, 
+					fill: true, 
 					backgroundColor: window.chartColors.red, 
 					borderColor: window.chartColors.red, 
 					borderWidth: 2, 
@@ -34,7 +34,7 @@ function drawChart() {
 				},
 				{
 					label: "Series 2", 
-					fill: false, 
+					fill: true, 
 					backgroundColor: window.chartColors.blue, 
 					borderColor: window.chartColors.blue, 
 					borderWidth: 2, 
@@ -58,11 +58,16 @@ function drawChart() {
 				text: 'Sample Chart'
 			}, 
 			scales: {
-				yAxes: {
+				yAxes: [{
 					display: true, 
 					position: 'left',
-					id: 'y1'
+					id: 'y1', 
+					stacked: true
+				}], 
+				xAxes: [{
+					stacked: true
 				}
+				]
 				
 			}
 			
