@@ -1,11 +1,12 @@
-function loadDoc() {
+function loadData() {
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			document.getElementById("demo").innerHTML = this.responseText;
+			var dataArray = JSON.parse(this.responseText);
+			console.log(dataArray);
 		}
 	};
-	xhttp.open("GET", "ajax_info.txt", true);
+	xhttp.open("GET", "get_data.php", true);
 	xhttp.send();
 }
 
@@ -88,7 +89,8 @@ function drawChart() {
 	});
 }
 
-drawChart();
+loadData();
+//drawChart();
 
 
 
