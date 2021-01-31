@@ -35,16 +35,34 @@ function drawChart() {
 			]
 		}, 
 		
-		options: {}
-	}
-	
-	
-	
-	);
-	
-	
+		options: {
+			responsive: true, 
+			maintainAspectRatio: false, 
+			legend: {
+				display: true, 
+				position: 'bottom', 
+				fontFamily: 'Roboto Light'
+			}, 
+			title: {
+				display: true, 
+				fontFamily: 'Roboto Light', 
+				fontSize: 14, 
+				text: 'Sample Chart'
+			}, 
+			scales: {
+				yAxes: {
+					display: true, 
+					position: 'left',
+					id: 'y1'
+				}
+				
+			}
+			
+		}
+	});
 }
 
+drawChart();
 
 
 
