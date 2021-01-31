@@ -22,8 +22,17 @@ function drawChart() {
 		type: 'line', 
 		
 		data: {
-			labels: [], 
-			datasets: []
+			labels: ["Jan", "Feb", "Mar", "Apr", "May", "June"], 
+			datasets: [
+				{
+					label: "Series 1", 
+					fill: false, 
+					backgroundColor: window.chartColors.red, 
+					borderColor: window.chartColors.red, 
+					borderWidth: 2, 
+					data: [1, 5, 2, 7, 8, 3]
+				} 
+			]
 		}, 
 		
 		options: {}
