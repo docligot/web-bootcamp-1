@@ -1,0 +1,59 @@
+#header {
+  font-family: 'Hammersmith One', sans-serif;
+  font-size: 40px;
+  color:#ebe8e8;
+  background-color:#464646;
+  ;
+ }
+
+ #footer{
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  color:#ebe8e8;
+  background-color:#464646;
+  ;
+ }
+ .body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  color:#464646;
+  background-color: #ebe8e8;
+   }
+
+#map { 
+  position: absolute; 
+  top: 74px; 
+  bottom: 0; 
+  width: 100%;  
+  height: 86vh;
+  z-index: -1;
+    }
+
+.mapControls {
+display: block;
+position: relative;
+margin: 0px auto;
+padding: 0px 5px;
+border: none;
+border-radius: 5px;
+font-size: 20px;
+text-align: center;
+color: #464646;
+background-color: white;
+box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+cursor: pointer;
+}
+
+#modalTitle {
+  font-family: 'Hammersmith One', sans-serif;
+  font-size: 30px;
+  color: #464646;
+}
+
+p {
+  
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  color:#464646;
+
+}
