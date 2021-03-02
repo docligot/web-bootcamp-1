@@ -75,10 +75,10 @@
 
 						var map = new mapboxgl.Map({
 							container: 'mapContainer', // HTML container id
-							style: mapStyle,
+							style: 'mapbox://styles/mapbox/dark-v9',
 							center: [121.056269, 14.569240],
 							// starting position as [lng, lat]
-							zoom: 15
+							zoom: 6
 						});
 
 						var afterMap = new mapboxgl.Map({
@@ -86,7 +86,7 @@
 							style: 'mapbox://styles/mapbox/dark-v9',
 							center: [121.056269, 14.569240],
 							// starting position as [lng, lat]
-							zoom: 15
+							zoom: 6
 						});
 
 						var comparisonContainer = "#comparisonContainer";
@@ -139,7 +139,6 @@
 						colors.push({ "color": "#0033ff"});
 						colors.push({ "color": "#ffd700"});
 
-
 						for (i = 0; i < locations.length; i++) {
 							popup[i] = new mapboxgl.Popup()
 							.setHTML(messages[i]);
@@ -170,7 +169,42 @@
 							map.flyTo({center: [121.243580,14.168302]});
 						}
 
-
+						function loadSatellite() {							
+							// Satellite Layer 1
+							map.addSource('source1', {
+								'type': 'raster',
+								'tiles': ['https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?bbox={bbox-epsg-3857}&format=image/png&service=WMS&version=1.1.1&request=GetMap&srs=EPSG:3857&transparent=true&width=256&height=256&layers=VIIRS_Black_Marble'],
+								'tileSize': 256
+							});
+							map.addLayer({
+								'id': 'layer1',
+								'type': 'raster',
+								'source': 'source1',
+								'paint': {}
+							});
+							map.setPaintProperty(
+								'layer1',
+								'raster-opacity',
+								.5
+							);
+							
+							afterMap.addSource('source1', {
+								'type': 'raster',
+								'tiles': ['https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?bbox={bbox-epsg-3857}&format=image/png&service=WMS&version=1.1.1&request=GetMap&srs=EPSG:3857&transparent=true&width=256&height=256&layers=MODIS_Combined_L3_IGBP_Land_Cover_Type_Annual'],
+								'tileSize': 256
+							});
+							afterMap.addLayer({
+								'id': 'layer1',
+								'type': 'raster',
+								'source': 'source1',
+								'paint': {}
+							});
+							afterMap.setPaintProperty(
+								'layer1',
+								'raster-opacity',
+								.5
+							);
+						}
 					</script>
 	</div>
 
