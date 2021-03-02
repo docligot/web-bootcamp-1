@@ -5,10 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Mapbox Flyaround</title>
 	<script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js"></script>
+	<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.4.0/mapbox-gl-compare.js"></script>
   <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-highway.css">
 	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-ios.css">
+	<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.4.0/mapbox-gl-compare.css" type="text/css">
 	<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   
@@ -22,10 +24,16 @@
 		font-weight:400;
 		font-size:large;
 	}
-	#mapContainer {
+	#mapContainer, #afterMap {
 			 width: 100%;
 			 height: 95.5vh;
 		}
+    .map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+    }		
 	</style>
 </head>
 <body>
@@ -38,7 +46,9 @@
      <div id="small_menu" class="" style="display: none;">
 					<?php include ('nav.php'); ?>
 			</div>
-			<div id="mapContainer"></div>
+			<div id="comparisonContainer"></div>
+			<div id="mapContainer" class="map"></div>
+			<div id="afterMap" class="map"></div>
 
 			<script>
 				function toggle(element) {
@@ -66,12 +76,25 @@
 						var map = new mapboxgl.Map({
 							container: 'mapContainer', // HTML container id
 							style: mapStyle,
-
-							center: [121.056269,	14.569240],
-						// starting position as [lng, lat]
+							center: [121.056269, 14.569240],
+							// starting position as [lng, lat]
 							zoom: 15
 						});
+
+						var afterMap = new mapboxgl.Map({
+							container: 'afterMap', // HTML container id
+							style: 'mapbox://styles/mapbox/dark-v9',
+							center: [121.056269, 14.569240],
+							// starting position as [lng, lat]
+							zoom: 15
+						});
+
+						var comparisonContainer = "#comparisonContainer";
 						
+						var compareMap = new mapboxgl.Compare(map, afterMap, comparisonContainer, {
+							
+						});
+
 						map.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
 
 						var popup = [];
