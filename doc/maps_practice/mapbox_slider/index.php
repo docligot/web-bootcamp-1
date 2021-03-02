@@ -52,28 +52,85 @@
 
 			<script>
 				function toggle(element) {
-    		var object = document.getElementById(element);
-    		if (object.style.display == 'none') {
-        	object.style.display = 'block';
+					var object = document.getElementById(element);
+					if (object.style.display == 'none') {
+						object.style.display = 'block';
 					} 
-				else {
-        object.style.display = 'none';
-    			}	
+					else {
+						object.style.display = 'none';
+					}	
 				}
-					 				
-						function setStyle() {
-						
-							var mapStyle = document.getElementById('map-style').value;
-							
-							map.setStyle(mapStyle);
-						
-						}
 
+					function setStyle() {
+					
+						var mapStyle = document.getElementById('map-style').value;
+						
+						map.setStyle(mapStyle);
+					
+					}
+					
+					function goToPoint1() {
+						map.flyTo({center: [121.056269,	14.569240]});
+					}
+
+					function goToPoint2() {
+						map.flyTo({center: [121.060796,	14.573229]});
+					}
+
+					function goToPoint3() {
+						map.flyTo({center: [121.1713267,14.03466928]});
+					}
+
+					function goToFarm() {
+						map.flyTo({center: [122.970367,10.413438]});
+					}
+
+					function goToSchool() {
+						map.flyTo({center: [121.243580,14.168302]});
+					}
+
+					function loadSatellite() {							
+						// Satellite Layer 1
+						map.addSource('source1', {
+							'type': 'raster',
+							'tiles': ['https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?bbox={bbox-epsg-3857}&format=image/png&service=WMS&version=1.1.1&request=GetMap&srs=EPSG:3857&transparent=true&width=256&height=256&layers=VIIRS_Black_Marble'],
+							'tileSize': 256
+						});
+						map.addLayer({
+							'id': 'layer1',
+							'type': 'raster',
+							'source': 'source1',
+							'paint': {}
+						});
+						map.setPaintProperty(
+							'layer1',
+							'raster-opacity',
+							.5
+						);
+						
+						afterMap.addSource('source1', {
+							'type': 'raster',
+							'tiles': ['https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?bbox={bbox-epsg-3857}&format=image/png&service=WMS&version=1.1.1&request=GetMap&srs=EPSG:3857&transparent=true&width=256&height=256&layers=MODIS_Combined_L3_IGBP_Land_Cover_Type_Annual'],
+							'tileSize': 256
+						});
+						afterMap.addLayer({
+							'id': 'layer1',
+							'type': 'raster',
+							'source': 'source1',
+							'paint': {}
+						});
+						afterMap.setPaintProperty(
+							'layer1',
+							'raster-opacity',
+							.5
+						);
+					}
+					new Promise(function(resolve, reject) {
 						mapboxgl.accessToken = 'pk.eyJ1IjoiZG9jbGlnb3QiLCJhIjoiY2p3MHQ5MTViMGVvNzQzdGdicTlwM2o3NCJ9.j4qYChJYSxUy8hNnlXrD-g';
 
 						var mapStyle = document.getElementById('map-style').value;
 
-						var map = new mapboxgl.Map({
+						map = new mapboxgl.Map({
 							container: 'mapContainer', // HTML container id
 							style: 'mapbox://styles/mapbox/dark-v9',
 							center: [121.056269, 14.569240],
@@ -81,7 +138,7 @@
 							zoom: 6
 						});
 
-						var afterMap = new mapboxgl.Map({
+						afterMap = new mapboxgl.Map({
 							container: 'afterMap', // HTML container id
 							style: 'mapbox://styles/mapbox/dark-v9',
 							center: [121.056269, 14.569240],
@@ -89,9 +146,9 @@
 							zoom: 6
 						});
 
-						var comparisonContainer = "#comparisonContainer";
+						comparisonContainer = "#comparisonContainer";
 						
-						var compareMap = new mapboxgl.Compare(map, afterMap, comparisonContainer, {
+						compareMap = new mapboxgl.Compare(map, afterMap, comparisonContainer, {
 							
 						});
 
@@ -148,63 +205,10 @@
 							.setPopup(popup[i])
 							.addTo(map);
 						}
-						
-						function goToPoint1() {
-							map.flyTo({center: [121.056269,	14.569240]});
-						}
-
-						function goToPoint2() {
-							map.flyTo({center: [121.060796,	14.573229]});
-						}
-
-						function goToPoint3() {
-							map.flyTo({center: [121.1713267,14.03466928]});
-						}
-
-						function goToFarm() {
-							map.flyTo({center: [122.970367,10.413438]});
-						}
-
-						function goToSchool() {
-							map.flyTo({center: [121.243580,14.168302]});
-						}
-
-						function loadSatellite() {							
-							// Satellite Layer 1
-							map.addSource('source1', {
-								'type': 'raster',
-								'tiles': ['https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?bbox={bbox-epsg-3857}&format=image/png&service=WMS&version=1.1.1&request=GetMap&srs=EPSG:3857&transparent=true&width=256&height=256&layers=VIIRS_Black_Marble'],
-								'tileSize': 256
-							});
-							map.addLayer({
-								'id': 'layer1',
-								'type': 'raster',
-								'source': 'source1',
-								'paint': {}
-							});
-							map.setPaintProperty(
-								'layer1',
-								'raster-opacity',
-								.5
-							);
-							
-							afterMap.addSource('source1', {
-								'type': 'raster',
-								'tiles': ['https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?bbox={bbox-epsg-3857}&format=image/png&service=WMS&version=1.1.1&request=GetMap&srs=EPSG:3857&transparent=true&width=256&height=256&layers=MODIS_Combined_L3_IGBP_Land_Cover_Type_Annual'],
-								'tileSize': 256
-							});
-							afterMap.addLayer({
-								'id': 'layer1',
-								'type': 'raster',
-								'source': 'source1',
-								'paint': {}
-							});
-							afterMap.setPaintProperty(
-								'layer1',
-								'raster-opacity',
-								.5
-							);
-						}
+						setTimeout(() => resolve(1), 3000);
+					}).then(function(result) {
+						loadSatellite();
+					});
 					</script>
 	</div>
 

@@ -18,5 +18,4 @@
 		<div class="w3-padding w3-bar-item w3-button w3-select w3-round w3-hover-blue-grey" onclick="goToSchool();">Go to School</div>
 </div>
 		<div class="w3-bar-item w3-button w3-select w3-round w3-hover-blue-grey" onclick="toggle('small_menu'); toggle('id01');"><strong>About</strong></div>
-		<div class="w3-bar-item w3-button w3-select w3-round w3-hover-blue-grey" onclick="loadSatellite();"><strong>Load Satellite</strong></div>			
 </nav>
